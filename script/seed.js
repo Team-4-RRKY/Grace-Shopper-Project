@@ -39,7 +39,7 @@ if (module === require.main) {
     console.error(err)
     process.exitCode = 1
   })
-  .finally(() => { // `finally` is like then + catch. It runs no matter what.
+  .then(() => { // `finally` is like then + catch. It runs no matter what.
     console.log('closing db connection')
     db.close()
     console.log('db connection closed')
