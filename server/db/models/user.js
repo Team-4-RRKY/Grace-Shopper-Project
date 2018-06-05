@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 const crypto = require("crypto");
 const Sequelize = require("sequelize");
 const db = require("../db");
 
 const User = db.define("user", {
+=======
+const crypto = require('crypto');
+const Sequelize = require('sequelize');
+const db = require('../db');
+
+const User = db.define('user', {
+>>>>>>> master
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -35,13 +43,21 @@ const User = db.define("user", {
   password: {
     type: Sequelize.STRING,
     get() {
+<<<<<<< HEAD
       return () => this.getDataValue("password");
+=======
+      return () => this.getDataValue('password');
+>>>>>>> master
     }
   },
   salt: {
     type: Sequelize.STRING,
     get() {
+<<<<<<< HEAD
       return () => this.getDataValue("salt");
+=======
+      return () => this.getDataValue('salt');
+>>>>>>> master
     }
   },
   googleId: {
@@ -62,7 +78,11 @@ User.prototype.correctPassword = function(candidatePwd) {
  * classMethods
  */
 User.generateSalt = function() {
+<<<<<<< HEAD
   return crypto.randomBytes(16).toString("base64");
+=======
+  return crypto.randomBytes(16).toString('base64');
+>>>>>>> master
 };
 
 User.encryptPassword = function(plainText, salt) {
@@ -70,14 +90,22 @@ User.encryptPassword = function(plainText, salt) {
     .createHash("RSA-SHA256")
     .update(plainText)
     .update(salt)
+<<<<<<< HEAD
     .digest("hex");
+=======
+    .digest('hex');
+>>>>>>> master
 };
 
 /**
  * hooks
  */
 const setSaltAndPassword = user => {
+<<<<<<< HEAD
   if (user.changed("password")) {
+=======
+  if (user.changed('password')) {
+>>>>>>> master
     user.salt = User.generateSalt();
     user.password = User.encryptPassword(user.password(), user.salt());
   }
