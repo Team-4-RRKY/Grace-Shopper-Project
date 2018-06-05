@@ -2,7 +2,7 @@ const db = require('../db.js')
 const User = require('./user')
 const Sequelize = require('sequelize')
 
-module.exports = Watch = db.define('watch', {
+const Watch = db.define('watch', {
   brand: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -46,3 +46,5 @@ module.exports = Watch = db.define('watch', {
       include: [{ model: User, as: 'seller' }]
     }
   })
+
+  module.exports = Watch
