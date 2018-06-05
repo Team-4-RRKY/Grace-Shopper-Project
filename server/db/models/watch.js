@@ -1,4 +1,5 @@
 const db = require('../db.js')
+const User = require('./user')
 const Sequelize = require('sequelize')
 
 const Watch = db.define('watch', {
@@ -45,3 +46,5 @@ const Watch = db.define('watch', {
       include: [{ model: User, as: 'seller' }]
     }
   })
+
+  module.exports = Watch
