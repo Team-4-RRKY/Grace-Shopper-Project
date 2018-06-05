@@ -1,4 +1,5 @@
 const User = require('./user')
+const Watch = require('./watch')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -14,5 +15,6 @@ const User = require('./user')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
+  Watch,
   User
 }

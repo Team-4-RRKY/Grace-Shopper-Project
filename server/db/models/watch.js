@@ -1,7 +1,8 @@
 const db = require('../db.js')
+const User = require('./user')
 const Sequelize = require('sequelize')
 
-const Watch = db.define('watch', {
+module.exports = Watch = db.define('watch', {
   brand: {
     type: Sequelize.STRING,
     allowNull: false,
