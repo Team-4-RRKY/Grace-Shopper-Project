@@ -1,5 +1,4 @@
 import React from 'react';
-import { getWatches } from '../../store/watch';
 import { connect } from 'react-redux';
 import { SingleWatch } from './singleWatch';
 
@@ -23,14 +22,6 @@ class watchBrowse extends React.Component {
 
 const mapStateToProps = state => ({
   watches: state.watch.watches,
-  isFetching: state.watch.isFetching,
+  isFetching: state.watch.isFetching
 });
-
-const mapDispatchToProps = dispatch => ({
-  getwatches: () => dispatch(getWatches()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(watchBrowse);
+export default connect(mapStateToProps, null)(watchBrowse);
