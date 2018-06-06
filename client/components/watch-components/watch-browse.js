@@ -1,1 +1,0 @@
-import Componenent from 'react'

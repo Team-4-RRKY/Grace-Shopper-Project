@@ -1,16 +1,13 @@
-import React from "react";
-import { getWatches } from "../../store/watch";
-import { connect } from "react-redux";
-import { SingleWatch } from "./singleWatch";
+import React from 'react';
+import { getWatches } from '../../store/watch';
+import { connect } from 'react-redux';
+import { SingleWatch } from './singleWatch';
 
 class watchBrowse extends React.Component {
-  componentDidMount() {
-    this.props.getWatches();
-  }
-
   render() {
+    const { isFetching, watches } = this.props;
     console.log(this.props);
-    const watches = this.props.watches;
+    if (isFetching) return <div>Loading....</div>;
     return (
       <div>
         <div>
@@ -25,11 +22,12 @@ class watchBrowse extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  watches: state.watches
+  watches: state.watch.watches,
+  isFetching: state.watch.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getwatches: () => dispatch(getWatches())
+  getwatches: () => dispatch(getWatches()),
 });
 
 export default connect(
