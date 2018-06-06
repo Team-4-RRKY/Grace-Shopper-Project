@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+const User = require("./user");
+const Watch = require("./watch");
+/*
+Watch.belongsTo(User, { as: "Seller" });
+User.hasMany(Watch);
+=======
 const User = require('./user')
 const Watch = require('./watch')
 
@@ -6,15 +13,19 @@ const Watch = require('./watch')
  * ex. if we had another model called BlogPost, we might say:
  *
  *    BlogPost.belongsTo(User)
+>>>>>>> master
  */
+User.belongsToMany(Watch, { through: "CartItem" });
+Watch.belongsToMany(User, { through: "CartItem" });
+//User.hasMany(PaymentInfo)
 
-/**
- * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
- * for example, we can say: const {User} = require('../db/models')
- * instead of: const User = require('../db/models/user')
- */
 module.exports = {
+<<<<<<< HEAD
+  User,
+  Watch
+};
+=======
   Watch,
   User
 }
+>>>>>>> master
