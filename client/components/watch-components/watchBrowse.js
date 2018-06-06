@@ -6,7 +6,6 @@ import SingleWatch from './singleWatch';
 class watchBrowse extends React.Component {
   render() {
     const { isFetching, watches } = this.props;
-    console.log(this.props);
     if (isFetching) return <div>Loading....</div>;
     return (
       <div>
@@ -14,7 +13,7 @@ class watchBrowse extends React.Component {
           <h1>All watches</h1>
         </div>
         <div id="allwatches">
-          {watches.map(watch => <SingleWatch watch={watch} key={watch.id} />)}
+          {watches.map(watch => <SingleWatch key={watch.id} watch={watch} />)}
         </div>
       </div>
     );
@@ -23,11 +22,11 @@ class watchBrowse extends React.Component {
 
 const mapStateToProps = state => ({
   watches: state.watch.watches,
-  isFetching: state.watch.isFetching,
+  isFetching: state.watch.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({
-  getwatches: () => dispatch(getWatches()),
+  getwatches: () => dispatch(getWatches())
 });
 
 export default connect(
