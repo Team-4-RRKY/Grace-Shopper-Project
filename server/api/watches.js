@@ -1,37 +1,45 @@
-const router = require('express').Router()
+const router = require('express').Router();
 const defaultHandler = require('./errorHandler');
-const { Watch } = require('../db/models')
+const { Watch } = require('../db/models');
 
-router.get('/', defaultHandler( async (req, res, next) => {
-  const watches = await Watch.findAll()
-  res.json(watches)
-}))
+router.get( '/', defaultHandler(async (req, res, next) => {
+    const watches = await Watch.findAll();
 
-router.get('/:id', defaultHandler( async(req, res, next) => {
-  const watchId = req.params.id
-  const watch = await Watch.findById(watchId)
-  res.json(watch)
-}))
+    res.json(watches);
+}));
 
-router.post('/sell', defaultHandler( async(req, res, next) => {
-  const watchToSell = await Watch.create(req.body)
-  res.json(watchToSell)
-}))
+router.get( '/:id', defaultHandler(async (req, res, next) => {
+    const watchId = req.params.id;
+    const watch = await Watch.findById(watchId);
 
+    res.json(watch);
+}));
 
-router.post('/:id', defaultHandler( async(req, res, next) => {
-  const watchToEdit = await Watch.update(req.body, {
-    where: {
-      id: req.params.id
-    },
-    returning: true
-  })
-  res.json(watchToEdit[1][0])
-}))
+router.post( '/', defaultHandler(async (req, res, next) => {
+    const watchToSell = await Watch.create(req.body);
 
-router.delete('/:id', defaultHandler( async (req, res, next) => {
-  await Watch.destroy({where: {id: req.params.id}})
-  res.sendStatus(200)
-}))
+    res.json(watchToSell);
+}));
 
-module.exports = router
+router.put( '/:id', defaultHandler(async (req, res, next) => {
+    const watchToEdit = await Watch.update(req.body, {
+      where: {
+        id: req.params.id
+      },
+      returning: true
+    });
+
+    res.json(watchToEdit[1][0]);
+}));
+
+router.delete( '/:id', defaultHandler(async (req, res, next) => {
+    await Watch.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    res.sendStatus(200);
+}));
+
+module.exports = router;
