@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 const db = require("../db.js");
 const Sequelize = require("sequelize");
 const User = require("./user.js");
-=======
-const db = require('../db.js')
-const User = require('./user')
-const Sequelize = require('sequelize')
->>>>>>> master
 
 const Watch = db.define(
   "watch",
@@ -53,13 +47,7 @@ const Watch = db.define(
     defaultScope: {
       include: [{ model: User, as: "seller" }]
     }
-<<<<<<< HEAD
   } */
 );
 
 module.exports = Watch;
-=======
-  })
-
-  module.exports = Watch
->>>>>>> master
