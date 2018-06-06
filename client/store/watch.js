@@ -27,7 +27,7 @@ export const fetchingWatches = () => ({
 export const getWatches = () => async dispatch => {
   dispatch(fetchingWatches());
   try {
-    const { data } = await axios.get("api/watches/browse");
+    const { data } = await axios.get('api/watches');
     dispatch(gotWatches(data));
   } catch (error) {
     console.log(error);
