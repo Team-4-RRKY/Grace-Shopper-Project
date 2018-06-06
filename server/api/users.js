@@ -40,7 +40,7 @@ router.put('/:id', defaultHandler( async (req, res, next) => {
 }))
 
 router.delete('/:id', defaultHandler( async (req, res, next) => {
-  await User.delete(req.body, {where: {
+  await User.destroy(req.body, {where: {
     id: req.params.id
   }})
     res.send({message: 'User Instance Deleted'})
