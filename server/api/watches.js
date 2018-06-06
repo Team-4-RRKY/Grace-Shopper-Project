@@ -1,57 +1,37 @@
 const router = require('express').Router()
-const {Watch} = require('../db/models')
+const defaultHandler = require('./errorHandler');
+const { Watch } = require('../db/models')
 
-router.get('/browse', async(req, res, next) => {
-    try {
-        const watches = await Watch.findAll()
-        res.json(watches)
-    } catch (error) {
-        console.log(error)
-        console.log('HA;SLDKFA;DSKFA;SDKF;ASDFAS;DF')
-        next(error)
-    }
-})
+router.get('/', defaultHandler( async (req, res, next) => {
+  const watches = await Watch.findAll()
+  res.json(watches)
+}))
 
-router.get('/browse/:id', async(req, res, next) => {
-    try {
-        const watchId = req.params.id
-        const watch = await Watch.findById(watchId)
-        res.json(watch)
-    } catch (error) {
-        console.log(error)
-        next(error)
-    }
-})
+router.get('/:id', defaultHandler( async(req, res, next) => {
+  const watchId = req.params.id
+  const watch = await Watch.findById(watchId)
+  res.json(watch)
+}))
 
-router.post('/sell', async(req, res, next) => {
-    try {
-        const watchToSell = await Watch.create(req.body)
-        res.json(watchToSell)
-    } catch (error) {
-        console.log(error)
-        next(error)
-    }
-})
+router.post('/sell', defaultHandler( async(req, res, next) => {
+  const watchToSell = await Watch.create(req.body)
+  res.json(watchToSell)
+}))
 
 
-router.put('/:id/edit', async(req, res, next) => {
-    try {
-        const watchToEdit = await Watch.update(req.body, {where: {id: req.params.id}, returning: true})
-        res.json(watchToEdit[1][0])
-    } catch (error) {
-        console.log(error)
-        next(error)
-    }
-})
+router.post('/:id', defaultHandler( async(req, res, next) => {
+  const watchToEdit = await Watch.update(req.body, {
+    where: {
+      id: req.params.id
+    },
+    returning: true
+  })
+  res.json(watchToEdit[1][0])
+}))
 
-router.delete('/:id/delete', async (req, res, next) => {
-    try {
-        await Watch.destroy({where: {id: req.params.id}})
-        res.sendStatus(200)
-    } catch (error) {
-        console.log(error)
-        next(error)
-    }
-})
+router.delete('/:id', defaultHandler( async (req, res, next) => {
+  await Watch.destroy({where: {id: req.params.id}})
+  res.sendStatus(200)
+}))
 
 module.exports = router
