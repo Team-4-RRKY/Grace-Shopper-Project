@@ -1,9 +1,9 @@
-const db = require("../db.js");
-const Sequelize = require("sequelize");
-const User = require("./user.js");
+const db = require('../db.js');
+const Sequelize = require('sequelize');
+const User = require('./user.js');
 
 const Watch = db.define(
-  "watch",
+  'watch',
   {
     brand: {
       type: Sequelize.STRING,
@@ -15,7 +15,10 @@ const Watch = db.define(
     },
     image: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isUrl: true
+      }
     },
     description: Sequelize.TEXT,
     price: {
