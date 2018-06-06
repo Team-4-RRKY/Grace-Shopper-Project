@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import watchReducer from './watch.js';
 
-const reducer = combineReducers({ user, watchReducer });
+const reducer = combineReducers({ user, watch: watchReducer });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
