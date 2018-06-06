@@ -13,7 +13,6 @@ router.get( '/', defaultHandler(async (req, res, next) => {
 
 router.get( '/:id', defaultHandler(async (req, res, next) => {
   const userId = req.params.id;
-
   const userInstance = await User.findById(userId, {
     include: [{ model: Watch }]
   });
@@ -27,16 +26,14 @@ router.post( '/', defaultHandler( async (req, res, next) => {
 }));
 
 router.put('/:id', defaultHandler( async (req, res, next) => {
-  //Can I use null in place of numOfUsers
-  const [ numOfUsers, updatedUsers ] = await User.update(req.body, {
+  const updatedUsers = await User.update(req.body, {
     where: {
     id: req.params.id
   },
-  returning: true,
-  plain: true
-})
-
-    res.send({ message: 'User Instance Updated', updatedUsers[0] })
+    returning: true,
+    plain: true
+  })
+    res.send( { message: 'User Instance Updated', updatedUser: updatedUsers[1][0] } )
 }))
 
 router.delete('/:id', defaultHandler( async (req, res, next) => {
