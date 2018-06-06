@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SingleWatch } from './singleWatch';
+import SingleWatch from './singleWatch';
 
 class watchBrowse extends React.Component {
   render() {
