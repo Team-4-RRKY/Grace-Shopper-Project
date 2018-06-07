@@ -53,7 +53,11 @@ async function seed() {
   ]);
 
   await users[0].setListings(watches[0]);
-  await Promise.all([Cart.create({ userId: 1, watchId: 1 })]);
+  await users[0].removeListing(watches[0]);
+  await Promise.all([
+    Cart.create({ userId: 1, watchId: 1 }),
+    Cart.create({ userId: 1, watchId: 2 }),
+  ]);
   const cart = await User.findAll({
     include: [
       {
@@ -63,7 +67,11 @@ async function seed() {
     ],
   });
   // console.log(cart);
-  await Promise.all([Order.create({ userId: 1, watchId: 1 })]);
+  await Promise.all([
+    Order.create({ userId: 1, watchId: 1 }),
+    Order.create({ userId: 1, watchId: 2 }),
+  ]);
+  await Order.destroy({ where: { userId: 1, watchId: 1 } });
   const order = await User.findAll({
     include: [
       {
@@ -80,7 +88,11 @@ async function seed() {
       },
     ],
   });
-  console.log(order);
+  console.log(
+    order[0].dataValues.cartItems.length,
+    order[0].dataValues.listings.length,
+    order[0].dataValues.saleItems.length
+  );
 
   /*
   const getSellers = await Promise.all([
