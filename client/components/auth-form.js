@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
 import UserForm from './user-components/userForm.jsx';
+import { Button, TextField } from '@material-ui/core';
+
 
 /**
  * COMPONENT
@@ -29,7 +31,6 @@ class AuthForm extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(evt.target.email.value)
     const formName = this.props.name;
     formName === 'signup' ?
     this.props.auth(this.state, formName) :
@@ -41,23 +42,23 @@ class AuthForm extends Component {
       <div>
       {name === 'login' ? (
       <div>
+        <h1> Login </h1>
         <form onSubmit={this.handleSubmit} name={name}>
         <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
+          <TextField label="Email" name="email" type="text" />
         </div>
         <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
+          <TextField label="Password" name="password" type="password" />
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+        <Button type="submit" variant="contained" color="primary"> {displayName} </Button>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
         </form>
       </div>
     ) : (
-    <UserForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+    <div className="signup-form">
+    <UserForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} displayName={displayName} />
+    </div>
   )
 }
   <a href="/auth/google">{displayName} with Google</a>

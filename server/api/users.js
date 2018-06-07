@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const defaultHandler = require('./errorHandler');
 const { User, Watch } = require('../db/models');
+
 module.exports = router;
 
 //don't forget to HIDE password

@@ -37,7 +37,7 @@ async function seed() {
     Watch.create({
       brand: 'Swatch',
       model: 'SW1',
-      image: 'picture',
+      image: 'https://cdn.shopify.com/s/files/1/1663/6869/products/Fashion-simple-stylish-Top-Luxury-brand-MEGIR-Watches-men-Stainless-Steel-Mesh-strap-band-Quartz-watch_grande.jpg',
       price: 55,
       quantity: 1,
       style: 'newStyle',
@@ -47,7 +47,7 @@ async function seed() {
     Watch.create({
       brand: 'Tag-heuer',
       model: 'TH1',
-      image: 'picture tag',
+      image: 'http://cdn1.latestone.com/images/catalog/products/large/190100371-01.jpg',
       price: 120,
       quantity: 15,
       style: 'oldStyle',
