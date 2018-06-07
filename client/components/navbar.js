@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-import {Menu, MenuItem} from '@material-ui/core'
+import { Menu, MenuItem } from '@material-ui/core';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -12,10 +12,22 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
+<<<<<<< HEAD
+          <Link className="nav-item" to="/home">
+            Home
+          </Link>
+          <Link className="nav-item" to="/watches/browse">
+            Watches
+          </Link>
+          <Link className="nav-item" to="/user">
+            Account
+          </Link>
+=======
           <Link className="nav-item" to="/home">Home</Link>
           <Link className="nav-item" to="/watches/browse">Watches</Link>
           <Link className="nav-item" to="/user">Account</Link>
           <Link className="nav-item" to="/aboutus">About Us</Link>
+>>>>>>> master
           <a className="nav-item" href="#" onClick={handleClick}>
             Logout
           </a>
@@ -23,14 +35,26 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
+<<<<<<< HEAD
+          <Link className="nav-item" to="/login">
+            Login
+          </Link>
+          <Link className="nav-item" to="/signup">
+            Sign Up
+          </Link>
+          <Link className="nav-item" to="/watches/browse">
+            WATCHES
+          </Link>
+=======
           <Link className="nav-item" to="/login">Login</Link>
           <Link className="nav-item" to="/signup">Sign Up</Link>
           <Link  className="nav-item" to="/watches/browse">WATCHES</Link>
           <Link className="nav-item" to="/aboutus">About Us</Link>
+>>>>>>> master
         </div>
       )}
     </nav>
-      <div className="divider" />
+    <div className="divider" />
   </div>
 );
 
@@ -39,7 +63,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.user.id,
   };
 };
 
@@ -47,7 +71,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
-    }
+    },
   };
 };
 
@@ -61,5 +85,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

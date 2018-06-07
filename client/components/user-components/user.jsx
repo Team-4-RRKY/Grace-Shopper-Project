@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal } from '@material-ui/core';
-import {UserForm } from './userForm.jsx'
+import { UserForm } from './userForm.jsx';
 
 class User extends Component {
   state = {
-    open: false
+    open: false,
   };
   handleOpen = () => {
     this.setState({ open: true });
@@ -17,7 +17,6 @@ class User extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(user);
     return (
       <div className="row wrap">
         <div id="user-info" className="column wrap border-black">
@@ -34,7 +33,7 @@ class User extends Component {
             open={this.state.open}
             onClose={this.handleClose}
           >
-          {/* <UserForm /> */}
+            {/* <UserForm /> */}
           </Modal>
         </div>
         <div>{}</div>
@@ -48,7 +47,7 @@ class User extends Component {
 // })
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user.user,
 });
 export default connect(
   mapStateToProps,
