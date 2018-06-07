@@ -3,6 +3,7 @@
 const db = require('../server/db');
 const { User, Watch, Cart, Order } = require('../server/db/models');
 const mockUserData = require('./user_mock');
+const watchData = require('./watchdata.js');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -26,7 +27,7 @@ async function seed() {
       firstName: 'john',
       lastName: 'doe',
       email: 'cody@email.com',
-      password: '123',
+      password: '123'
     }),
     User.create({
       firstName: 'jane',
@@ -35,34 +36,16 @@ async function seed() {
       image:
         'https://robohash.org/autemvoluptasrepellendus.png?size=50x50&set=set1',
       email: 'murphy@email.com',
-      password: '123',
-    }),
+      password: '123'
+    })
   ]);
 
-  const watches = await Promise.all([
-    Watch.create({
-      brand: 'Swatch',
-      model: 'SW1',
-      image:
-        'https://cdn.shopify.com/s/files/1/1663/6869/products/Fashion-simple-stylish-Top-Luxury-brand-MEGIR-Watches-men-Stainless-Steel-Mesh-strap-band-Quartz-watch_grande.jpg',
-      price: 55,
-      quantity: 1,
-      style: 'newStyle',
-      tier: 'low-end',
-      gender: 'F',
-    }),
-    Watch.create({
-      brand: 'Tag-heuer',
-      model: 'TH1',
-      image:
-        'http://cdn1.latestone.com/images/catalog/products/large/190100371-01.jpg',
-      price: 120,
-      quantity: 15,
-      style: 'oldStyle',
-      tier: 'low-end',
-      gender: 'M',
-    }),
-  ]);
+  const watchPromises = [];
+  for (let i = 0; i < watchData.length; i++) {
+    let newWatch = Watch.create(watchData[i]);
+    watchPromises.push(newWatch);
+  }
+  await Promise.all(watchPromises);
 
   // Below code demonstrates how to use association methods
 
