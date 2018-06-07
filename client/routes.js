@@ -34,8 +34,8 @@ class Routes extends Component {
         <Route exact path="/watches/:id" component={WatchSingleView} />
 
         {/* AboutUs Route */}
-        <Route exact path="/aboutus" component={AboutUs}>
-        
+        <Route exact path="/aboutus" component={AboutUs} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
