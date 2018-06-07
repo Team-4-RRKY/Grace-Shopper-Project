@@ -29,18 +29,19 @@ class AuthForm extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const formName = 'signup';
-    // const email = evt.target.email.value;
-    // const password = evt.target.password.value;
-    this.props.auth(this.state, formName);
+    console.log(evt.target.email.value)
+    const formName = this.props.name;
+    formName === 'signup' ?
+    this.props.auth(this.state, formName) :
+    this.props.auth({email: evt.target.email.value, password: evt.target.password.value}, formName)
   }
   render() {
-    const { name, displayName, handleSubmit, error } = this.props;
-
+    const { name, displayName, error } = this.props;
     return (
       <div>
-
-        {/* <form onSubmit={handleSubmit} name={name}>
+      {name === 'login' ? (
+      <div>
+        <form onSubmit={this.handleSubmit} name={name}>
         <div>
           <label htmlFor="email"><small>Email</small></label>
           <input name="email" type="text" />
@@ -53,11 +54,15 @@ class AuthForm extends Component {
           <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
-      </form> */}
-        <UserForm handleSubmit={this.handleSubmit} name={name} handleChange={this.handleChange} />
-        <a href="/auth/google">{displayName} with Google</a>
+        </form>
       </div>
-    );
+    ) : (
+    <UserForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+  )
+}
+  <a href="/auth/google">{displayName} with Google</a>
+      </div>
+    )
   }
 }
 
@@ -86,16 +91,7 @@ const mapSignup = state => {
 
 const mapDispatch = dispatch => {
   return {
-    auth: (formName, localState) => dispatch(auth(localState, formName))
-  //   handleSubmit(evt) {
-  //     evt.preventDefault();
-  //     const formName = evt.target.name;
-  //     // const email = evt.target.email.value;
-  //     // const password = evt.target.password.value;
-  //     const email = this.state.email;
-  //     const password = this.state.password;
-  //     dispatch(auth(email, password, formName));
-  //   }
+    auth: (localState, formName) => dispatch(auth(localState, formName))
   };
 };
 
