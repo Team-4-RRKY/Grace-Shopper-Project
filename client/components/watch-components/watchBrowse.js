@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getWatches } from '../../store/watch';
-import {Link} from 'react-router-dom'
+import { getWatches, selectedWatch } from '../../store/watch';
+import { Link } from 'react-router-dom';
 import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 
 class watchBrowse extends React.Component {
@@ -15,11 +15,14 @@ class watchBrowse extends React.Component {
         </div>
         <GridList>
           {watches.map(watch => (
-            <GridListTile key={watch.image}>
-            <Link to={`/watches/${watch.id}`}  >
-            <img src={watch.image} />
-              <GridListTileBar title={watch.brand} subtitle={watch.model} />
-            </Link>
+            <GridListTile
+              key={watch.image}
+              onClick={() => this.props.selectWatch(watch)}
+            >
+              <Link to={`/watches/${watch.id}`}>
+                <img src={watch.image} />
+                <GridListTileBar title={watch.brand} subtitle={watch.model} />
+              </Link>
             </GridListTile>
           ))}
         </GridList>
@@ -34,7 +37,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getwatches: () => dispatch(getWatches())
+  getwatches: () => dispatch(getWatches()),
+  selectWatch: watch => dispatch(selectedWatch(watch))
 });
 
 export default connect(

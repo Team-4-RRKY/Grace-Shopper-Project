@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import store from '../../store';
 
 class WatchSingleView extends React.Component {
   handleBuy = event => {
@@ -14,8 +13,7 @@ class WatchSingleView extends React.Component {
   };
 
   render() {
-    const id = this.props.match.params.id;
-    const watch = this.props.watch.watches[id - 1];
+    const watch = this.props.watch;
     if (watch) {
       return (
         <div className="detail">
@@ -27,7 +25,7 @@ class WatchSingleView extends React.Component {
           <img src={watch.image} alt="image" />
           <div>
             <button type="submit" onClick={this.handleBuy}>
-              Buy
+              Add To Cart
             </button>
             {/* Sell button enabled if logged */}
             <button type="submit" onClick={this.handleSell}>
@@ -43,7 +41,7 @@ class WatchSingleView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  watch: state.watch
+  watch: state.watch.watch
 });
 
 export default connect(mapStateToProps)(WatchSingleView);
