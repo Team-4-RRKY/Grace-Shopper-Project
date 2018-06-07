@@ -2,6 +2,7 @@
 
 const db = require('../server/db');
 const { User, Watch, Cart, Order } = require('../server/db/models');
+const mockUserData = require('./user_mock');
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -21,9 +22,18 @@ async function seed() {
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
   const users = await Promise.all([
-    User.create({ name: 'john doe', email: 'cody@email.com', password: '123' }),
     User.create({
-      name: 'jane doe',
+      firstName: 'john',
+      lastName: 'doe',
+      email: 'cody@email.com',
+      password: '123',
+    }),
+    User.create({
+      firstName: 'jane',
+      lastName: 'doe',
+      gender: 'Female',
+      image:
+        'https://robohash.org/autemvoluptasrepellendus.png?size=50x50&set=set1',
       email: 'murphy@email.com',
       password: '123',
     }),
@@ -33,7 +43,8 @@ async function seed() {
     Watch.create({
       brand: 'Swatch',
       model: 'SW1',
-      image: 'picture',
+      image:
+        'https://cdn.shopify.com/s/files/1/1663/6869/products/Fashion-simple-stylish-Top-Luxury-brand-MEGIR-Watches-men-Stainless-Steel-Mesh-strap-band-Quartz-watch_grande.jpg',
       price: 55,
       quantity: 1,
       style: 'newStyle',
@@ -43,7 +54,8 @@ async function seed() {
     Watch.create({
       brand: 'Tag-heuer',
       model: 'TH1',
-      image: 'picture tag',
+      image:
+        'http://cdn1.latestone.com/images/catalog/products/large/190100371-01.jpg',
       price: 120,
       quantity: 15,
       style: 'oldStyle',
@@ -52,61 +64,49 @@ async function seed() {
     }),
   ]);
 
-  await users[0].setListings(watches[0]);
-  await users[0].removeListing(watches[0]);
-  await Promise.all([
-    Cart.create({ userId: 1, watchId: 1 }),
-    Cart.create({ userId: 1, watchId: 2 }),
-  ]);
-  const cart = await User.findAll({
-    include: [
-      {
-        model: Watch,
-        as: 'cartItems',
-      },
-    ],
-  });
-  // console.log(cart);
-  await Promise.all([
-    Order.create({ userId: 1, watchId: 1 }),
-    Order.create({ userId: 1, watchId: 2 }),
-  ]);
-  await Order.destroy({ where: { userId: 1, watchId: 1 } });
-  const order = await User.findAll({
-    include: [
-      {
-        model: Watch,
-        as: 'saleItems',
-      },
-      {
-        model: Watch,
-        as: 'cartItems',
-      },
-      {
-        model: Watch,
-        as: 'listings',
-      },
-    ],
-  });
-  console.log(
-    order[0].dataValues.cartItems.length,
-    order[0].dataValues.listings.length,
-    order[0].dataValues.saleItems.length
-  );
+  // Below code demonstrates how to use association methods
 
-  /*
-  const getSellers = await Promise.all([
-    watches[0].setSeller(1),
-    watches[1].setSeller(2)
-  ]);
-    await Promise.all(getSellers);
- */
-
+  // await users[0].setListings(watches[0]);
+  // await users[0].removeListing(watches[0]);
   // await Promise.all([
-  //   users[0].addWatches([watches[0], watches[1]]),
-  //   users[1].addWatches([watches[0], watches[1]])
+  //   Cart.create({ userId: 1, watchId: 1 }),
+  //   Cart.create({ userId: 1, watchId: 2 }),
   // ]);
-  // await Promise.all(getCarts);
+  // const cart = await User.findAll({
+  //   include: [
+  //     {
+  //       model: Watch,
+  //       as: 'cartItems',
+  //     },
+  //   ],
+  // });
+  // // console.log(cart);
+  // await Promise.all([
+  //   Order.create({ userId: 1, watchId: 1 }),
+  //   Order.create({ userId: 1, watchId: 2 }),
+  // ]);
+  // await Order.destroy({ where: { userId: 1, watchId: 1 } });
+  // const order = await User.findAll({
+  //   include: [
+  //     {
+  //       model: Watch,
+  //       as: 'saleItems',
+  //     },
+  //     {
+  //       model: Watch,
+  //       as: 'cartItems',
+  //     },
+  //     {
+  //       model: Watch,
+  //       as: 'listings',
+  //     },
+  //   ],
+  // });
+  // console.log(
+  //   order[0].dataValues.cartItems.length,
+  //   order[0].dataValues.listings.length,
+  //   order[0].dataValues.saleItems.length
+  // );
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
