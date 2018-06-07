@@ -82,12 +82,10 @@ body {
   border-radius: 10px;
 }
 
-<<<<<<< HEAD
-=======
 /* cards styles from material-ui */
-.card {
+/* .card {
   minWidth: 275;
-}
+} */
 
 .bullet {
   display: 'inline-block';
@@ -106,4 +104,3 @@ body {
   margin-right: 50px;
   margin-left: 50px;
 }
->>>>>>> master
