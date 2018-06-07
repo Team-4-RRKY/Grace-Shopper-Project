@@ -5,10 +5,12 @@ module.exports = router;
 
 //don't forget to HIDE password
 router.get( '/', defaultHandler(async (req, res, next) => {
-  const allUsers = await User.findAll({
+  const allUsers = await User.findAll(
+    {
     include: [{ model: Watch }]
-  });
-
+  }
+);
+  console.log(allUsers)
   res.json(allUsers);
 }));
 
