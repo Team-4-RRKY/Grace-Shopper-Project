@@ -1,7 +1,8 @@
-"use strict";
+'use strict';
 
-const db = require("../server/db");
-const { User, Watch } = require("../server/db/models");
+const db = require('../server/db');
+const { User, Watch } = require('../server/db/models');
+const mockUserData = require('./user_mock')
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -17,38 +18,41 @@ const { User, Watch } = require("../server/db/models");
 
 async function seed() {
   await db.sync({ force: true });
-  console.log("db synced!");
+  console.log('db synced!');
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
   const users = await Promise.all([
-    User.create({ name: "john doe", email: "cody@email.com", password: "123" }),
+    User.create({ firstName: 'john', lastName: 'doe', email: 'cody@email.com', password: '123' }),
     User.create({
-      name: "jane doe",
-      email: "murphy@email.com",
-      password: "123"
+      firstName: 'jane',
+      lastName: 'doe',
+      gender: 'Female',
+      image: 'https://robohash.org/autemvoluptasrepellendus.png?size=50x50&set=set1',
+      email: 'murphy@email.com',
+      password: '123'
     })
   ]);
 
   const watches = await Promise.all([
     Watch.create({
-      brand: "Swatch",
-      model: "SW1",
-      image: "picture",
+      brand: 'Swatch',
+      model: 'SW1',
+      image: 'https://cdn.shopify.com/s/files/1/1663/6869/products/Fashion-simple-stylish-Top-Luxury-brand-MEGIR-Watches-men-Stainless-Steel-Mesh-strap-band-Quartz-watch_grande.jpg',
       price: 55,
       quantity: 1,
-      style: "newStyle",
-      tier: "low-end",
-      gender: "F"
+      style: 'newStyle',
+      tier: 'low-end',
+      gender: 'F'
     }),
     Watch.create({
-      brand: "Tag-heuer",
-      model: "TH1",
-      image: "picture tag",
+      brand: 'Tag-heuer',
+      model: 'TH1',
+      image: 'http://cdn1.latestone.com/images/catalog/products/large/190100371-01.jpg',
       price: 120,
       quantity: 15,
-      style: "oldStyle",
-      tier: "low-end",
-      gender: "M"
+      style: 'oldStyle',
+      tier: 'low-end',
+      gender: 'M'
     })
   ]);
   /*
@@ -82,16 +86,16 @@ if (module === require.main) {
     })
     .then(() => {
       // `finally` is like then + catch. It runs no matter what.
-      console.log("closing db connection");
+      console.log('closing db connection');
       db.close();
-      console.log("db connection closed");
+      console.log('db connection closed');
     });
   /*
    * note: everything outside of the async function is totally synchronous
    * The console.log below will occur before any of the logs that occur inside
    * of the async function
    */
-  console.log("seeding...");
+  console.log('seeding...');
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)

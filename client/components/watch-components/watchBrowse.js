@@ -1,7 +1,8 @@
 import React from 'react';
-import { getWatches } from '../../store/watch';
 import { connect } from 'react-redux';
-import SingleWatch from './singleWatch';
+import { getWatches } from '../../store/watch';
+import {Link} from 'react-router-dom'
+import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 
 class watchBrowse extends React.Component {
   render() {
@@ -12,9 +13,16 @@ class watchBrowse extends React.Component {
         <div>
           <h1>All watches</h1>
         </div>
-        <div id="allwatches">
-          {watches.map(watch => <SingleWatch key={watch.id} watch={watch} />)}
-        </div>
+        <GridList>
+          {watches.map(watch => (
+            <GridListTile key={watch.image}>
+            <Link to={`/watches/${watch.id}`}  >
+            <img src={watch.image} />
+              <GridListTileBar title={watch.brand} subtitle={watch.model} />
+            </Link>
+            </GridListTile>
+          ))}
+        </GridList>
       </div>
     );
   }
