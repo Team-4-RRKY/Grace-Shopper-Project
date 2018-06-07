@@ -1,11 +1,13 @@
 import React from 'react';
 import {Button, TextField} from '@material-ui/core'
+import {connect} from 'react-redux'
 
 const UserForm = props => (
   <form className="form column" name={props.name} onSubmit={props.handleSubmit}>
     <TextField
       className="input"
       label="First Name"
+      defaultValue={props.user.firstName}
       type="text"
       name="firstName"
       onChange={props.handleChange}
@@ -14,6 +16,7 @@ const UserForm = props => (
     <TextField
       className="input"
       label="Last Name"
+      defaultValue={props.user.lastName}
       type="text"
       name="lastName"
       onChange={props.handleChange}
@@ -21,6 +24,7 @@ const UserForm = props => (
     />
     <TextField
       className="input"
+      defaultValue={props.user.address}
       label="Address"
       type="text"
       name="address"
@@ -29,6 +33,7 @@ const UserForm = props => (
     />
     <TextField
       className="input"
+      defaultValue={props.user.email}
       label="Email"
       type="text"
       name="email"
@@ -45,6 +50,7 @@ const UserForm = props => (
     />
     <TextField
       className="input"
+      defaultValue={props.user.image}
       label="Avatar"
       type="text"
       name="image"
@@ -53,6 +59,7 @@ const UserForm = props => (
     />
     <TextField
       className="input"
+      defaultValue={props.user.gender}
       label="Gender"
       type="text"
       name="gender"
@@ -63,4 +70,8 @@ const UserForm = props => (
   </form>
 );
 
-export default UserForm;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, null)(UserForm);

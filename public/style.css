@@ -20,6 +20,10 @@ form div {
   display: inline-block;
 }
 
+body {
+  margin: 0;
+}
+
 #title {
   background-color: black;
   color: white;
@@ -38,10 +42,9 @@ form div {
   margin: 1.5rem;
 }
 
-#edit-user-info {
-  height: 15rem;
-  width: 15rem;
-  background-color: tan;
+.user-img {
+  height: 10rem;
+  width: 10rem;
 }
 
 .nav-item {
@@ -78,3 +81,4 @@ form div {
   border: .4rem solid black;
   border-radius: 10px;
 }
+
