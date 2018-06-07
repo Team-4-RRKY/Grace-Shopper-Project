@@ -22,7 +22,7 @@ const UserForm = props => (
     <input
       className="input"
       type="text"
-      name="description"
+      name="address"
       onChange={props.handleChange}
       value={props.address}
     />
@@ -54,7 +54,7 @@ const UserForm = props => (
     <input
       className="input"
       type="text"
-      name="description"
+      name="gender"
       onChange={props.handleChange}
       value={props.gender}
     />

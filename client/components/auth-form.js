@@ -21,6 +21,7 @@ class AuthForm extends Component {
   }
 
   handleChange = event => {
+    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -28,12 +29,10 @@ class AuthForm extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const formName = evt.target.name;
+    const formName = 'signup';
     // const email = evt.target.email.value;
     // const password = evt.target.password.value;
-    const email = this.state.email;
-    const password = this.state.password;
-    dispatch(auth(email, password, formName));
+    this.props.auth(this.state, formName);
   }
   render() {
     const { name, displayName, handleSubmit, error } = this.props;
@@ -55,7 +54,7 @@ class AuthForm extends Component {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form> */}
-        <UserForm handleSubmit={handleSubmit} name={name} />
+        <UserForm handleSubmit={this.handleSubmit} name={name} handleChange={this.handleChange} />
         <a href="/auth/google">{displayName} with Google</a>
       </div>
     );
@@ -87,7 +86,7 @@ const mapSignup = state => {
 
 const mapDispatch = dispatch => {
   return {
-    auth: dispatch(auth())
+    auth: (formName, localState) => dispatch(auth(localState, formName))
   //   handleSubmit(evt) {
   //     evt.preventDefault();
   //     const formName = evt.target.name;
@@ -109,6 +108,5 @@ export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
 AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 };

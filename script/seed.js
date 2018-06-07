@@ -22,9 +22,11 @@ async function seed() {
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
   const users = await Promise.all([
-    User.create({ name: 'john doe', email: 'cody@email.com', password: '123' }),
+    User.create({ firstName: 'john', lastName: 'doe', email: 'cody@email.com', password: '123' }),
     User.create({
-      name: 'jane doe',
+      firstName: 'jane',
+      lastName: 'doe',
+      gender: 'Female',
       image: 'https://robohash.org/autemvoluptasrepellendus.png?size=50x50&set=set1',
       email: 'murphy@email.com',
       password: '123'
