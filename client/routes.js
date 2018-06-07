@@ -7,6 +7,7 @@ import { Login, Signup, UserHome } from './components';
 import User from './components/user-components/user.jsx'
 import { me } from './store';
 import { getWatches } from './store/watch';
+import WatchSingleView from './components/watch-components/WatchSingleView';
 
 /**
  * COMPONENT
@@ -23,9 +24,14 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/watches/browse" component={watchBrowse} />
+        {/* User Routes */}
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+
+        {/* Watch Routes */}
+        <Route exact path="/watches/browse" component={watchBrowse} />
+        <Route exact path="/watches/:id" component={WatchSingleView} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -47,13 +53,13 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
+    isLoggedIn: !!state.user.id
   };
 };
 
 const mapDispatch = dispatch => ({
   getWatches: () => dispatch(getWatches()),
-  loadInitialData: () => dispatch(me()),
+  loadInitialData: () => dispatch(me())
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked
@@ -70,5 +76,5 @@ export default withRouter(
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 };

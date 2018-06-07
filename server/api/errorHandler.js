@@ -1,7 +1,7 @@
 const defaultHandler = asyncFunc => {
-  return function(...args) {
-    return Promise.resolve(asyncFunc.apply(this, args)).catch(err => {
-      console.error(err);
+  return function(req, res, next) {
+    return Promise.resolve(asyncFunc.call(this, req, res, next)).catch(err => {
+      next(err);
     });
   };
 };
