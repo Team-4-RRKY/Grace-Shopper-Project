@@ -15,27 +15,25 @@ const Watch = db.define(
     },
     image: {
       type: Sequelize.STRING,
-      allowNull: false,
-      validate: {
-        isUrl: true
-      }
+      allowNull: false
     },
     description: Sequelize.TEXT,
     price: {
-      type: Sequelize.DECIMAL,
-      allowNull: false,
+      type: Sequelize.STRING,
+      allowNull: false
+      /* type: Sequelize.DECIMAL,
+      allowNull: false
       validate: {
         min: 0,
         max: 50000000
-      }
+      } */
     },
     quantity: {
       type: Sequelize.INTEGER,
       allowNull: false
     },
     style: {
-      type: Sequelize.STRING,
-      allowNull: false
+      type: Sequelize.STRING
     },
     tier: {
       type: Sequelize.STRING,
