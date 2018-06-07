@@ -7,35 +7,38 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   lastName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
     validate: {
-      isEmail: true
-    }
+      isEmail: true,
+    },
   },
   address: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   image: {
     type: Sequelize.STRING,
+    validate: {
+      isUrl: true,
+    },
   },
   gender: {
     type: Sequelize.STRING,
   },
   purchaseHistory: {
-    type: Sequelize.ARRAY(Sequelize.TEXT)
+    type: Sequelize.ARRAY(Sequelize.TEXT),
   },
   // Making `.password` act like a func hides it when serializing to JSON.
   // This is a hack to get around Sequelize's lack of a "private" option.
@@ -43,17 +46,17 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     get() {
       return () => this.getDataValue('password');
-    }
+    },
   },
   salt: {
     type: Sequelize.STRING,
     get() {
       return () => this.getDataValue('salt');
-    }
+    },
   },
   googleId: {
-    type: Sequelize.STRING
-  }
+    type: Sequelize.STRING,
+  },
 });
 
 module.exports = User;

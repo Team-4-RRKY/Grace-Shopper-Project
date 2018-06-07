@@ -1,14 +1,46 @@
-const User = require("./user");
-const Watch = require("./watch");
-/*
-Watch.belongsTo(User, { as: "Seller" });
-User.hasMany(Watch);
- */
-User.belongsToMany(Watch, { through: "CartItem" });
-Watch.belongsToMany(User, { through: "CartItem" });
-//User.hasMany(PaymentInfo)
+const User = require('./user');
+const Watch = require('./watch');
+const Cart = require('./cart');
+const Order = require('./order');
+
+Watch.belongsTo(User, { as: 'seller' });
+User.hasMany(Watch, { as: 'listings', foreignKey: 'sellerId' });
+
+User.belongsToMany(Watch, {
+  as: 'cartItems',
+  through: {
+    model: Cart,
+    unique: false,
+  },
+});
+
+Watch.belongsToMany(User, {
+  as: 'shoppers',
+  through: {
+    model: Cart,
+    unique: false,
+  },
+});
+
+User.belongsToMany(Watch, {
+  as: 'saleItems',
+  through: {
+    model: Order,
+    unique: false,
+  },
+});
+
+Watch.belongsToMany(User, {
+  as: 'purchasers',
+  through: {
+    model: Order,
+    unique: false,
+  },
+});
 
 module.exports = {
   User,
-  Watch
+  Watch,
+  Cart,
+  Order,
 };
