@@ -17,6 +17,7 @@ class watchBrowse extends React.Component {
           {watches.map(watch => (
             <GridListTile
               key={watch.image}
+              cellHeight="100"
               onClick={() => this.props.selectWatch(watch)}
             >
               <Link to={`/watches/${watch.id}`}>
