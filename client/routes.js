@@ -8,6 +8,7 @@ import User from './components/user-components/user.jsx';
 import { me } from './store';
 import { getWatches } from './store/watch';
 import WatchSingleView from './components/watch-components/WatchSingleView';
+import AboutUs from './components/AboutUs'
 
 /**
  * COMPONENT
@@ -32,6 +33,9 @@ class Routes extends Component {
         {/* Watch Routes */}
         <Route exact path="/watches/browse" component={watchBrowse} />
         <Route exact path="/watches/:id" component={WatchSingleView} />
+
+        {/* AboutUs Route */}
+        <Route exact path="/aboutus" component={AboutUs} />
 
         {isLoggedIn && (
           <Switch>

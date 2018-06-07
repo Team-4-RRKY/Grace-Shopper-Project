@@ -45,7 +45,7 @@ form div {
 }
 
 .nav-item {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Oxygen', sans-serif;
   font-size: 1rem;
   color: black;
 }
@@ -77,4 +77,27 @@ form div {
 .border-black {
   border: .4rem solid black;
   border-radius: 10px;
+}
+
+/* cards styles from material-ui */
+.card {
+  minWidth: 275;
+}
+
+.bullet {
+  display: 'inline-block';
+  margin: '0 2px';
+  transform: 'scale(0.8)';
+}
+
+.card-title {
+  margin-Bottom: 16;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 14;
+}
+
+.pos {
+  margin-Bottom: 12;
+  margin-right: 50px;
+  margin-left: 50px;
 }

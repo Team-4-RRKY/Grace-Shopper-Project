@@ -12,6 +12,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
+<<<<<<< HEAD
           <Link className="nav-item" to="/home">
             Home
           </Link>
@@ -21,6 +22,12 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link className="nav-item" to="/user">
             Account
           </Link>
+=======
+          <Link className="nav-item" to="/home">Home</Link>
+          <Link className="nav-item" to="/watches/browse">Watches</Link>
+          <Link className="nav-item" to="/user">Account</Link>
+          <Link className="nav-item" to="/aboutus">About Us</Link>
+>>>>>>> master
           <a className="nav-item" href="#" onClick={handleClick}>
             Logout
           </a>
@@ -28,6 +35,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
+<<<<<<< HEAD
           <Link className="nav-item" to="/login">
             Login
           </Link>
@@ -37,6 +45,12 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link className="nav-item" to="/watches/browse">
             WATCHES
           </Link>
+=======
+          <Link className="nav-item" to="/login">Login</Link>
+          <Link className="nav-item" to="/signup">Sign Up</Link>
+          <Link  className="nav-item" to="/watches/browse">WATCHES</Link>
+          <Link className="nav-item" to="/aboutus">About Us</Link>
+>>>>>>> master
         </div>
       )}
     </nav>
