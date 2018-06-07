@@ -4,27 +4,55 @@ import history from '../history';
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER';
+const GOT_USER = 'GOT_USER';
 const REMOVE_USER = 'REMOVE_USER';
+const ADDED_TO_CART = 'ADDED_TO_CART';
+const ADDED_TO_GUEST_CART = 'ADDED_TO_GUEST_CART';
+const EDITEDUSER = 'EDITEDUSER';
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {};
+const initialState = { user: {}, guestCart: [] };
 
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({ type: GET_USER, user });
+const gotUser = user => ({ type: GOT_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
+const editedUser = editedData => ({
+  type: EDITEDUSER,
+  editedData,
+});
+const addedToCart = watch => ({ type: ADDED_TO_CART, watch });
 
 /**
  * THUNK CREATORS
  */
+
+export const editUserData = editData => async dispatch => {
+  try {
+    const { data } = await axios.put(`/api/user/${editData.id}`, editData);
+    dispatch(editedUser(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addToCart = cartData => async dispatch => {
+  const { userId } = cartData;
+  try {
+    const { data } = await axios.post(`/api/${userId}/cart`);
+    dispatch(gotUser(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const me = () => dispatch =>
   axios
     .get('/auth/me')
-    .then(res => dispatch(getUser(res.data || defaultUser)))
+    .then(res => dispatch(gotUser(res.data || defaultUser)))
     .catch(err => console.log(err));
 
 export const auth = (userData, method) => dispatch =>
@@ -32,12 +60,12 @@ export const auth = (userData, method) => dispatch =>
     .post(`/auth/${method}`, userData)
     .then(
       res => {
-        dispatch(getUser(res.data));
+        dispatch(gotUser(res.data));
         history.push('/home');
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({ error: authError }));
+        dispatch(gotUser({ error: authError }));
       }
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
@@ -54,12 +82,14 @@ export const logout = () => dispatch =>
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
-      return action.user;
+    case GOT_USER:
+      return { ...state, user: action.user };
     case REMOVE_USER:
-      return defaultUser;
+      return { ...state, user: {} };
+    // case ADDED_TO_CART:
+    //   return { ...state, user: action.user };
     default:
       return state;
   }

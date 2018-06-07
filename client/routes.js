@@ -4,7 +4,7 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import watchBrowse from './components/watch-components/watchBrowse';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
-import User from './components/user-components/user.jsx'
+import User from './components/user-components/user.jsx';
 import { me } from './store';
 import { getWatches } from './store/watch';
 import WatchSingleView from './components/watch-components/WatchSingleView';
@@ -20,6 +20,7 @@ class Routes extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { isLoggedIn } = this.props;
 
     return (
@@ -57,13 +58,14 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.user.id,
+    state: state.user.user,
   };
 };
 
 const mapDispatch = dispatch => ({
   getWatches: () => dispatch(getWatches()),
-  loadInitialData: () => dispatch(me())
+  loadInitialData: () => dispatch(me()),
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked
@@ -80,5 +82,5 @@ export default withRouter(
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

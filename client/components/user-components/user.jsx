@@ -35,7 +35,6 @@ class User extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(user);
     return (
       <div className="row wrap">
         <div id="user-info" className="column wrap border-black">
@@ -63,7 +62,7 @@ class User extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user.user,
 });
 
 const mapDispatchToProps = dispatch => ({
