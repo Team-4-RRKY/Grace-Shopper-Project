@@ -1,19 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addToCart } from '../../store/user.js';
 
 class WatchSingleView extends React.Component {
-  handleBuy = event => {
-    event.preventDefault();
-    console.log('buy me');
-  };
-
-  handleSell = event => {
-    event.preventDefault();
-    console.log('Sell me');
-  };
-
   render() {
-    const watch = this.props.watch;
+    const watchId = +this.props.match.params.id;
+    const watch = this.props.watches.find(e => e.id === watchId);
+    const userId = this.props.user.id;
+    const cartData = { userId, watchId };
+    console.log(cartData);
     if (watch) {
       return (
         <div className="detail">
@@ -24,13 +19,13 @@ class WatchSingleView extends React.Component {
           <h4>quantity: {watch.quantity}</h4>
           <img src={watch.image} alt="image" />
           <div>
-            <button type="submit" onClick={this.handleBuy}>
+            <button
+              type="submit"
+              onClick={() => this.props.addToCart(cartData)}
+            >
               Add To Cart
             </button>
             {/* Sell button enabled if logged */}
-            <button type="submit" onClick={this.handleSell}>
-              Sell
-            </button>
           </div>
         </div>
       );
@@ -41,7 +36,15 @@ class WatchSingleView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  watch: state.watch.watch
+  watches: state.watch.watches,
+  user: state.user.user,
 });
 
-export default connect(mapStateToProps)(WatchSingleView);
+const mapDispatchToProps = dispatch => ({
+  addToCart: cartData => dispatch(addToCart(cartData)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WatchSingleView);

@@ -75,9 +75,10 @@ router.post(
 router.delete(
   '/:id/cart',
   defaultHandler(async (req, res, next) => {
-    const { userId } = req.body;
-    await Cart.destroy(req.body);
+    const { userId, watchId } = req.body;
+    await Cart.destroy({ where: { userId: userId, watchId: watchId } });
     const user = await User.scope('populated').findById(userId);
+    console.log(user);
     res.json(user);
   })
 );

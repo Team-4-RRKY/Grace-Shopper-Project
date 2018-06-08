@@ -17,7 +17,7 @@ class watchBrowse extends React.Component {
           {watches.map(watch => (
             <GridListTile
               key={watch.image}
-              cellHeight="100"
+              cellheight="100"
               onClick={() => this.props.selectWatch(watch)}
             >
               <Link to={`/watches/${watch.id}`}>
@@ -34,12 +34,12 @@ class watchBrowse extends React.Component {
 
 const mapStateToProps = state => ({
   watches: state.watch.watches,
-  isFetching: state.watch.isFetching
+  isFetching: state.watch.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
   getwatches: () => dispatch(getWatches()),
-  selectWatch: watch => dispatch(selectedWatch(watch))
+  selectWatch: watch => dispatch(selectedWatch(watch)),
 });
 
 export default connect(
