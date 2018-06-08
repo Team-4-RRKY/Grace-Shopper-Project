@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getWatches, selectedWatch } from '../../store/watch';
 import { Link } from 'react-router-dom';
 import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
+import FilterWatches from './filterWatches.jsx';
 
 class watchBrowse extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class watchBrowse extends React.Component {
         <div>
           <h1>All watches</h1>
         </div>
+        <FilterWatches />
         <GridList>
           {watches.map(watch => (
             <GridListTile
@@ -32,7 +34,7 @@ class watchBrowse extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  watches: state.watch.watches,
+  watches: state.watch.filteredWatches,
   isFetching: state.watch.isFetching
 });
 
