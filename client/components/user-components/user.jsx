@@ -7,12 +7,12 @@ import {editUserData} from '../../store/user'
 class User extends Component {
   state = {
     open: false,
-    firstName: '',
-    lastName: '',
-    address: '',
-    image: '',
-    gender: '',
-    password: ''
+    firstName: this.props.user.firstName,
+    lastName: this.props.user.lastName,
+    address: this.props.user.address,
+    image: this.props.user.image,
+    gender: this.props.user.gender,
+    id: this.props.user.id
   };
   handleOpen = () => {
     this.setState({ open: true });
@@ -51,7 +51,7 @@ class User extends Component {
            >
            <DialogTitle>Edit {user.firstName}'s Account</DialogTitle>
            <DialogContent>
-             <UserForm displayName="Submit Edit" />
+             <UserForm displayName="Submit Edit" handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
            </DialogContent>
           </Dialog>
         </div>
