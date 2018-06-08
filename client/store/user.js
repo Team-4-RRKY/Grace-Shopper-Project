@@ -31,8 +31,10 @@ const addedToCart = watch => ({ type: ADDED_TO_CART, watch });
  */
 
 export const editUserData = editData => async dispatch => {
+  console.log(editData)
   try {
-    const { data } = await axios.put(`/api/user/${editData.id}`, editData);
+    const { data } = await axios.put(`/api/users/${editData.id}`, editData);
+    console.log(data)
     dispatch(editedUser(data));
   } catch (error) {
     console.error(error);
@@ -90,7 +92,10 @@ export default function(state = initialState, action) {
       return { ...state, user: {} };
     // case ADDED_TO_CART:
     //   return { ...state, user: action.user };
+    case EDITEDUSER:
+      return {...state, user: action.editData}
     default:
       return state;
   }
 }
+
