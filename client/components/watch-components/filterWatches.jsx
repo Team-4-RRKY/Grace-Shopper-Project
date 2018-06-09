@@ -7,30 +7,28 @@ class FilterWatches extends React.Component {
     brand: '',
     tier: '',
     style: '',
-    gender: ''
+    gender: '',
+    price: ''
   };
 
   handleChange = event => {
-    console.log(event);
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(this.state);
+    console.log('STATE HERE', this.state);
   };
 
   handlefilter = event => {
     event.preventDefault();
-    const { brand, tier, gender } = this.state;
-    console.log('state', this.state);
-    const filtered = this.props.allWatches.filter((watch, idx) => {
-      if (idx === 0) {
-        console.log(watch.brand, brand);
-        console.log(watch.gender, gender);
-        console.log(watch.tier, tier);
-      }
-      // watch.brand === brand && watch.gender === gender && watch.tier === tier
+    const { brand, tier, gender, style, price } = this.state;
+
+    //if gender is the only selected , return allWatches filtered by gender only
+    const filtered = this.props.allWatches.filter(watch => {
       return (
-        watch.brand === brand && watch.gender === gender && watch.tier === tier
+        (brand ? watch.brand === brand : true) &&
+        (gender ? watch.gender === gender : true) &&
+        (price ? watch.price === price : true) &&
+        (style ? watch.style === style : true)
       );
     });
     this.props.filteredWatches(filtered);
@@ -38,10 +36,8 @@ class FilterWatches extends React.Component {
 
   getUniq(arr, val) {
     const res = [];
-    console.log('arr', arr);
     for (var i = 0; i < arr.length; i++) {
       if (res.indexOf(arr[i][val]) === -1) {
-        console.log('test');
         res.push(arr[i][val]);
       }
     }
@@ -51,6 +47,12 @@ class FilterWatches extends React.Component {
   render() {
     const watches = this.props.filtered;
     const allWatches = this.props.allWatches;
+    /* console.log(
+      'prices here',
+      this.getUniq(allWatches, 'price').filter(pp => {
+        return pp.slice(1) > 100 && pp.slice(1) < 150;
+      })
+    ); */
     if (watches[0] === undefined) {
       return <div>..Loading</div>;
     }
@@ -59,7 +61,7 @@ class FilterWatches extends React.Component {
         {/* Gender */}
         <label>Gender</label>
         <select name="gender" onChange={this.handleChange}>
-          <option>**</option>
+          <option>Gender</option>
           {this.getUniq(allWatches, 'gender').map(gender => {
             return (
               <option value={gender} key={gender}>
@@ -72,7 +74,7 @@ class FilterWatches extends React.Component {
         {/* Brand */}
         <label>Brand</label>
         <select name="brand" onChange={this.handleChange}>
-          <option>**</option>
+          <option>Brand</option>
           {this.getUniq(allWatches, 'brand').map(brand => {
             return (
               <option value={brand} key={brand}>
@@ -83,22 +85,22 @@ class FilterWatches extends React.Component {
         </select>
 
         {/* style */}
-        {/* <label>style</label>
+        <label>style</label>
         <select name="style" onChange={this.handleChange}>
-          <option value={style}>**</option>
-          {this.getUniq(watches, 'style').map(style => {
+          <option>Style</option>
+          {this.getUniq(allWatches, 'style').map(style => {
             return (
-              <option value="style" key={style}>
+              <option value={style} key={style}>
                 {style}
               </option>
             );
           })}
-        </select> */}
+        </select>
 
-        {/* tier */}
+        {/* tier
         <label>tier</label>
         <select name="tier" onChange={this.handleChange}>
-          <option>**</option>
+          <option>Tier</option>
           {this.getUniq(allWatches, 'tier').map(tier => {
             return (
               <option value={tier} key={tier}>
@@ -107,7 +109,38 @@ class FilterWatches extends React.Component {
             );
           })}
         </select>
-        <button type="submit">Apply</button>
+ */}
+        {/* price */}
+        <label>price</label>
+        <select name="price" onChange={this.handleChange}>
+          <option>Price Range</option>
+
+          <option
+            value={this.getUniq(allWatches, 'price').filter(pp => {
+              return pp.slice(1) < 100;
+            })}
+          >
+            less than $100
+          </option>
+
+          <option
+            value={this.getUniq(allWatches, 'price').filter(pp => {
+              return pp.slice(1) > 100 && pp.slice(1) < 150;
+            })}
+          >
+            $100-$150
+          </option>
+
+          <option
+            value={this.getUniq(allWatches, 'price').filter(pp => {
+              return pp.slice(1) > 150;
+            })}
+          >
+            more than $150
+          </option>
+        </select>
+
+        <button type="submit">Filter</button>
       </form>
     );
   }
