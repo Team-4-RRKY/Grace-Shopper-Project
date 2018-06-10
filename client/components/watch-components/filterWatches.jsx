@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { filteredWatches } from '../../store/watch.js';
+import { filteredWatches, getWatches } from '../../store/watch.js';
 //import Select from '@material-ui/core/Select';
 //import MenuItem from '@material-ui/core/MenuItem';
 //import InputLabel from '@material-ui/core/InputLabel';
@@ -18,16 +18,25 @@ class FilterWatches extends React.Component {
   };
 
   handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-    console.log('STATE HERE', this.state);
+    this.setState(
+      {
+        [event.target.name]: event.target.value
+      },
+      () => {
+        console.log('state here', this.state);
+      }
+    );
   };
 
   handlePricechange = event => {
-    this.setState({
-      price: event.target.value.split(',')
-    });
+    this.setState(
+      {
+        price: event.target.value.split(',')
+      },
+      () => {
+        console.log('price here', this.state.price);
+      }
+    );
   };
 
   handlefilter = event => {
@@ -38,11 +47,22 @@ class FilterWatches extends React.Component {
       return (
         (brand ? watch.brand === brand : true) &&
         (gender ? watch.gender === gender : true) &&
-        (price ? watch.price === price : true) &&
+        (price ? price.includes(watch.price) : true) &&
         (style ? watch.style === style : true)
       );
     });
     this.props.filteredWatches(filtered);
+  };
+
+  handleReset = () => {
+    const filtered = this.props.allWatches;
+    this.props.filteredWatches(filtered);
+    this.setState({
+      brand: '',
+      style: '',
+      gender: '',
+      price: []
+    });
   };
 
   /* price.includes(watch.price) */
@@ -59,12 +79,16 @@ class FilterWatches extends React.Component {
   render() {
     const watches = this.props.filtered;
     const allWatches = this.props.allWatches;
-    console.log(this.props);
+    console.log('state here', this.state);
     if (watches[0] === undefined) {
       return <CircularProgress />;
     }
     return (
-      <form onSubmit={this.handlefilter} className="form_class">
+      <form
+        onSubmit={this.handlefilter}
+        onReset={this.handleReset}
+        className="form_class"
+      >
         {/* Gender */}
         <label>Gender</label>
         <select
@@ -72,7 +96,7 @@ class FilterWatches extends React.Component {
           onChange={this.handleChange}
           value={this.state.gender}
         >
-          <option>None</option>
+          <option>''</option>
           {this.getUniq(allWatches, 'gender').map(gender => {
             return (
               <option value={gender} key={gender}>
@@ -82,61 +106,14 @@ class FilterWatches extends React.Component {
           })}
         </select>
 
-        {/* Brand */}
-        <label>Brand</label>
-        <select
-          name="brand"
-          onChange={this.handleChange}
-          value={this.state.brand}
-        >
-          <option>None</option>
-          {this.getUniq(allWatches, 'brand').map(brand => {
-            return (
-              <option value={brand} key={brand}>
-                {brand}
-              </option>
-            );
-          })}
-        </select>
-
-        {/* style */}
-        <label>Style</label>
-        <select
-          name="style"
-          onChange={this.handleChange}
-          value={this.state.style}
-        >
-          <option>None</option>
-          {this.getUniq(allWatches, 'style').map(style => {
-            return (
-              <option value={style} key={style}>
-                {style}
-              </option>
-            );
-          })}
-        </select>
-
-        {/* tier
-        <label>tier</label>
-        <select name="tier" onChange={this.handleChange}>
-          <option>Tier</option>
-          {this.getUniq(allWatches, 'tier').map(tier => {
-            return (
-              <option value={tier} key={tier}>
-                {tier}
-              </option>
-            );
-          })}
-        </select>
- */}
         {/* price */}
         <label>Price Range</label>
         <select
           name="price"
           onChange={this.handlePricechange}
-          value={this.state.price}
+          /* value={this.state.price} */
         >
-          <option>None</option>
+          <option>''</option>
 
           <option
             value={this.getUniq(allWatches, 'price').filter(pp => {
@@ -162,7 +139,65 @@ class FilterWatches extends React.Component {
             more than $150
           </option>
         </select>
-        <Button type="submit">Filter</Button>
+
+        {/* Brand */}
+        <label>Brand</label>
+        <select
+          name="brand"
+          onChange={this.handleChange}
+          value={this.state.brand}
+        >
+          <option>''</option>
+          {this.getUniq(allWatches, 'brand').map(brand => {
+            return (
+              <option value={brand} key={brand}>
+                {brand}
+              </option>
+            );
+          })}
+        </select>
+
+        {/* style */}
+        <label>Style</label>
+        <select
+          name="style"
+          onChange={this.handleChange}
+          value={this.state.style}
+        >
+          <option>''</option>
+          {this.getUniq(allWatches, 'style').map(style => {
+            return (
+              <option value={style} key={style}>
+                {style}
+              </option>
+            );
+          })}
+        </select>
+
+        {/* tier
+        <label>tier</label>
+        <select name="tier" onChange={this.handleChange}>
+          <option>Tier</option>
+          {this.getUniq(allWatches, 'tier').map(tier => {
+            return (
+              <option value={tier} key={tier}>
+                {tier}
+              </option>
+            );
+          })}
+        </select>
+ */}
+
+        <Button
+          type="submit"
+          disabled={
+            this.state.price.length < 1 ||
+            (this.state.price[0] === '' && this.state.gender === '')
+          }
+        >
+          Filter
+        </Button>
+        <Button type="reset">reset</Button>
       </form>
     );
   }
