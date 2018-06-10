@@ -34,18 +34,18 @@ class FilterWatches extends React.Component {
     event.preventDefault();
     const { brand, gender, style, price } = this.state;
 
-    //if gender is the only selected , return allWatches filtered by gender only
     const filtered = this.props.allWatches.filter(watch => {
       return (
         (brand ? watch.brand === brand : true) &&
         (gender ? watch.gender === gender : true) &&
-        (price ? price.includes(watch.price) : true) &&
+        (price ? watch.price === price : true) &&
         (style ? watch.style === style : true)
       );
     });
     this.props.filteredWatches(filtered);
   };
 
+  /* price.includes(watch.price) */
   getUniq(arr, val) {
     const res = [];
     for (var i = 0; i < arr.length; i++) {
