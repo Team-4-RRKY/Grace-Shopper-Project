@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import { Menu, MenuItem } from '@material-ui/core';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, cart }) => (
   <div>
     <h1 id="title">BayWatch</h1>
     <nav>
@@ -28,7 +28,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             Logout
           </a>
           <Link className="nav-item" to="/cart">
-            Cart
+            Cart{' '}
+            {` (${cart.reduce((acc, el) => {
+              return acc + el.cart.quantity;
+            }, 0)})`}
           </Link>
         </div>
       ) : (
@@ -62,6 +65,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.user.id,
+    cart: state.user.user.cartItems,
   };
 };
 

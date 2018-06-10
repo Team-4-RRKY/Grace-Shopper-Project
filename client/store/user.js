@@ -55,7 +55,9 @@ export const addToCart = cartData => async dispatch => {
 export const removeFromCart = cartData => async dispatch => {
   const { userId } = cartData;
   try {
-    const { data } = await axios.delete(`/api/users/${userId}/cart`);
+    const { data } = await axios.delete(`/api/users/${userId}/cart`, {
+      data: cartData,
+    });
     dispatch(gotUser(data));
   } catch (error) {
     console.error(error);
@@ -65,7 +67,7 @@ export const removeFromCart = cartData => async dispatch => {
 export const me = () => dispatch =>
   axios
     .get('/auth/me')
-    .then(res => dispatch(gotUser(res.data || defaultUser)))
+    .then(res => dispatch(gotUser(res.data || initialState.user)))
     .catch(err => console.log(err));
 
 export const auth = (userData, method) => dispatch =>

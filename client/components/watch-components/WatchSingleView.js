@@ -7,25 +7,35 @@ class WatchSingleView extends React.Component {
     const watchId = +this.props.match.params.id;
     const watch = this.props.watches.find(e => e.id === watchId);
     const userId = this.props.user.id;
-    const cartData = { userId, watchId };
-    console.log(cartData);
+    const cartData = { userId, watchId, num: 1 };
+    const watchInCart =
+      this.props.user.cartItems &&
+      this.props.user.cartItems.find(e => e.id === watchId);
+    const numInCart = watchInCart && watchInCart.cart.quantity;
+    const quantity = watch && watch.quantity;
     if (watch) {
       return (
         <div className="detail">
-          <h4>brand: {watch.brand}</h4>
-          <h4>price: {watch.price}</h4>
-          <h4>tier: {watch.tier}</h4>
-          <h4>style: {watch.style}</h4>
-          <h4>quantity: {watch.quantity}</h4>
+          <h3>{watch.brand}</h3>
+          <h4>{watch.model}</h4>
+          <h4>Price: {watch.price}</h4>
+          <h5>Tier: {watch.tier}</h5>
+          <h5>Style: {watch.style}</h5>
+          <h5>Quantity: {watch.quantity}</h5>
           <img src={watch.image} alt="image" />
           <div>
             <button
+              disabled={numInCart === quantity}
               type="submit"
-              onClick={() => this.props.addToCart(cartData)}
+              onClick={() => {
+                if (userId) {
+                  this.props.addToCart(cartData);
+                }
+              }}
             >
               Add To Cart
             </button>
-            {/* Sell button enabled if logged */}
+            {numInCart === quantity ? <h4>Maximum quantity reached!</h4> : null}
           </div>
         </div>
       );

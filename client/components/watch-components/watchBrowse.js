@@ -11,12 +11,12 @@ class watchBrowse extends React.Component {
     return (
       <div>
         <div>
-          <h1>All watches</h1>
+          <h1>All Watches</h1>
         </div>
         <GridList>
           {watches.map(watch => (
             <GridListTile
-              key={watch.image}
+              key={watch.id}
               cellheight="100"
               onClick={() => this.props.selectWatch(watch)}
             >
