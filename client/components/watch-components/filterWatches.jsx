@@ -1,14 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { filteredWatches } from '../../store/watch.js';
+//import Select from '@material-ui/core/Select';
+//import MenuItem from '@material-ui/core/MenuItem';
+//import InputLabel from '@material-ui/core/InputLabel';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+//import Drawer from '@material-ui/core/Drawer';
 
 class FilterWatches extends React.Component {
   state = {
     brand: '',
-    tier: '',
+    /* tier: '', */
     style: '',
     gender: '',
-    price: ''
+    price: []
   };
 
   handleChange = event => {
@@ -18,16 +24,22 @@ class FilterWatches extends React.Component {
     console.log('STATE HERE', this.state);
   };
 
+  handlePricechange = event => {
+    this.setState({
+      price: event.target.value.split(',')
+    });
+  };
+
   handlefilter = event => {
     event.preventDefault();
-    const { brand, tier, gender, style, price } = this.state;
+    const { brand, gender, style, price } = this.state;
 
     //if gender is the only selected , return allWatches filtered by gender only
     const filtered = this.props.allWatches.filter(watch => {
       return (
         (brand ? watch.brand === brand : true) &&
         (gender ? watch.gender === gender : true) &&
-        (price ? watch.price === price : true) &&
+        (price ? price.includes(watch.price) : true) &&
         (style ? watch.style === style : true)
       );
     });
@@ -47,21 +59,20 @@ class FilterWatches extends React.Component {
   render() {
     const watches = this.props.filtered;
     const allWatches = this.props.allWatches;
-    /* console.log(
-      'prices here',
-      this.getUniq(allWatches, 'price').filter(pp => {
-        return pp.slice(1) > 100 && pp.slice(1) < 150;
-      })
-    ); */
+    console.log(this.props);
     if (watches[0] === undefined) {
-      return <div>..Loading</div>;
+      return <CircularProgress />;
     }
     return (
-      <form onSubmit={this.handlefilter}>
+      <form onSubmit={this.handlefilter} className="form_class">
         {/* Gender */}
         <label>Gender</label>
-        <select name="gender" onChange={this.handleChange}>
-          <option>Gender</option>
+        <select
+          name="gender"
+          onChange={this.handleChange}
+          value={this.state.gender}
+        >
+          <option>None</option>
           {this.getUniq(allWatches, 'gender').map(gender => {
             return (
               <option value={gender} key={gender}>
@@ -73,8 +84,12 @@ class FilterWatches extends React.Component {
 
         {/* Brand */}
         <label>Brand</label>
-        <select name="brand" onChange={this.handleChange}>
-          <option>Brand</option>
+        <select
+          name="brand"
+          onChange={this.handleChange}
+          value={this.state.brand}
+        >
+          <option>None</option>
           {this.getUniq(allWatches, 'brand').map(brand => {
             return (
               <option value={brand} key={brand}>
@@ -85,9 +100,13 @@ class FilterWatches extends React.Component {
         </select>
 
         {/* style */}
-        <label>style</label>
-        <select name="style" onChange={this.handleChange}>
-          <option>Style</option>
+        <label>Style</label>
+        <select
+          name="style"
+          onChange={this.handleChange}
+          value={this.state.style}
+        >
+          <option>None</option>
           {this.getUniq(allWatches, 'style').map(style => {
             return (
               <option value={style} key={style}>
@@ -111,9 +130,13 @@ class FilterWatches extends React.Component {
         </select>
  */}
         {/* price */}
-        <label>price</label>
-        <select name="price" onChange={this.handleChange}>
-          <option>Price Range</option>
+        <label>Price Range</label>
+        <select
+          name="price"
+          onChange={this.handlePricechange}
+          value={this.state.price}
+        >
+          <option>None</option>
 
           <option
             value={this.getUniq(allWatches, 'price').filter(pp => {
@@ -139,8 +162,7 @@ class FilterWatches extends React.Component {
             more than $150
           </option>
         </select>
-
-        <button type="submit">Filter</button>
+        <Button type="submit">Filter</Button>
       </form>
     );
   }

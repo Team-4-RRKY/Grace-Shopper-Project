@@ -10,7 +10,7 @@ class watchBrowse extends React.Component {
     const { isFetching, watches } = this.props;
     if (isFetching) return <div>Loading....</div>;
     return (
-      <div>
+      <div className="content">
         <div>
           <h1>All watches</h1>
         </div>

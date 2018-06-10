@@ -52,7 +52,7 @@ form div {
 
 .divider {
   background-color: black;
-  height: .5rem;
+  height: 0.5rem;
 }
 
 .row {
@@ -75,6 +75,25 @@ form div {
 }
 
 .border-black {
-  border: .4rem solid black;
+  border: 0.4rem solid black;
   border-radius: 10px;
+}
+
+.content {
+  flex-grow: inherit;
+  /*   padding: theme.spacing.unit * 3, */
+  position: relative;
+  left: 20%;
+}
+
+/* .drawer {
+  display: flex;
+  margin: auto;
+  left: 50%;
+} */
+
+.form_class {
+  position: relative;
+  top: 20%;
+  right: 20%;
 }
