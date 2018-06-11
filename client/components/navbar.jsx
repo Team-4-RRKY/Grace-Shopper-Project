@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-import { Menu, MenuItem } from '@material-ui/core';
 
 const Navbar = ({ handleClick, isLoggedIn, cart, guestCart }) => (
   <div>
     <h1 id="title">BayWatch</h1>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className="nav-container">
           {/* The navbar will show these links after you log in */}
           <Link className="nav-item" to="/home">
             Home
@@ -35,7 +34,7 @@ const Navbar = ({ handleClick, isLoggedIn, cart, guestCart }) => (
           </Link>
         </div>
       ) : (
-        <div>
+        <div className="nav-container">
           {/* The navbar will show these links before you log in */}
           <Link className="nav-item" to="/login">
             Login
