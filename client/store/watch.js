@@ -8,11 +8,14 @@ const SOLD_WATCH = 'SOLD_WATCH';
 const SELECTED_WATCH = 'SELECTED_WATCH';
 const FETCHING_WATCHES = 'FETCHING_WATCHES';
 const EDITED_MANY_WATCHES = 'EDITED_MANY_WATCHES';
+
+const POSTED_WATCH = 'POSTED_WATCH';
+const FILTEREDWATCHES = 'FILTEREDWATCHES';
 const LISTED_WATCH = 'LISTED_WATCH';
 
 const gotWatches = watches => ({
   type: GOT_WATCHES,
-  watches,
+  watches
 });
 
 const deletedWatch = watch => ({
@@ -45,11 +48,16 @@ export const listWatch = watch => async dispatch => {
 
 export const selectedWatch = watch => ({
   type: SELECTED_WATCH,
-  watch,
+  watch
 });
 
 export const fetchingWatches = () => ({
-  type: FETCHING_WATCHES,
+  type: FETCHING_WATCHES
+});
+
+export const filteredWatches = watches => ({
+  type: FILTEREDWATCHES,
+  watches
 });
 
 export const getWatches = () => async dispatch => {
@@ -57,21 +65,30 @@ export const getWatches = () => async dispatch => {
   try {
     const { data } = await axios.get('/api/watches');
     dispatch(gotWatches(data));
+    dispatch(filteredWatches(data));
   } catch (error) {
     console.error(error);
   }
 };
 
-const intitialState = { isFetching: false, watches: [], watch: {} };
+const intitialState = {
+  isFetching: false,
+  allWatches: [],
+  filteredWatches: [],
+  watch: {}
+};
 
 const watchReducer = (state = intitialState, action) => {
   switch (action.type) {
     case GOT_WATCHES:
-      return { ...state, watches: action.watches, isFetching: false };
+      return { ...state, allWatches: action.watches, isFetching: false };
     case FETCHING_WATCHES:
       return { ...state, isFetching: true };
     case SELECTED_WATCH:
       return { ...state, watch: action.watch };
+
+    case FILTEREDWATCHES:
+      return { ...state, filteredWatches: action.watches };
     case LISTED_WATCH:
       return { ...state, watches: [...state.watches, action.watch] };
     case DELETED_WATCH:

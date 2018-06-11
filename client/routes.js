@@ -8,7 +8,8 @@ import User from './components/user-components/user.jsx';
 import { me } from './store';
 import { getWatches } from './store/watch';
 import WatchSingleView from './components/watch-components/WatchSingleView';
-import AboutUs from './components/AboutUs'
+import AboutUs from './components/AboutUs';
+import Cart from './components/user-components/cart.jsx';
 
 /**
  * COMPONENT
@@ -20,7 +21,6 @@ class Routes extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { isLoggedIn } = this.props;
 
     return (
@@ -36,12 +36,15 @@ class Routes extends Component {
 
         {/* AboutUs Route */}
         <Route exact path="/aboutus" component={AboutUs} />
+        {/* Cart Route */}
+        <Route exapct path="/cart" component={Cart} />
 
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/user" component={User} />
+            <Route exact path="/user" component={User} />
+            <Route exapct path="/cart" component={Cart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
