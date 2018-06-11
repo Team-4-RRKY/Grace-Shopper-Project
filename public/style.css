@@ -193,7 +193,7 @@ body {
 
 .user-card-wrapper{
   display: flex;
-  padding-top: 250px;
+  margin-top: 250px;
 }
 
 .user-card {

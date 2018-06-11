@@ -34,7 +34,6 @@ class User extends Component {
   }
 
   handleSubmit = (evt) => {
-    evt.preventDefault();
     this.props.submitEdit(this.state)
   }
 
@@ -48,7 +47,7 @@ class User extends Component {
           image={user.image}
           title={user.firstName}
         />
-          <CardContent>
+          <CardContent className="user-card-content">
             <Typography gutterBottom variant="headline" component="h2">
               {user.firstName + ' ' + user.lastName}
             </Typography>
