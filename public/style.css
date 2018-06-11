@@ -104,3 +104,56 @@ body {
   margin-right: 50px;
   margin-left: 50px;
 }
+
+.user-home-header{
+  font-family: 'Oxygen', sans-serif;
+  font-size: 40px;
+}
+
+.watch-carousel{
+  font-family: 'Oxygen', sans-serif;
+  background-image: url('./carousel-bg-img.jpeg');
+  background-size: cover;
+}
+
+.carousel-item{
+  height: 425px;
+}
+
+.carousel-img{
+  margin-right: 50px;
+  border-radius: 8px;
+  box-shadow: 14px 14px 25px -1px rgba(0,0,0,0.75);
+}
+
+.carousel-caption{
+
+}
+
+.carousel-title{
+  font-size: 40px;
+}
+
+.carousel-description{
+
+}
+
+.carousel-item-inner{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: white;
+  padding-left: 15%;
+}
+
+.carousel-item-info{
+
+}
+
+.nav-bar{}
+
+.nav-item{
+  font-family: 'Oxygen', sans-serif;
+  font-size: 20px;
+}

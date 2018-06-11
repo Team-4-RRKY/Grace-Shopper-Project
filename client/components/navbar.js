@@ -6,7 +6,7 @@ import { logout } from '../store';
 import { Menu, MenuItem } from '@material-ui/core';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
+  <div className="nav-bar">
     <h1 id="title">BayWatch</h1>
     <nav>
       {isLoggedIn ? (
