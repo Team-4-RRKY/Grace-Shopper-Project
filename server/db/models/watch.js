@@ -37,7 +37,6 @@ const Watch = db.define(
     },
     tier: {
       type: Sequelize.STRING,
-      allowNull: false
     },
     gender: {
       type: Sequelize.STRING,

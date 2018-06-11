@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { CardHeader, Card, Typography, CardContent, Button } from '@material-ui/core';
 import { addToCart } from '../../store/user.js';
 
 class WatchSingleView extends React.Component {
@@ -38,31 +39,23 @@ class WatchSingleView extends React.Component {
     const quantity = watch && watch.quantity;
     if (watch) {
       return (
-        <div className="detail">
-          <h3>{watch.brand}</h3>
-          <h4>{watch.model}</h4>
-          <h4>Price: {watch.price}</h4>
-          <h5>Tier: {watch.tier}</h5>
-          <h5>Style: {watch.style}</h5>
-          <h5>Quantity: {watch.quantity}</h5>
-          <img src={watch.image} alt="image" />
-          <div>
-            <button
-              disabled={numInCart >= quantity}
-              type="submit"
-              onClick={() => {
+        <Card className="card pos .card" >
+          <CardHeader title={watch.brand} />
+          <CardContent>
+            <Typography>{watch.model}</Typography>
+            <img src={watch.image} />
+            <Typography> {watch.price}</Typography>
+          </CardContent>
+
+          <Button disabled={numInCart >= quantity} onClick={() => {
                 if (userId) {
                   this.props.addToCart(cartData);
                 } else {
                   this.addToGuestCart(watch);
                 }
-              }}
-            >
-              Add To Cart
-            </button>
-            {numInCart >= quantity ? <h4>Maximum quantity reached!</h4> : null}
-          </div>
-        </div>
+              }}>Add To Cart</Button>
+        {numInCart >= quantity ? <h4>Maximum quantity reached!</h4> : null}
+        </Card>
       );
     } else {
       return <h1>..Loading</h1>;
@@ -71,7 +64,7 @@ class WatchSingleView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  watches: state.watch.watches,
+  watches: state.watch.allWatches,
   user: state.user.user,
 });
 

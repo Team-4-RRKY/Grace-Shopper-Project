@@ -41,10 +41,9 @@ router.put(
       returning: true,
       plain: true,
     });
-
     res.send({
       message: 'User Instance Updated',
-      updatedUser: updatedUsers[1][0],
+      updatedUser: updatedUsers[1].dataValues
     });
   })
 );
