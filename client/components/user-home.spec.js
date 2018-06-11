@@ -11,12 +11,13 @@ enzyme.configure({adapter})
 
 describe('UserHome', () => {
   let userHome
+  const userObj = {firstName: 'njk'};
 
   beforeEach(() => {
-    userHome = shallow(<UserHome user={{firstName:"njk"}} />)
+    userHome = shallow(<UserHome user={userObj} />)
   })
 
-  it('renders the email in an h3', () => {
+  it('renders the name in an h3', () => {
     expect(userHome.find('h3').text()).to.be.equal('Welcome, njk')
   })
 })
