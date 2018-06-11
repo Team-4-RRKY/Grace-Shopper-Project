@@ -55,8 +55,13 @@ body {
 }
 
 .divider {
+<<<<<<< HEAD
   background-color: #212121;
   height: .5rem;
+=======
+  background-color: black;
+  height: 0.5rem;
+>>>>>>> master
 }
 
 .row {
@@ -79,10 +84,36 @@ body {
 }
 
 .border-black {
-  border: .4rem solid black;
+  border: 0.4rem solid black;
   border-radius: 10px;
 }
 
+<<<<<<< HEAD
+=======
+
+.content {
+  flex-grow: inherit;
+  /*   padding: theme.spacing.unit * 3, */
+  position: relative;
+  left: 20%;
+}
+
+/* .drawer {
+  display: flex;
+  margin: auto;
+  left: 50%;
+} */
+
+.form_class {
+  position: relative;
+  top: 20%;
+  right: 20%;
+
+/* cards styles from material-ui */
+/* .card {
+  minWidth: 275;
+} */
+>>>>>>> master
 
 .bullet {
   display: 'inline-block';
