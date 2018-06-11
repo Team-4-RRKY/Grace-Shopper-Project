@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import {Link} from 'react-router-dom'
+import { Button, Dialog, DialogTitle, DialogContent, GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 import UserForm  from './userForm.jsx'
 import {editUserData} from '../../store/user'
 
@@ -55,7 +56,16 @@ class User extends Component {
            </DialogContent>
           </Dialog>
         </div>
-        <div>{}</div>
+        <GridList>
+          {user.listings.map(listing => (
+            <GridListTile key={listing.id}>
+              <Link to = {`/watches/${listing.id}`}>
+                <img src={listing.image} />
+                <GridListTileBar title={listing.brand} subtitle={listing.model} />
+              </Link>
+            </GridListTile>
+          ))}
+        </GridList>
       </div>
     );
   }
