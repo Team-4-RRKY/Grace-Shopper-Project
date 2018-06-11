@@ -3,23 +3,32 @@ import { connect } from 'react-redux';
 import { getWatches, selectedWatch } from '../../store/watch';
 import { Link } from 'react-router-dom';
 import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
+import FilterWatches from './filterWatches.jsx';
 
 class watchBrowse extends React.Component {
+  state = {
+    viewedWatches: []
+  };
+
   render() {
     const { isFetching, watches } = this.props;
+    console.log('just viewed', this.state.viewedWatches);
     if (isFetching) return <div>Loading....</div>;
     return (
-      <div>
+      <div className="content">
         <div>
           <h1>All watches</h1>
         </div>
+        <FilterWatches />
         <GridList>
           {watches.map(watch => (
             <GridListTile
-              key={watch.image}
-              cellHeight="100"
-              onClick={() => this.props.selectWatch(watch)}
-            >
+
+              key={Math.random()}
+              onClick={() => {
+                this.props.selectWatch(watch);
+                this.state.viewedWatches.push(watch);
+              }}
               <Link to={`/watches/${watch.id}`}>
                 <img src={watch.image} />
                 <GridListTileBar title={watch.brand} subtitle={watch.model} />
@@ -33,7 +42,7 @@ class watchBrowse extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  watches: state.watch.watches,
+  watches: state.watch.filteredWatches,
   isFetching: state.watch.isFetching
 });
 
