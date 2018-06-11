@@ -11,6 +11,7 @@ import { getWatches } from './store/watch';
 import { getGuestCart } from './store/user';
 import WatchSingleView from './components/watch-components/WatchSingleView';
 import Cart from './components/user-components/cart.jsx';
+import SellWatch from './components/watch-components/sellWatch.jsx'
 
 /**
  * COMPONENT
@@ -44,10 +45,10 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/" component={UserHome} />
-            <Route path="/home" component={UserHome} />
+            <Route exact path="/home" component={UserHome} />
+            <Route exact path ="/sell" component={SellWatch} />
             <Route exact path="/user" component={User} />
-            <Route exapct path="/cart" component={Cart} />
+            <Route exact path="/cart" component={Cart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

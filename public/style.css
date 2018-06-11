@@ -43,6 +43,12 @@ body {
   margin: 1.5rem;
 }
 
+#sell-watch {
+  margin-left: 5rem;
+  margin-right: 40rem;
+  margin-bottom: 3rem;
+}
+
 .user-img {
   height: 10rem;
   width: 10rem;
@@ -94,8 +100,8 @@ body {
   position: relative;
   top: 20%;
   right: 20%;
-}
 
+}
 .bullet {
   display: 'inline-block';
   margin: '0 2px';

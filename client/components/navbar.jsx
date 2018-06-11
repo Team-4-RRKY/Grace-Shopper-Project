@@ -32,6 +32,7 @@ const Navbar = ({ handleClick, isLoggedIn, cart, guestCart }) => (
               return acc + el.cart.quantity;
             }, 0)})`}
           </Link>
+          <Link className="nav-item" to="/sell"> Sell Watch</Link>
         </div>
       ) : (
         <div className="nav-container">
