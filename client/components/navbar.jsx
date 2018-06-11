@@ -51,6 +51,13 @@ const Navbar = ({ handleClick, isLoggedIn, cart }) => (
           </Link>
           <Link className="nav-item" to="/cart">
             Cart
+            {` (${
+              localStorage.cartItems
+                ? localStorage.cartItems.reduce((acc, el) => {
+                    return acc + el.cart.quantity;
+                  }, 0)
+                : 0
+            })`}
           </Link>
         </div>
       )}

@@ -33,7 +33,7 @@ class Cart extends React.Component {
               <div>
                 <h6>{`Quantity: ${e.cart.quantity}`}</h6>
                 <span>
-                  {e.cart.quantity === e.quantity ? (
+                  {e.cart.quantity >= e.quantity ? (
                     <h4>Maximum quantity reached!</h4>
                   ) : null}
                 </span>
@@ -48,7 +48,7 @@ class Cart extends React.Component {
                   Less
                 </button>
                 <button
-                  disabled={e.cart.quantity === e.quantity}
+                  disabled={e.cart.quantity >= e.quantity}
                   onClick={() => this.props.updateCart(addCartData)}
                 >
                   More
