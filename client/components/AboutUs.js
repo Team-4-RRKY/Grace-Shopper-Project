@@ -1,9 +1,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types's
-import { Typography, CardContent, CardHeader, Card} from '@material-ui/core';
+import { Typography, CardContent, CardHeader, Card } from '@material-ui/core';
 
 const AboutUs = () => {
-
 return (
   <Card className="card pos .card" classes="card-title-style" >
     <CardHeader className="card-title" title="BayWatch" />

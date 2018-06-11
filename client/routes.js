@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import watchBrowse from './components/watch-components/watchBrowse';
 import PropTypes from 'prop-types';
-import { Login, Signup, UserHome, AboutUs } from './components';
+import { Login, Signup, UserHome } from './components';
+import AboutUs from './components/AboutUs';
 import User from './components/user-components/user.jsx';
 import { me } from './store';
 import { getWatches } from './store/watch';
@@ -20,6 +21,7 @@ class Routes extends Component {
   }
 
   render() {
+    console.log('ABOUTUS', AboutUs);
     console.log(this.props);
     const { isLoggedIn } = this.props;
 
