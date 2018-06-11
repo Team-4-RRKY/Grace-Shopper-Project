@@ -22,7 +22,7 @@ export const UserHome = (props) => {
 const mapState = (state) => {
   return {
     user: state.user.user,
-    watches: state.watch.watches,
+    watches: state.watch.allWatches,
   }
 }
 
