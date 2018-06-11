@@ -2,18 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { removeFromCart, addToCart } from '../../store/user.js';
+import {
+  removeFromCart,
+  addToCart,
+  updateGuestCart,
+  removeFromGuestCart,
+} from '../../store/user.js';
 
 class Cart extends React.Component {
   render() {
-    let { cartItems } = this.props.user;
+    let cartItems = this.props.user.cartItems || this.props.guestCart;
+    console.log('cartItems', cartItems);
     if (cartItems) {
       cartItems.sort((a, b) => (a.cart.createdAt > b.cart.createdAt ? -1 : 1));
     }
     const userId = this.props.user.id;
     let sum = 0;
     if (!(typeof this.props.user === 'object')) return <div>Loading..</div>;
-    cartItems = cartItems || localStorage.cartItems || [];
+    // cartItems = cartItems || localStorage.cartItems || [];
     return (
       <div>
         <h1>Your Shopping Cart</h1>
@@ -40,21 +46,47 @@ class Cart extends React.Component {
                 <h5>Total: ${total}</h5>
                 <button
                   onClick={
-                    e.cart.quantity === 1
-                      ? () => this.props.removeFromCart(removeCartData)
-                      : () => this.props.updateCart(removeCartData)
+                    userId
+                      ? e.cart.quantity === 1
+                        ? () => this.props.removeFromCart(removeCartData)
+                        : () => this.props.updateCart(removeCartData)
+                      : e.cart.quantity === 1
+                        ? () =>
+                            this.props.removeFromGuestCart(
+                              e,
+                              this.props.guestCart
+                            )
+                        : () =>
+                            this.props.updateGuestCart(
+                              e,
+                              this.props.guestCart,
+                              -1
+                            )
                   }
                 >
                   Less
                 </button>
                 <button
                   disabled={e.cart.quantity >= e.quantity}
-                  onClick={() => this.props.updateCart(addCartData)}
+                  onClick={
+                    userId
+                      ? () => this.props.updateCart(addCartData)
+                      : () =>
+                          this.props.updateGuestCart(e, this.props.guestCart, 1)
+                  }
                 >
                   More
                 </button>
                 <button
-                  onClick={() => this.props.removeFromCart(removeCartData)}
+                  onClick={
+                    userId
+                      ? () => this.props.removeFromCart(removeCartData)
+                      : () =>
+                          this.props.removeFromGuestCart(
+                            e,
+                            this.props.guestCart
+                          )
+                  }
                 >
                   Remove
                 </button>
@@ -73,11 +105,16 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user.user,
+  guestCart: state.user.guestCart,
 });
 
 const mapDispatchToProps = dispatch => ({
   removeFromCart: cartData => dispatch(removeFromCart(cartData)),
   updateCart: cartData => dispatch(addToCart(cartData)),
+  updateGuestCart: (watch, guestCart, num) =>
+    dispatch(updateGuestCart(watch, guestCart, num)),
+  removeFromGuestCart: (watch, guestCart) =>
+    dispatch(removeFromGuestCart(watch, guestCart)),
 });
 
 export default connect(
