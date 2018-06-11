@@ -6,8 +6,13 @@ import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 import FilterWatches from './filterWatches.jsx';
 
 class watchBrowse extends React.Component {
+  state = {
+    viewedWatches: []
+  };
+
   render() {
     const { isFetching, watches } = this.props;
+    console.log('just viewed', this.state.viewedWatches);
     if (isFetching) return <div>Loading....</div>;
     return (
       <div className="content">
@@ -19,7 +24,10 @@ class watchBrowse extends React.Component {
           {watches.map(watch => (
             <GridListTile
               key={Math.random()}
-              onClick={() => this.props.selectWatch(watch)}
+              onClick={() => {
+                this.props.selectWatch(watch);
+                this.state.viewedWatches.push(watch);
+              }}
             >
               <Link to={`/watches/${watch.id}`}>
                 <img src={watch.image} />

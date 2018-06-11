@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { filteredWatches, getWatches } from '../../store/watch.js';
+import { filteredWatches } from '../../store/watch.js';
 //import Select from '@material-ui/core/Select';
 //import MenuItem from '@material-ui/core/MenuItem';
 //import InputLabel from '@material-ui/core/InputLabel';
@@ -79,7 +79,6 @@ class FilterWatches extends React.Component {
   render() {
     const watches = this.props.filtered;
     const allWatches = this.props.allWatches;
-    console.log('state here', this.state);
     if (watches[0] === undefined) {
       return <CircularProgress />;
     }
@@ -90,6 +89,9 @@ class FilterWatches extends React.Component {
         className="form_class"
       >
         {/* Gender */}
+        <span>
+          <h3>Please Select Gender and Price Range</h3>
+        </span>
         <label>Gender</label>
         <select
           name="gender"
