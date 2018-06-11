@@ -2,62 +2,85 @@ const crypto = require('crypto');
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const User = db.define('user', {
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
+const User = db.define(
+  'user',
+  {
+    firstName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    lastName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    email: {
+      type: Sequelize.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    address: {
+      type: Sequelize.STRING,
+    },
+    image: {
+      type: Sequelize.STRING,
+      validate: {
+        isUrl: true,
+      },
+    },
+    gender: {
+      type: Sequelize.STRING,
+    },
+    purchaseHistory: {
+      type: Sequelize.ARRAY(Sequelize.TEXT),
+    },
+    // Making `.password` act like a func hides it when serializing to JSON.
+    // This is a hack to get around Sequelize's lack of a "private" option.
+    password: {
+      type: Sequelize.STRING,
+      get() {
+        return () => this.getDataValue('password');
+      },
+    },
+    salt: {
+      type: Sequelize.STRING,
+      get() {
+        return () => this.getDataValue('salt');
+      },
+    },
+    googleId: {
+      type: Sequelize.STRING,
     },
   },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
+  {
+    scopes: {
+      populated: () => ({
+        include: [
+          {
+            model: db.model('watch'),
+            as: 'saleItems',
+          },
+          {
+            model: db.model('watch'),
+            as: 'cartItems',
+          },
+          {
+            model: db.model('watch'),
+            as: 'listings',
+          },
+        ],
+      }),
     },
-  },
-  email: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      isEmail: true,
-    },
-  },
-  address: {
-    type: Sequelize.STRING,
-  },
-  image: {
-    type: Sequelize.STRING,
-    validate: {
-      isUrl: true,
-    },
-  },
-  gender: {
-    type: Sequelize.STRING,
-  },
-  purchaseHistory: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
-  },
-  // Making `.password` act like a func hides it when serializing to JSON.
-  // This is a hack to get around Sequelize's lack of a "private" option.
-  password: {
-    type: Sequelize.STRING,
-    get() {
-      return () => this.getDataValue('password');
-    },
-  },
-  salt: {
-    type: Sequelize.STRING,
-    get() {
-      return () => this.getDataValue('salt');
-    },
-  },
-  googleId: {
-    type: Sequelize.STRING,
-  },
-});
+  }
+);
 
 module.exports = User;
 

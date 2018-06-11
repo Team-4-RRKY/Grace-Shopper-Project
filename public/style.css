@@ -20,6 +20,10 @@ form div {
   display: inline-block;
 }
 
+body {
+  margin: 0;
+}
+
 #title {
   background-color: black;
   color: white;
@@ -38,14 +42,13 @@ form div {
   margin: 1.5rem;
 }
 
-#edit-user-info {
-  height: 15rem;
-  width: 15rem;
-  background-color: tan;
+.user-img {
+  height: 10rem;
+  width: 10rem;
 }
 
 .nav-item {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Oxygen', sans-serif;
   font-size: 1rem;
   color: black;
 }
@@ -79,6 +82,7 @@ form div {
   border-radius: 10px;
 }
 
+
 .content {
   flex-grow: inherit;
   /*   padding: theme.spacing.unit * 3, */
@@ -96,4 +100,26 @@ form div {
   position: relative;
   top: 20%;
   right: 20%;
+
+/* cards styles from material-ui */
+/* .card {
+  minWidth: 275;
+} */
+
+.bullet {
+  display: 'inline-block';
+  margin: '0 2px';
+  transform: 'scale(0.8)';
+}
+
+.card-title {
+  margin-Bottom: 16;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 14;
+}
+
+.pos {
+  margin-Bottom: 12;
+  margin-right: 50px;
+  margin-left: 50px;
 }

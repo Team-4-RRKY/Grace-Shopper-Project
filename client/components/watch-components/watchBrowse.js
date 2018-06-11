@@ -23,12 +23,12 @@ class watchBrowse extends React.Component {
         <GridList>
           {watches.map(watch => (
             <GridListTile
+
               key={Math.random()}
               onClick={() => {
                 this.props.selectWatch(watch);
                 this.state.viewedWatches.push(watch);
               }}
-            >
               <Link to={`/watches/${watch.id}`}>
                 <img src={watch.image} />
                 <GridListTileBar title={watch.brand} subtitle={watch.model} />
