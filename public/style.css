@@ -35,12 +35,17 @@ body {
   text-align: center;
 }
 
-#user-info-text {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+#user-info-wrap{
+  /* display: flex */
 }
 
 #user-info {
+  justify-content: center;
   margin: 1.5rem;
+}
+
+#user-info-text {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .user-img {
@@ -184,4 +189,28 @@ body {
   background-color: black;
   color: white;
   text-align: center;
+}
+
+.user-card-wrapper{
+  display: flex;
+  padding-top: 250px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: row;
+  margin-left: 250px;
+  max-width: 45%;
+}
+.user-media {
+  /* flex-direction: row; */
+  width: 33%;
+  max-width: 600px;
+  height: auto;
+  padding-top: 56.25%;
+
+}
+
+.user-card-content{
+  align-content: center;
 }

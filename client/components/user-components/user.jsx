@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import UserForm  from './userForm.jsx'
 import {editUserData} from '../../store/user'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
 class User extends Component {
   state = {
@@ -36,15 +41,38 @@ class User extends Component {
   render() {
     const { user } = this.props;
     return (
-      <div className="row wrap">
-        <div id="user-info" className="column wrap border-black">
-          <img src={user.image} className="user-img" />
-          <p id="user-info-text">User: {user.firstName} {user.lastName}</p>
-          <p id="user-info-text">Email: {user.email}</p>
-          <p>Address: {user.address}</p>
-          <p>Gender: {user.gender}</p>
-          <p>Joined On: {user.createdAt.slice(0, 10)}</p>
-          <Button onClick={this.handleOpen}>Edit Account Info</Button>
+      <div className="user-car-wrapper">
+      <Card className="user-card">
+        <CardMedia
+          className="user-media"
+          image={user.image}
+          title={user.firstName}
+        />
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              {user.firstName + ' ' + user.lastName}
+            </Typography>
+            <Typography component="p">
+              User: {user.firstName} {user.lastName}
+            </Typography>
+            <Typography component="p">
+              Email: {user.email}
+            </Typography>
+            <Typography component="p">
+              Address: {user.address}
+            </Typography>
+            <Typography component="p">
+              Gender: {user.gender}
+            </Typography>
+            <Typography component="p">
+              Joined On: {user.createdAt.slice(0, 10)}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button onClick={this.handleOpen} size="small" color="primary">
+              Edit User
+            </Button>
+          </CardActions>
           <Dialog
             open={this.state.open}
             onClose={this.handleClose}
@@ -54,8 +82,7 @@ class User extends Component {
              <UserForm displayName="Submit Edit" handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
            </DialogContent>
           </Dialog>
-        </div>
-        <div>{}</div>
+      </Card>
       </div>
     );
   }
