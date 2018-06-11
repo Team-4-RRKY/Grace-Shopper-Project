@@ -9,6 +9,7 @@ const REMOVE_USER = 'REMOVE_USER';
 const ADDED_TO_CART = 'ADDED_TO_CART';
 const ADDED_TO_GUEST_CART = 'ADDED_TO_GUEST_CART';
 const EDITEDUSER = 'EDITEDUSER';
+const REMOVED_FROM_CART = 'REMOVED_FROM_CART';
 
 /**
  * INITIAL STATE
@@ -25,16 +26,16 @@ const editedUser = editedData => ({
   editedData,
 });
 const addedToCart = watch => ({ type: ADDED_TO_CART, watch });
+const removedFromCart = watch => ({ type: REMOVED_FROM_CART, watch });
 
 /**
  * THUNK CREATORS
  */
 
 export const editUserData = editData => async dispatch => {
-  console.log(editData)
   try {
     const { data } = await axios.put(`/api/users/${editData.id}`, editData);
-    console.log(data)
+    console.log(data);
     dispatch(editedUser(data));
   } catch (error) {
     console.error(error);
@@ -44,7 +45,19 @@ export const editUserData = editData => async dispatch => {
 export const addToCart = cartData => async dispatch => {
   const { userId } = cartData;
   try {
-    const { data } = await axios.post(`/api/${userId}/cart`);
+    const { data } = await axios.post(`/api/users/${userId}/cart`, cartData);
+    dispatch(gotUser(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const removeFromCart = cartData => async dispatch => {
+  const { userId } = cartData;
+  try {
+    const { data } = await axios.delete(`/api/users/${userId}/cart`, {
+      data: cartData,
+    });
     dispatch(gotUser(data));
   } catch (error) {
     console.error(error);
@@ -54,7 +67,7 @@ export const addToCart = cartData => async dispatch => {
 export const me = () => dispatch =>
   axios
     .get('/auth/me')
-    .then(res => dispatch(gotUser(res.data || defaultUser)))
+    .then(res => dispatch(gotUser(res.data || initialState.user)))
     .catch(err => console.log(err));
 
 export const auth = (userData, method) => dispatch =>
@@ -93,9 +106,8 @@ export default function(state = initialState, action) {
     // case ADDED_TO_CART:
     //   return { ...state, user: action.user };
     case EDITEDUSER:
-      return {...state, user: action.editData}
+      return { ...state, user: action.editData };
     default:
       return state;
   }
 }
-
