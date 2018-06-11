@@ -28,8 +28,8 @@ router.put( '/:id', defaultHandler(async (req, res, next) => {
       },
       returning: true
     });
-
-    res.json(watchToEdit[1][0]);
+    const updatedWatch = watchToEdit[1][0]
+    res.send(updatedWatch);
 }));
 
 router.delete( '/:id', defaultHandler(async (req, res, next) => {

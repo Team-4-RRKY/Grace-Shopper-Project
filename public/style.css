@@ -55,8 +55,8 @@ body {
 }
 
 .divider {
-  background-color: #212121;
-  height: .5rem;
+  background-color: black;
+  height: 0.5rem;
 }
 
 .row {
@@ -79,10 +79,22 @@ body {
 }
 
 .border-black {
-  border: .4rem solid black;
+  border: 0.4rem solid black;
   border-radius: 10px;
 }
 
+.content {
+  flex-grow: inherit;
+  /*   padding: theme.spacing.unit * 3, */
+  position: relative;
+  left: 20%;
+}
+
+.form_class {
+  position: relative;
+  top: 20%;
+  right: 20%;
+}
 
 .bullet {
   display: 'inline-block';
@@ -162,4 +174,14 @@ body {
   justify-content: center;
   display: flex;
   width: 100%;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2rem;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
