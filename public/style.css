@@ -1,9 +1,9 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
 a {
-  text-decoration: none;
+text-decoration: none;
 }
 
 label {
@@ -32,6 +32,7 @@ body {
   width: 100%;
   font-family: 'Lobster', cursive;
   font-size: 3rem;
+  text-align: center;
 }
 
 #user-info-text {
@@ -132,10 +133,11 @@ body {
 
 .carousel-title{
   font-size: 40px;
+  color: white;
 }
 
 .carousel-description{
-
+  color: white;
 }
 
 .carousel-item-inner{
@@ -151,9 +153,17 @@ body {
 
 }
 
-.nav-bar{}
-
 .nav-item{
   font-family: 'Oxygen', sans-serif;
   font-size: 20px;
+}
+
+.nav-container{
+  display: flex;
+}
+
+.nav-links{
+  justify-content: center;
+  display: flex;
+  width: 100%;
 }

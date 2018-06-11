@@ -8,9 +8,9 @@ import { Menu, MenuItem } from '@material-ui/core';
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="nav-bar">
     <h1 id="title">BayWatch</h1>
-    <nav>
+    <nav className="nav-container">
       {isLoggedIn ? (
-        <div>
+        <div className="nav-links">
           {/* The navbar will show these links after you log in */}
           <Link className="nav-item" to="/home">Home</Link>
           <Link className="nav-item" to="/watches/browse">Watches</Link>
