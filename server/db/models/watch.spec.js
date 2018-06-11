@@ -26,13 +26,16 @@ describe('Watch model', () => {
         });
       });
 
-      xit('returns true if ', () => {
-        expect(rolex).to.be.equal(true);
+      it('brand is a field in the created Watch row', () => {
+        expect(rolex.brand).to.be.equal('Rolex');
       });
 
-      xit('returns ', () => {
-        expect(rolex).to.be.equal(false);
-      });
+      it('model is a field in the created Watch row', () => {
+        expect(rolex.model).to.be.equal('Navigator');
+      })
+      it('gender is a field in the created Watch row', () => {
+        expect(rolex.gender).to.be.equal('female')
+      })
     }); // end describe('correctPassword')
   }); // end describe('instanceMethods')
 }); // end describe('User model')
