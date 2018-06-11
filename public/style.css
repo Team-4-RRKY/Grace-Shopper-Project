@@ -25,7 +25,7 @@ body {
 }
 
 #title {
-  background-color: black;
+  background-color: #212121;
   color: white;
   margin: 0;
   height: 4rem;
@@ -55,7 +55,7 @@ body {
 }
 
 .divider {
-  background-color: black;
+  background-color: #212121;
   height: .5rem;
 }
 
@@ -83,10 +83,6 @@ body {
   border-radius: 10px;
 }
 
-/* cards styles from material-ui */
-/* .card {
-  minWidth: 275;
-} */
 
 .bullet {
   display: 'inline-block';
@@ -108,7 +104,7 @@ body {
 
 .user-home-header{
   font-family: 'Oxygen', sans-serif;
-  font-size: 40px;
+  font-size: 25px;
 }
 
 .watch-carousel{
@@ -155,7 +151,7 @@ body {
 
 .nav-item{
   font-family: 'Oxygen', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .nav-container{
