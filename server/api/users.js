@@ -41,10 +41,9 @@ router.put(
       returning: true,
       plain: true,
     });
-
     res.send({
       message: 'User Instance Updated',
-      updatedUser: updatedUsers[1][0],
+      updatedUser: updatedUsers[1].dataValues
     });
   })
 );
@@ -65,8 +64,11 @@ router.delete(
 router.post(
   '/:id/cart',
   defaultHandler(async (req, res, next) => {
-    const { userId } = req.body;
-    await Cart.create(req.body);
+    const { userId, watchId, num } = req.body;
+    const arr = await Cart.findOrCreate({ where: { userId, watchId } });
+    if (!arr[1]) {
+      await arr[0].update({ quantity: arr[0].quantity + num });
+    }
     const user = await User.scope('populated').findById(userId);
     res.json(user);
   })
@@ -75,8 +77,8 @@ router.post(
 router.delete(
   '/:id/cart',
   defaultHandler(async (req, res, next) => {
-    const { userId } = req.body;
-    await Cart.destroy(req.body);
+    const { userId, watchId } = req.body;
+    await Cart.destroy({ where: { userId, watchId } });
     const user = await User.scope('populated').findById(userId);
     res.json(user);
   })
