@@ -4,11 +4,12 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import watchBrowse from './components/watch-components/watchBrowse';
 import PropTypes from 'prop-types';
 import { Login, Signup, UserHome } from './components';
+import AboutUs from './components/AboutUs';
 import User from './components/user-components/user.jsx';
 import { me } from './store';
 import { getWatches } from './store/watch';
+import { getGuestCart } from './store/user';
 import WatchSingleView from './components/watch-components/WatchSingleView';
-import AboutUs from './components/AboutUs';
 import Cart from './components/user-components/cart.jsx';
 import SellWatch from './components/watch-components/sellWatch.jsx'
 
@@ -19,6 +20,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
     this.props.getWatches();
+    this.props.getGuestCart();
   }
 
   render() {
@@ -71,6 +73,7 @@ const mapState = state => {
 const mapDispatch = dispatch => ({
   getWatches: () => dispatch(getWatches()),
   loadInitialData: () => dispatch(me()),
+  getGuestCart: () => dispatch(getGuestCart()),
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked

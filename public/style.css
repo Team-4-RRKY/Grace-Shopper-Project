@@ -1,9 +1,9 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
 a {
-  text-decoration: none;
+text-decoration: none;
 }
 
 label {
@@ -25,13 +25,14 @@ body {
 }
 
 #title {
-  background-color: black;
+  background-color: #212121;
   color: white;
   margin: 0;
   height: 4rem;
   width: 100%;
   font-family: 'Lobster', cursive;
   font-size: 3rem;
+  text-align: center;
 }
 
 #user-info-text {
@@ -88,19 +89,12 @@ body {
   border-radius: 10px;
 }
 
-
 .content {
   flex-grow: inherit;
   /*   padding: theme.spacing.unit * 3, */
   position: relative;
   left: 20%;
 }
-
-/* .drawer {
-  display: flex;
-  margin: auto;
-  left: 50%;
-} */
 
 .form_class {
   position: relative;
@@ -126,6 +120,67 @@ body {
   margin-left: 50px;
 }
 
+.user-home-header{
+  font-family: 'Oxygen', sans-serif;
+  font-size: 25px;
+}
+
+.watch-carousel{
+  font-family: 'Oxygen', sans-serif;
+  background-image: url('./carousel-bg-img.jpg');
+  background-size: cover;
+}
+
+.carousel-item{
+  height: 425px;
+}
+
+.carousel-img{
+  margin-right: 50px;
+  border-radius: 8px;
+  box-shadow: 14px 14px 25px -1px rgba(0,0,0,0.75);
+}
+
+.carousel-caption{
+
+}
+
+.carousel-title{
+  font-size: 40px;
+  color: white;
+}
+
+.carousel-description{
+  color: white;
+}
+
+.carousel-item-inner{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: white;
+  padding-left: 15%;
+}
+
+.carousel-item-info{
+
+}
+
+.nav-item{
+  font-family: 'Oxygen', sans-serif;
+  font-size: 16px;
+}
+
+.nav-container{
+  display: flex;
+}
+
+.nav-links{
+  justify-content: center;
+  display: flex;
+  width: 100%;
+}
 .footer {
   position: fixed;
   left: 0;
@@ -136,4 +191,3 @@ body {
   color: white;
   text-align: center;
 }
-
