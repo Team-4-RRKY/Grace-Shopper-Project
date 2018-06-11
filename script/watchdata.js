@@ -8,7 +8,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -20,7 +19,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -32,7 +30,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -44,7 +41,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -56,7 +52,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -67,7 +62,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -79,7 +73,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -90,7 +83,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -101,7 +93,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -113,7 +104,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -125,7 +115,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -137,7 +126,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -149,7 +137,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -161,7 +148,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -172,7 +158,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -184,7 +169,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -196,7 +180,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -208,7 +191,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -220,7 +202,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -231,7 +212,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -243,7 +223,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -255,7 +234,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -266,7 +244,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -278,7 +255,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -289,7 +265,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -301,7 +276,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -313,7 +287,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -325,7 +298,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -337,7 +309,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -348,7 +319,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -359,7 +329,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -371,7 +340,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -382,7 +350,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -393,7 +360,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -405,7 +371,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -416,7 +381,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -427,7 +391,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -438,7 +401,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -450,7 +412,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -462,7 +423,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -474,7 +434,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -486,7 +445,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -498,7 +456,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -509,7 +466,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -521,7 +477,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -532,7 +487,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -544,7 +498,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -556,7 +509,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -568,7 +520,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -580,7 +531,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -592,7 +542,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -604,7 +553,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -615,7 +563,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -627,7 +574,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -639,7 +585,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -651,7 +596,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -663,7 +607,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -675,7 +618,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -687,7 +629,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -698,7 +639,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -709,7 +649,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -721,7 +660,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -733,7 +671,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -745,7 +682,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -756,7 +692,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -767,7 +702,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -778,7 +712,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -789,7 +722,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -800,7 +732,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -812,7 +743,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -824,7 +754,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -835,7 +764,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -846,7 +774,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -858,7 +785,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -869,7 +795,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -881,7 +806,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -893,7 +817,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -905,7 +828,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -917,7 +839,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -929,7 +850,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -941,7 +861,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -953,7 +872,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -964,7 +882,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -976,7 +893,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -988,7 +904,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -1000,7 +915,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -1012,7 +926,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1023,7 +936,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -1035,7 +947,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -1047,7 +958,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -1059,7 +969,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1070,7 +979,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -1082,7 +990,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1093,7 +1000,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -1105,7 +1011,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image:
@@ -1117,7 +1022,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -1129,7 +1033,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -1141,7 +1044,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -1153,7 +1055,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image:
@@ -1165,7 +1066,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -1177,7 +1077,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -1189,7 +1088,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1200,7 +1098,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1211,7 +1108,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Vacheron Constantin',
-    sellerId: 1
   },
   {
     image:
@@ -1223,7 +1119,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Blancpain',
-    sellerId: 1
   },
   {
     image:
@@ -1235,7 +1130,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Audemars Piguet',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1246,7 +1140,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'Patek Philippe',
-    sellerId: 1
   },
   {
     image:
@@ -1258,7 +1151,6 @@ const watchData = [
     tier: 'Daily',
     gender: 'Gentleman',
     brand: 'Rolex',
-    sellerId: 1
   },
   {
     image:
@@ -1270,7 +1162,6 @@ const watchData = [
     tier: 'Luxurious',
     gender: 'Gentleman',
     brand: 'Ulysse Nardin',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1281,7 +1172,6 @@ const watchData = [
     tier: 'Casual',
     gender: 'Gentleman',
     brand: 'IWC Schaffhausen',
-    sellerId: 1
   },
   {
     image:
@@ -1293,7 +1183,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1305,7 +1194,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1317,7 +1205,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1329,7 +1216,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1341,7 +1227,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1353,7 +1238,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1365,7 +1249,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1377,7 +1260,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1389,7 +1271,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1401,7 +1282,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1413,7 +1293,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1425,7 +1304,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1437,7 +1315,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1449,7 +1326,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1461,7 +1337,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1473,7 +1348,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1485,7 +1359,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1497,7 +1370,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1509,7 +1381,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1521,7 +1392,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1533,7 +1403,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1545,7 +1414,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1557,7 +1425,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1569,7 +1436,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1581,7 +1447,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1593,7 +1458,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1605,7 +1469,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1617,7 +1480,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1629,7 +1491,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1641,7 +1502,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1653,7 +1513,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Vintage',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image:
@@ -1665,7 +1524,6 @@ const watchData = [
     tier: 'Casual',
     style: 'Edgy',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1676,7 +1534,6 @@ const watchData = [
     tier: 'Daily',
     style: 'Classic',
     gender: 'Ladies',
-    sellerId: 1
   },
   {
     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
@@ -1687,7 +1544,6 @@ const watchData = [
     tier: 'Luxurious',
     style: 'Modern',
     gender: 'Ladies',
-    sellerId: 1
   }
 ];
 

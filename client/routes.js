@@ -8,8 +8,10 @@ import AboutUs from './components/AboutUs';
 import User from './components/user-components/user.jsx';
 import { me } from './store';
 import { getWatches } from './store/watch';
+import { getGuestCart } from './store/user';
 import WatchSingleView from './components/watch-components/WatchSingleView';
 import Cart from './components/user-components/cart.jsx';
+import SellWatch from './components/watch-components/sellWatch.jsx'
 
 /**
  * COMPONENT
@@ -18,6 +20,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
     this.props.getWatches();
+    this.props.getGuestCart();
   }
 
   render() {
@@ -42,9 +45,10 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route exact path="/home" component={UserHome} />
+            <Route exact path ="/sell" component={SellWatch} />
             <Route exact path="/user" component={User} />
-            <Route exapct path="/cart" component={Cart} />
+            <Route exact path="/cart" component={Cart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -69,6 +73,7 @@ const mapState = state => {
 const mapDispatch = dispatch => ({
   getWatches: () => dispatch(getWatches()),
   loadInitialData: () => dispatch(me()),
+  getGuestCart: () => dispatch(getGuestCart()),
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked
