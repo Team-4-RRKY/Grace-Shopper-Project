@@ -27,7 +27,7 @@ describe('thunk creators', () => {
     store.clearActions();
   });
 
-  describe('me', () => {
+  xdescribe('me', () => {
     it('eventually dispatches the GET USER action', () => {
       const fakeUser = { email: 'Cody' };
       mockAxios.onGet('/auth/me').replyOnce(200, fakeUser);

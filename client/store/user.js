@@ -11,6 +11,7 @@ const ADDED_TO_GUEST_CART = 'ADDED_TO_GUEST_CART';
 const EDITEDUSER = 'EDITEDUSER';
 const REMOVED_FROM_CART = 'REMOVED_FROM_CART';
 const GOT_GUEST_CART = 'GOT_GUEST_CART';
+const GOT_USER_AND_MERGED_CART = 'GOT_USER_AND_MERGED_CART';
 
 /**
  * INITIAL STATE
@@ -29,6 +30,7 @@ const editedUser = editedData => ({
 const addedToCart = watch => ({ type: ADDED_TO_CART, watch });
 const removedFromCart = watch => ({ type: REMOVED_FROM_CART, watch });
 const gotGuestCart = cart => ({ type: GOT_GUEST_CART, cart });
+const gotUserAndMergedCart = user => ({ type: GOT_USER_AND_MERGED_CART, user });
 
 /**
  * THUNK CREATORS
@@ -71,7 +73,11 @@ export const removeFromGuestCart = (watch, guestCart) => dispatch => {
   arr.splice(watchIndex, 1);
   arr.sort((a, b) => (a.id > b.id ? -1 : 1));
   dispatch(gotGuestCart(arr));
-  localStorage.cartItems = JSON.stringify(arr);
+  if (!arr.length) {
+    localStorage.removeItem('cartItems');
+  } else {
+    localStorage.cartItems = JSON.stringify(arr);
+  }
 };
 
 export const editUserData = editData => async dispatch => {
@@ -106,10 +112,29 @@ export const removeFromCart = cartData => async dispatch => {
   }
 };
 
+const mergeCarts = user => async dispatch => {
+  try {
+    const { id } = user;
+    const localCart = JSON.parse(localStorage.cartItems);
+    const { data } = await axios.post(`/api/users/${id}/cart/merge`, localCart);
+    localStorage.removeItem('cartItems');
+    console.log(data);
+    dispatch(gotUserAndMergedCart(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const me = () => dispatch =>
   axios
     .get('/auth/me')
-    .then(res => dispatch(gotUser(res.data || initialState.user)))
+    .then(res => {
+      if (localStorage.cartItems && res.data) {
+        dispatch(mergeCarts(res.data));
+      } else {
+        dispatch(gotUser(res.data || initialState.user));
+      }
+    })
     .catch(err => console.log(err));
 
 export const auth = (userData, method) => dispatch =>
@@ -117,8 +142,12 @@ export const auth = (userData, method) => dispatch =>
     .post(`/auth/${method}`, userData)
     .then(
       res => {
-        dispatch(gotUser(res.data));
-        history.push('/home');
+        if (localStorage.cartItems[0] && res.data) {
+          dispatch(mergeCarts(res.data));
+        } else {
+          dispatch(gotUser(res.data));
+          history.push('/home');
+        }
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -149,6 +178,8 @@ export default function(state = initialState, action) {
       return { ...state, user: action.editData };
     case GOT_GUEST_CART:
       return { ...state, guestCart: action.cart };
+    case GOT_USER_AND_MERGED_CART:
+      return { ...state, guestCart: [], user: action.user };
     default:
       return state;
   }
