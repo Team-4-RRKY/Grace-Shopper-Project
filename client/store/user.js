@@ -12,11 +12,12 @@ const EDITEDUSER = 'EDITEDUSER';
 const REMOVED_FROM_CART = 'REMOVED_FROM_CART';
 const GOT_GUEST_CART = 'GOT_GUEST_CART';
 const GOT_USER_AND_MERGED_CART = 'GOT_USER_AND_MERGED_CART';
+const PURCHASED = 'PURCHASED';
 
 /**
  * INITIAL STATE
  */
-const initialState = { user: {}, guestCart: [] };
+const initialState = { user: {}, guestCart: [], recentlyPurchased: [] };
 
 /**
  * ACTION CREATORS
@@ -31,6 +32,7 @@ const addedToCart = watch => ({ type: ADDED_TO_CART, watch });
 const removedFromCart = watch => ({ type: REMOVED_FROM_CART, watch });
 const gotGuestCart = cart => ({ type: GOT_GUEST_CART, cart });
 const gotUserAndMergedCart = user => ({ type: GOT_USER_AND_MERGED_CART, user });
+const purchased = (items, user) => ({ type: PURCHASED, items, user });
 
 /**
  * THUNK CREATORS
@@ -125,6 +127,18 @@ const mergeCarts = user => async dispatch => {
   }
 };
 
+export const postPayment = (token, amount, user) => async dispatch => {
+  try {
+    const { data } = await axios.post('/api/stripe', { token, amount, user });
+    console.log(data);
+    console.log('test');
+    dispatch(purchased(data.cartItems, data.user));
+    history.push('/home');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const me = () => dispatch =>
   axios
     .get('/auth/me')
@@ -142,7 +156,7 @@ export const auth = (userData, method) => dispatch =>
     .post(`/auth/${method}`, userData)
     .then(
       res => {
-        if (localStorage.cartItems[0] && res.data) {
+        if (localStorage.cartItems && res.data) {
           dispatch(mergeCarts(res.data));
         } else {
           dispatch(gotUser(res.data));
@@ -180,6 +194,8 @@ export default function(state = initialState, action) {
       return { ...state, guestCart: action.cart };
     case GOT_USER_AND_MERGED_CART:
       return { ...state, guestCart: [], user: action.user };
+    case PURCHASED:
+      return { ...state, recentlyPurchased: action.items, user: action.user };
     default:
       return state;
   }

@@ -5,15 +5,15 @@ const POST_SINGLE_PAYMENT = 'POST_SINGLE_PAYMENT';
 
 const postSinglePayment = emptyCart => ({
   type: POST_SINGLE_PAYMENT,
-  emptyCart
+  emptyCart,
 });
 
-export const postPayment = (token, amount) => async dispatch => {
+export const postPayment = (token, amount, user) => async dispatch => {
   try {
-    console.log('before zzzzzzzzz');
-    const { data } = await axios.post('/api/stripe', { token, amount });
-    console.log('after herezzzzzzzzz', data);
-    /* dispatch(postSinglePayment(data)); */
+    const { data } = await axios.post('/api/stripe', { token, amount, user });
+    if (data === 'payment successful') {
+      dispatch(dealWithPurchase);
+    }
   } catch (error) {
     console.error(error);
   }
