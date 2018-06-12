@@ -8,15 +8,13 @@ import {
   updateGuestCart,
   removeFromGuestCart,
 } from '../../store/user.js';
-import CheckoutConfirmation from './CheckoutConfirmation.jsx';
+const { apiKey } = require('../../../secrets.js');
 
 import StripeCheckout from 'react-stripe-checkout';
 import { postPayment } from '../../store/user.js';
-const apiKey = 'pk_test_Xo8ZfZ3YoD5q5hvQDFc9ASP1';
 
 class Cart extends React.Component {
-
-  componentDidMount(){
+  componentDidMount() {
     console.log('');
   }
   render() {
