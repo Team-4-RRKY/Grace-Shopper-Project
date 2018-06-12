@@ -87,6 +87,7 @@ export const editUserData = editData => async dispatch => {
     const { data } = await axios.put(`/api/users/${editData.id}`, editData);
     console.log(data);
     dispatch(editedUser(data));
+    history.push('/user');
   } catch (error) {
     console.error(error);
   }

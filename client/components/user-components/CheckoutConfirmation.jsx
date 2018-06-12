@@ -10,59 +10,36 @@ const styles = theme => ({
     paddingTop: 16,
     paddingBottom: 16,
     marginTop: theme.spacing.unit * 3,
+    paddingLeft: 16,
+    paddingRight: 16,
   }),
 });
 
-// const watches = [
-//   {
-//     id: 1,
-//     brand: 'Audemars Piguet',
-//     model: '40 Series - 40MM',
-//     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
-//     price: '$120',
-//     quantity: 15,
-//     style: 'Classic',
-//     tier: 'Luxurious',
-//     gender: 'Gentleman',
-//     sellerId: 17,
-//   },
-//   {
-//     id: 2,
-//     brand: 'Audemars Piguet',
-//     model: '40 Series - 40MM',
-//     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
-//     price: '$120',
-//     quantity: 15,
-//     style: 'Classic',
-//     tier: 'Luxurious',
-//     gender: 'Gentleman',
-//     sellerId: 17,
-//   },
-//   {
-//     id: 3,
-//     brand: 'Audemars Piguet',
-//     model: '40 Series - 40MM',
-//     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
-//     price: '$120',
-//     quantity: 15,
-//     style: 'Classic',
-//     tier: 'Luxurious',
-//     gender: 'Gentleman',
-//     sellerId: 17,
-//   }
-// ]
-
-function CheckoutConfirmation(props) {
+const CheckoutConfirmation = (props) => {
   const { classes } = props;
   const watches = props.purchased;
+  let total = 0;
+
+  watches.forEach(watch => {
+    let price = Number(watch.price.slice(1))
+
+    let watchTotal = 0
+    if (watch.cart.quantity > 0){
+      watchTotal = price * watch.cart.quantity;
+      total += watchTotal;
+    } else {
+      total += price
+    }
+  })
+
 
   return (
-    <div>
+    <div className="checkout-paper">
       <Paper className={classes.root} elevation={4}>
         <Typography
           variant="display3"
           align="center">
-          ..:: Order Confirmation::..
+          ..::Order Confirmation::..
         </Typography>
         <div className="checkout-watch-div">
           {watches.map( watch => {
@@ -71,16 +48,19 @@ function CheckoutConfirmation(props) {
               key={watch.id}
               variant="headline"
               align="right">
-              {watch.brand} -- {watch.model} || {watch.price}
+              Quantity: {watch.cart.quantity} -- {watch.brand} -- {watch.model} || {watch.price}
             </Typography>
           )})}
         </div>
         <div className="checkout-total-div">
           <Typography
             variant="title"
-            align="right">Order Total: $TOTAL
+            align="right">Order Total: ${total}
           </Typography>
         </div>
+        <Typography variant="caption" gutterBottom align="center">
+        Thank you for shopping at BayWatch!
+      </Typography>
       </Paper>
     </div>
   );

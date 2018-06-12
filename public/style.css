@@ -228,3 +228,8 @@ body {
 .checkout-total-div{
   padding-top: 15px;
 }
+
+.checkout-paper{
+  padding-right: 50px;
+  padding-left: 50px;
+}
