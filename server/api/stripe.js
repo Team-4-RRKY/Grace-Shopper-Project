@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const stripe = require('stripe')('sk_test_VDDsUcoKwz33ladRWKHboxYB');
+const { key } = require('../../secrets.js');
+const stripe = require('stripe')(key);
 const defaultHandler = require('./errorHandler');
 const { User, Watch, Order, Cart } = require('../db/models');
 

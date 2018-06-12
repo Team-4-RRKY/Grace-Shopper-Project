@@ -87,6 +87,7 @@ export const editUserData = editData => async dispatch => {
     const { data } = await axios.put(`/api/users/${editData.id}`, editData);
     console.log(data);
     dispatch(editedUser(data));
+    history.push('/user');
   } catch (error) {
     console.error(error);
   }
@@ -119,7 +120,7 @@ export const postPayment = (token, amount, user) => async dispatch => {
     const { data } = await axios.post('/api/stripe', { token, amount, user });
     localStorage.removeItem('cartItems');
     dispatch(purchased(data.cartItems, data.user));
-    history.push('/home');
+    history.push('/checkoutconfirmation');
   } catch (error) {
     console.error(error);
   }
