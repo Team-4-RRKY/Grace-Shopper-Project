@@ -6,7 +6,9 @@ import { logout } from '../store';
 
 const Navbar = ({ handleClick, isLoggedIn, cart, guestCart }) => (
   <div>
-    <h1 id="title">BayWatch</h1>
+    <h1 id="title">
+      <Link to="/home">BayWatch</Link>
+    </h1>
     <nav>
       {isLoggedIn ? (
         <div className="nav-container">
@@ -44,7 +46,7 @@ const Navbar = ({ handleClick, isLoggedIn, cart, guestCart }) => (
             Sign Up
           </Link>
           <Link className="nav-item" to="/watches/browse">
-            WATCHES
+            Watches
           </Link>
           <Link className="nav-item" to="/aboutus">
             About Us

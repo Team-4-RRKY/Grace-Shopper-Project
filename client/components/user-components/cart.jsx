@@ -8,6 +8,7 @@ import {
   updateGuestCart,
   removeFromGuestCart
 } from '../../store/user.js';
+import Checkout from '../checkout.jsx';
 
 import StripeCheckout from 'react-stripe-checkout';
 import { postPayment } from '../../store/cart';
@@ -16,7 +17,6 @@ const apiKey = 'pk_test_Xo8ZfZ3YoD5q5hvQDFc9ASP1';
 class Cart extends React.Component {
   render() {
     let cartItems = this.props.user.cartItems || this.props.guestCart;
-    console.log('cartItems', cartItems);
     if (cartItems) {
       cartItems.sort((a, b) => (a.cart.createdAt > b.cart.createdAt ? -1 : 1));
     }
