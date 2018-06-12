@@ -41,6 +41,7 @@ export const listWatch = watch => async dispatch => {
   try {
     const { data } = await axios.post('/api/watches', watch);
     dispatch(listedWatch(data));
+    history.push(`/watches/${data.id}`)
   } catch (error) {
     console.error(error);
   }

@@ -4,8 +4,10 @@ import { Button, TextField, InputAdornment, MenuItem, Input } from '@material-ui
 import { listWatch } from '../../store/watch';
 import { ranges, styles } from '../../components/commonUtils';
 
+
 class SellWatch extends Component {
   state = {
+    sellerId: this.props.user.id,
     model: '',
     brand: '',
     price: '',
@@ -25,7 +27,7 @@ class SellWatch extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.postWatch(this.state);
+    this.props.postWatch(this.state)
   };
 
   render() {
@@ -124,11 +126,15 @@ class SellWatch extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.user.user
+})
+
 const mapDispatchToProps = dispatch => ({
   postWatch: formData => dispatch(listWatch(formData))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SellWatch);
