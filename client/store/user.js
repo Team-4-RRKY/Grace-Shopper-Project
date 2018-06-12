@@ -115,24 +115,24 @@ export const removeFromCart = cartData => async dispatch => {
   }
 };
 
+export const postPayment = (token, amount, user) => async dispatch => {
+  try {
+    const { data } = await axios.post('/api/stripe', { token, amount, user });
+    localStorage.removeItem('cartItems');
+    dispatch(purchased(data.cartItems, data.user));
+    history.push('/checkoutconfirmation');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const mergeCarts = user => async dispatch => {
   try {
     const { id } = user;
     const localCart = JSON.parse(localStorage.cartItems);
     const { data } = await axios.post(`/api/users/${id}/cart/merge`, localCart);
     localStorage.removeItem('cartItems');
-    console.log(data);
     dispatch(gotUserAndMergedCart(data));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const postPayment = (token, amount, user) => async dispatch => {
-  try {
-    const { data } = await axios.post('/api/stripe', { token, amount, user });
-    dispatch(purchased(data.cartItems, data.user));
-    history.push('/checkoutconfirmation');
   } catch (error) {
     console.error(error);
   }
@@ -194,7 +194,12 @@ export default function(state = initialState, action) {
     case GOT_USER_AND_MERGED_CART:
       return { ...state, guestCart: [], user: action.user };
     case PURCHASED:
-      return { ...state, recentlyPurchased: action.items, user: action.user };
+      return {
+        ...state,
+        recentlyPurchased: action.items,
+        user: action.user,
+        guestCart: [],
+      };
     default:
       return state;
   }
