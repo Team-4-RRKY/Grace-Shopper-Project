@@ -104,7 +104,11 @@ class Cart extends React.Component {
           <StripeCheckout
             name="BayWatch"
             amount={sum * 100}
-            token={token => handleToken(token, sum * 100, user)}
+            token={
+              user.id
+                ? token => handleToken(token, sum * 100, user)
+                : token => handleToken(token, sum * 100, { cartItems })
+            }
             stripeKey={apiKey}
             currency="USD"
           >
