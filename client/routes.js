@@ -12,6 +12,7 @@ import { getGuestCart } from './store/user';
 import WatchSingleView from './components/watch-components/WatchSingleView';
 import Cart from './components/user-components/cart.jsx';
 import SellWatch from './components/watch-components/sellWatch.jsx';
+import CheckoutConfirmation from './components/user-components/CheckoutConfirmation.jsx'
 
 /**
  * COMPONENT
@@ -41,6 +42,8 @@ class Routes extends Component {
         <Route exact path="/aboutus" component={AboutUs} />
         {/* Cart Route */}
         <Route exact path="/cart" component={Cart} />
+        <Route path="/checkoutconfirmation" component={CheckoutConfirmation} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
