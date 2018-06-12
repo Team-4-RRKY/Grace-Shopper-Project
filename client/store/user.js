@@ -10,6 +10,7 @@ const ADDED_TO_CART = 'ADDED_TO_CART';
 const ADDED_TO_GUEST_CART = 'ADDED_TO_GUEST_CART';
 const EDITEDUSER = 'EDITEDUSER';
 const REMOVED_FROM_CART = 'REMOVED_FROM_CART';
+const GOT_GUEST_CART = 'GOT_GUEST_CART';
 
 /**
  * INITIAL STATE
@@ -27,10 +28,51 @@ const editedUser = editedData => ({
 });
 const addedToCart = watch => ({ type: ADDED_TO_CART, watch });
 const removedFromCart = watch => ({ type: REMOVED_FROM_CART, watch });
+const gotGuestCart = cart => ({ type: GOT_GUEST_CART, cart });
 
 /**
  * THUNK CREATORS
  */
+
+export const getGuestCart = () => dispatch => {
+  let str = localStorage.cartItems || undefined;
+  let arr = str ? JSON.parse(str) : [];
+  dispatch(gotGuestCart(arr));
+};
+
+export const addToGuestCart = (watch, guestCart) => dispatch => {
+  // localStorage.removeItem('cartItems');
+  const arr = guestCart.slice();
+  const watchIndex = arr.findIndex(e => e.id === watch.id);
+  if (watchIndex > -1) {
+    arr[watchIndex].cart.quantity++;
+  } else {
+    watch.cart = { quantity: 1 };
+    arr.push(watch);
+  }
+  arr.sort((a, b) => (a.id > b.id ? -1 : 1));
+  dispatch(gotGuestCart(arr));
+  localStorage.cartItems = JSON.stringify(arr);
+  // localStorage.removeItem('cartItems');
+};
+
+export const updateGuestCart = (watch, guestCart, num) => dispatch => {
+  const arr = guestCart.slice();
+  const watchIndex = arr.findIndex(e => e.id === watch.id);
+  arr[watchIndex].cart.quantity += num;
+  arr.sort((a, b) => (a.id > b.id ? -1 : 1));
+  dispatch(gotGuestCart(arr));
+  localStorage.cartItems = JSON.stringify(arr);
+};
+
+export const removeFromGuestCart = (watch, guestCart) => dispatch => {
+  const arr = guestCart.slice();
+  const watchIndex = arr.findIndex(e => e.id === watch.id);
+  arr.splice(watchIndex, 1);
+  arr.sort((a, b) => (a.id > b.id ? -1 : 1));
+  dispatch(gotGuestCart(arr));
+  localStorage.cartItems = JSON.stringify(arr);
+};
 
 export const editUserData = editData => async dispatch => {
   try {
@@ -103,10 +145,10 @@ export default function(state = initialState, action) {
       return { ...state, user: action.user };
     case REMOVE_USER:
       return { ...state, user: {} };
-    // case ADDED_TO_CART:
-    //   return { ...state, user: action.user };
     case EDITEDUSER:
       return { ...state, user: action.editData };
+    case GOT_GUEST_CART:
+      return { ...state, guestCart: action.cart };
     default:
       return state;
   }

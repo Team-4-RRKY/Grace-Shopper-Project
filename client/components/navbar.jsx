@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-import { Menu, MenuItem } from '@material-ui/core';
 
-const Navbar = ({ handleClick, isLoggedIn, cart }) => (
+const Navbar = ({ handleClick, isLoggedIn, cart, guestCart }) => (
   <div>
     <h1 id="title">BayWatch</h1>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className="nav-container">
           {/* The navbar will show these links after you log in */}
           <Link className="nav-item" to="/home">
             Home
@@ -33,9 +32,10 @@ const Navbar = ({ handleClick, isLoggedIn, cart }) => (
               return acc + el.cart.quantity;
             }, 0)})`}
           </Link>
+          <Link className="nav-item" to="/sell"> Sell Watch</Link>
         </div>
       ) : (
-        <div>
+        <div className="nav-container">
           {/* The navbar will show these links before you log in */}
           <Link className="nav-item" to="/login">
             Login
@@ -50,14 +50,10 @@ const Navbar = ({ handleClick, isLoggedIn, cart }) => (
             About Us
           </Link>
           <Link className="nav-item" to="/cart">
-            Cart
-            {` (${
-              localStorage.cartItems
-                ? localStorage.cartItems.reduce((acc, el) => {
-                    return acc + el.cart.quantity;
-                  }, 0)
-                : 0
-            })`}
+            Cart{' '}
+            {` (${guestCart.reduce((acc, el) => {
+              return acc + el.cart.quantity;
+            }, 0)})`}
           </Link>
         </div>
       )}
@@ -73,6 +69,7 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.user.id,
     cart: state.user.user.cartItems,
+    guestCart: state.user.guestCart,
   };
 };
 

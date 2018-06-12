@@ -16,7 +16,7 @@
     "start": "npm run start-dev",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\"  \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
+    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\"  \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register --exit"
   },
   "author": "Fullstack Academy of Code",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
+    "mocha": "^5.2.0",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
@@ -36,6 +37,7 @@
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.8",
     "react": "^16.3.1",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.0.0",
     "react-materialize": "^2.2.1",
     "react-redux": "^5.0.2",
@@ -64,7 +66,6 @@
     "eslint-config-fullstack": "^5.0.0",
     "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
-    "mocha": "^3.3.0",
     "nodemon": "^1.12.1",
     "react-test-renderer": "^16.0.0",
     "redux-devtools-extension": "^2.13.2",
