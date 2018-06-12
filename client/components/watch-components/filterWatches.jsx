@@ -1,12 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { filteredWatches } from '../../store/watch.js';
-//import Select from '@material-ui/core/Select';
-//import MenuItem from '@material-ui/core/MenuItem';
-//import InputLabel from '@material-ui/core/InputLabel';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
-//import Drawer from '@material-ui/core/Drawer';
+import { Button, CircularProgress, Modal } from '@material-ui/core';
+import { ranges, styles } from '../commonUtils';
 
 class FilterWatches extends React.Component {
   state = {
@@ -79,25 +75,26 @@ class FilterWatches extends React.Component {
   render() {
     const watches = this.props.filtered;
     const allWatches = this.props.allWatches;
-    if (watches[0] === undefined) {
-      return <CircularProgress />;
-    }
-    return (
-      <form
+    // if (watches[0] === undefined) {
+      //   return <CircularProgress />;
+      // }
+      return (
+        <form
         onSubmit={this.handlefilter}
         onReset={this.handleReset}
-        className="form_class"
-      >
+        className="filter_form"
+        >
         {/* Gender */}
-        <span>
+        {/* <span>
           <h3>Please Select Gender and Price Range</h3>
-        </span>
+        </span> */}
+        <div className="column wrap">
         <label>Gender</label>
         <select
           name="gender"
           onChange={this.handleChange}
           value={this.state.gender}
-        >
+          >
           <option>''</option>
           {this.getUniq(allWatches, 'gender').map(gender => {
             return (
@@ -114,14 +111,14 @@ class FilterWatches extends React.Component {
           name="price"
           onChange={this.handlePricechange}
           /* value={this.state.price} */
-        >
+          >
           <option>''</option>
 
           <option
             value={this.getUniq(allWatches, 'price').filter(pp => {
               return pp.slice(1) < 100;
             })}
-          >
+            >
             less than $100
           </option>
 
@@ -129,7 +126,7 @@ class FilterWatches extends React.Component {
             value={this.getUniq(allWatches, 'price').filter(pp => {
               return pp.slice(1) > 100 && pp.slice(1) < 150;
             })}
-          >
+            >
             $100-$150
           </option>
 
@@ -137,7 +134,7 @@ class FilterWatches extends React.Component {
             value={this.getUniq(allWatches, 'price').filter(pp => {
               return pp.slice(1) > 150;
             })}
-          >
+            >
             more than $150
           </option>
         </select>
@@ -148,7 +145,7 @@ class FilterWatches extends React.Component {
           name="brand"
           onChange={this.handleChange}
           value={this.state.brand}
-        >
+          >
           <option>''</option>
           {this.getUniq(allWatches, 'brand').map(brand => {
             return (
@@ -165,7 +162,7 @@ class FilterWatches extends React.Component {
           name="style"
           onChange={this.handleChange}
           value={this.state.style}
-        >
+          >
           <option>''</option>
           {this.getUniq(allWatches, 'style').map(style => {
             return (
@@ -175,11 +172,12 @@ class FilterWatches extends React.Component {
             );
           })}
         </select>
+        </div>
 
         {/* tier
         <label>tier</label>
         <select name="tier" onChange={this.handleChange}>
-          <option>Tier</option>
+        <option>Tier</option>
           {this.getUniq(allWatches, 'tier').map(tier => {
             return (
               <option value={tier} key={tier}>
@@ -192,6 +190,8 @@ class FilterWatches extends React.Component {
 
         <Button
           type="submit"
+          variant="contained"
+          color="primary"
           disabled={
             this.state.price.length < 1 ||
             (this.state.price[0] === '' && this.state.gender === '')
@@ -199,8 +199,8 @@ class FilterWatches extends React.Component {
         >
           Filter
         </Button>
-        <Button type="reset">reset</Button>
-      </form>
+        <Button type="reset" variant="contained" color="secondary">reset</Button>
+        </form>
     );
   }
 }

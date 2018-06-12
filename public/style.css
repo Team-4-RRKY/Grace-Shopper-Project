@@ -24,6 +24,8 @@ body {
   margin: 0;
 }
 
+
+
 #title {
   background-color: #212121;
   color: white;
@@ -54,6 +56,23 @@ body {
   margin-bottom: 3rem;
 }
 
+.error {
+  color: red;
+  padding: .5rem;
+  font-size: 2rem;
+}
+
+.secondary-title {
+  font-family: 'Lobster';
+  text-align: center;
+}
+
+.pos-center {
+  position: absolute;
+  left: 25%;
+  top: 50%;
+}
+
 .user-img {
   height: 10rem;
   width: 10rem;
@@ -61,8 +80,7 @@ body {
 
 .nav-item {
   font-family: 'Oxygen', sans-serif;
-  font-size: 1rem;
-  color: black;
+  font-size: 1.7rem;
 }
 
 .divider {
@@ -98,7 +116,17 @@ body {
   flex-grow: inherit;
   /*   padding: theme.spacing.unit * 3, */
   position: relative;
-  left: 20%;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.filter_form {
+  width: 10%;
+  height: 100%;
+}
+
+.grid-list-browse {
+  width: 90%;
 }
 
 .form_class {
@@ -168,17 +196,21 @@ body {
   padding-left: 15%;
 }
 
-.carousel-item-info{
-
+.body-container {
+  margin: 1.5rem;
 }
 
-.nav-item{
-  font-family: 'Oxygen', sans-serif;
-  font-size: 16px;
+.footer-nav-item{
+  color: white;
 }
 
 .nav-container{
   display: flex;
+}
+
+.footer-nav {
+  display: flex;
+  color: white;
 }
 
 .nav-links{
@@ -191,9 +223,8 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 2rem;
+  height: 4rem;
   background-color: black;
-  color: white;
   text-align: center;
 }
 
@@ -219,4 +250,17 @@ body {
 
 .user-card-content{
   align-content: center;
+}
+
+.checkout-watch-div{
+  padding: 15px;
+}
+
+.checkout-total-div{
+  padding-top: 15px;
+}
+
+.checkout-paper{
+  padding-right: 50px;
+  padding-left: 50px;
 }

@@ -39,3 +39,20 @@ export const styles = [
     label: 'Edgy'
   }
 ];
+
+export const prices = [
+  {
+    value: 100,
+    label: 'Less Than 100'
+  },
+  {
+    value: '$100-$150',
+    label: '$100 to $150'
+  },
+  {
+    value: '$150',
+    label: 'Greater than $150'
+  },
+
+
+]
