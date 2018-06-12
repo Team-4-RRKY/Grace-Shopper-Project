@@ -7,7 +7,7 @@ import FilterWatches from './filterWatches.jsx';
 
 class watchBrowse extends React.Component {
   state = {
-    viewedWatches: [],
+    viewedWatches: []
   };
 
   render() {
@@ -17,25 +17,38 @@ class watchBrowse extends React.Component {
     return (
       <div className="content">
         <div>
-          <h1>All Watches</h1>
+          <h1 className="secondary-title">All Watches</h1>
         </div>
-        <FilterWatches />
-        <GridList>
-          {watches.map(watch => (
-            <GridListTile
-              key={Math.random()}
-              onClick={() => {
-                this.props.selectWatch(watch);
-                this.state.viewedWatches.push(watch);
-              }}
-            >
-              <Link to={`/watches/${watch.id}`}>
-                <img src={watch.image} />
-                <GridListTileBar title={watch.brand} subtitle={watch.model} />
-              </Link>
-            </GridListTile>
-          ))}
-        </GridList>
+        <div className="row wrap">
+          <FilterWatches />
+          {watches.length !== 0 ? (
+            <GridList className="grid-list-browse" cols={3}>
+              {watches.map(watch => (
+                <GridListTile
+                  key={Math.random()}
+                  onClick={() => {
+                    this.props.selectWatch(watch);
+                    this.state.viewedWatches.push(watch);
+                  }}
+                >
+                  <Link to={`/watches/${watch.id}`}>
+                    <img src={watch.image} />
+                    <GridListTileBar
+                      title={watch.brand}
+                      subtitle={watch.model}
+                    />
+                  </Link>
+                </GridListTile>
+              ))}
+            </GridList>
+          ) : (
+            <div className="error pos-center">
+              {' '}
+              There are no Watches with this filter option. Please Reset your
+              Filter{' '}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -43,12 +56,12 @@ class watchBrowse extends React.Component {
 
 const mapStateToProps = state => ({
   watches: state.watch.filteredWatches,
-  isFetching: state.watch.isFetching,
+  isFetching: state.watch.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({
   getwatches: () => dispatch(getWatches()),
-  selectWatch: watch => dispatch(selectedWatch(watch)),
+  selectWatch: watch => dispatch(selectedWatch(watch))
 });
 
 export default connect(

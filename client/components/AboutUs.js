@@ -4,7 +4,7 @@ import { Typography, CardContent, CardHeader, Card } from '@material-ui/core';
 
 const AboutUs = () => {
 return (
-  <Card className="card pos .card" classes="card-title-style" >
+  <Card className="card pos .card">
     <CardHeader className="card-title" title="BayWatch" />
     <CardContent>
       <Typography component="p">

@@ -5,7 +5,6 @@ import { auth } from '../store';
 import UserForm from './user-components/userForm.jsx';
 import { Button, TextField } from '@material-ui/core';
 
-
 /**
  * COMPONENT
  */
@@ -25,44 +24,54 @@ class AuthForm extends Component {
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
-    })
-  }
+    });
+  };
 
-  handleSubmit = (evt) => {
+  handleSubmit = evt => {
     evt.preventDefault();
+    // console.log(error)
+    console.log(this.props)
     const formName = this.props.name;
-    formName === 'signup' ?
-    this.props.auth(this.state, formName) :
-    this.props.auth({email: evt.target.email.value, password: evt.target.password.value}, formName)
-  }
+    formName === 'signup'
+      ? this.props.auth(this.state, formName)
+      : this.props.auth(
+          {
+            email: evt.target.email.value,
+            password: evt.target.password.value
+          },
+          formName
+        );
+  };
   render() {
     const { name, displayName, error } = this.props;
     return (
       <div>
-      {name === 'login' ? (
-      <div>
-        <h1> Login </h1>
-        <form onSubmit={this.handleSubmit} name={name}>
-        <div>
-          <TextField label="Email" name="email" type="text" />
-        </div>
-        <div>
-          <TextField label="Password" name="password" type="password" />
-        </div>
-        <div>
-        <Button type="submit" variant="contained" color="primary"> {displayName} </Button>
-        </div>
-        </form>
+        {name === 'login' ? (
+          <div>
+            <h1> Login </h1>
+            <form onSubmit={this.handleSubmit} name={name}>
+              <TextField label="Email" name="email" type="text" />
+              <TextField label="Password" name="password" type="password" />
+
+              <Button type="submit" variant="contained" color="primary">
+                {' '}
+                {displayName}{' '}
+              </Button>
+            </form>
+              {error && error.response && <div className='error'> {error.response.data} </div>}
+          </div>
+        ) : (
+          <div className="signup-form">
+            <UserForm
+              handleSubmit={this.handleSubmit}
+              handleChange={this.handleChange}
+              displayName={displayName}
+            />
+          </div>
+        )}
+        <a href="/auth/google">{displayName} with Google</a>
       </div>
-    ) : (
-    <div className="signup-form">
-    <UserForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} displayName={displayName} />
-    </div>
-  )
-}
-  <a href="/auth/google">{displayName} with Google</a>
-      </div>
-    )
+    );
   }
 }
 
@@ -77,7 +86,7 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
+    error: state.user.user.error
   };
 };
 
@@ -85,7 +94,7 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.user.user.error
   };
 };
 
@@ -95,8 +104,14 @@ const mapDispatch = dispatch => {
   };
 };
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm);
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
+export const Login = connect(
+  mapLogin,
+  mapDispatch
+)(AuthForm);
+export const Signup = connect(
+  mapSignup,
+  mapDispatch
+)(AuthForm);
 
 /**
  * PROP TYPES
