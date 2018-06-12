@@ -130,10 +130,8 @@ const mergeCarts = user => async dispatch => {
 export const postPayment = (token, amount, user) => async dispatch => {
   try {
     const { data } = await axios.post('/api/stripe', { token, amount, user });
-    console.log(data);
-    console.log('test');
     dispatch(purchased(data.cartItems, data.user));
-    history.push('/home');
+    history.push('/checkoutconfirmation');
   } catch (error) {
     console.error(error);
   }

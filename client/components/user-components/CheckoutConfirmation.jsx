@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -12,47 +13,48 @@ const styles = theme => ({
   }),
 });
 
-const watches = [
-  {
-    id: 1,
-    brand: 'Audemars Piguet',
-    model: '40 Series - 40MM',
-    image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
-    price: '$120',
-    quantity: 15,
-    style: 'Classic',
-    tier: 'Luxurious',
-    gender: 'Gentleman',
-    sellerId: 17,
-  },
-  {
-    id: 2,
-    brand: 'Audemars Piguet',
-    model: '40 Series - 40MM',
-    image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
-    price: '$120',
-    quantity: 15,
-    style: 'Classic',
-    tier: 'Luxurious',
-    gender: 'Gentleman',
-    sellerId: 17,
-  },
-  {
-    id: 3,
-    brand: 'Audemars Piguet',
-    model: '40 Series - 40MM',
-    image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
-    price: '$120',
-    quantity: 15,
-    style: 'Classic',
-    tier: 'Luxurious',
-    gender: 'Gentleman',
-    sellerId: 17,
-  }
-]
+// const watches = [
+//   {
+//     id: 1,
+//     brand: 'Audemars Piguet',
+//     model: '40 Series - 40MM',
+//     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
+//     price: '$120',
+//     quantity: 15,
+//     style: 'Classic',
+//     tier: 'Luxurious',
+//     gender: 'Gentleman',
+//     sellerId: 17,
+//   },
+//   {
+//     id: 2,
+//     brand: 'Audemars Piguet',
+//     model: '40 Series - 40MM',
+//     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
+//     price: '$120',
+//     quantity: 15,
+//     style: 'Classic',
+//     tier: 'Luxurious',
+//     gender: 'Gentleman',
+//     sellerId: 17,
+//   },
+//   {
+//     id: 3,
+//     brand: 'Audemars Piguet',
+//     model: '40 Series - 40MM',
+//     image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
+//     price: '$120',
+//     quantity: 15,
+//     style: 'Classic',
+//     tier: 'Luxurious',
+//     gender: 'Gentleman',
+//     sellerId: 17,
+//   }
+// ]
 
 function CheckoutConfirmation(props) {
   const { classes } = props;
+  const watches = props.purchased;
 
   return (
     <div>
@@ -84,9 +86,10 @@ function CheckoutConfirmation(props) {
   );
 }
 
-CheckoutConfirmation.propTypes = {
-  classes: PropTypes.object.isRequired,
-  // purchasedItems: PropTypes.array,
-};
+const mapStateToProps = state => ({
+  user: state.user.user,
+  purchased: state.user.recentlyPurchased
+})
 
-export default withStyles(styles)(CheckoutConfirmation);
+export default connect( mapStateToProps)(withStyles(styles)(CheckoutConfirmation));
+
