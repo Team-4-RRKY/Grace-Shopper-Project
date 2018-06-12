@@ -8,11 +8,11 @@ import {
   updateGuestCart,
   removeFromGuestCart,
 } from '../../store/user.js';
+import Checkout from '../checkout.jsx';
 
 class Cart extends React.Component {
   render() {
     let cartItems = this.props.user.cartItems || this.props.guestCart;
-    console.log('cartItems', cartItems);
     if (cartItems) {
       cartItems.sort((a, b) => (a.cart.createdAt > b.cart.createdAt ? -1 : 1));
     }
@@ -96,7 +96,7 @@ class Cart extends React.Component {
         })}
         <div>
           <h3>Total Price: ${sum}</h3>
-          <button>Checkout</button>
+          <Checkout amount={sum} name="BayWatch" />
         </div>
       </div>
     );

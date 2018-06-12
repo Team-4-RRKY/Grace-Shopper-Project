@@ -43,7 +43,7 @@ router.put(
     });
     res.send({
       message: 'User Instance Updated',
-      updatedUser: updatedUsers[1].dataValues
+      updatedUser: updatedUsers[1].dataValues,
     });
   })
 );
@@ -79,6 +79,26 @@ router.delete(
   defaultHandler(async (req, res, next) => {
     const { userId, watchId } = req.body;
     await Cart.destroy({ where: { userId, watchId } });
+    const user = await User.scope('populated').findById(userId);
+    res.json(user);
+  })
+);
+
+router.post(
+  '/:id/cart/merge',
+  defaultHandler(async (req, res, next) => {
+    const userId = req.params.id;
+    const localCart = req.body;
+    // const promises = [];
+    console.log(localCart);
+    localCart.forEach(async e => {
+      const arr = await Cart.findOrCreate({ where: { userId, watchId: e.id } });
+      if (!arr[1]) {
+        await arr[0].update({ quantity: arr[0].quantity + e.cart.quantity });
+      } else {
+        await arr[0].update({ quantity: e.cart.quantity });
+      }
+    });
     const user = await User.scope('populated').findById(userId);
     res.json(user);
   })
