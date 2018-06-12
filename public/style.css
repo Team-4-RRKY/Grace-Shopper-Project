@@ -220,3 +220,16 @@ body {
 .user-card-content{
   align-content: center;
 }
+
+.checkout-watch-div{
+  padding: 15px;
+}
+
+.checkout-total-div{
+  padding-top: 15px;
+}
+
+.checkout-paper{
+  padding-right: 50px;
+  padding-left: 50px;
+}
