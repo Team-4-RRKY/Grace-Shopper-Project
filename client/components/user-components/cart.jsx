@@ -8,7 +8,7 @@ import {
   updateGuestCart,
   removeFromGuestCart
 } from '../../store/user.js';
-import Checkout from '../checkout.jsx';
+import CheckoutConfirmation from './CheckoutConfirmation.jsx';
 
 import StripeCheckout from 'react-stripe-checkout';
 import { postPayment } from '../../store/cart';
