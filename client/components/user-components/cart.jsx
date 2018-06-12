@@ -9,10 +9,13 @@ import {
   removeFromGuestCart,
 } from '../../store/user.js';
 
+import StripeCheckout from 'react-stripe-checkout';
+import { postPayment } from '../../store/user.js';
+const apiKey = 'pk_test_Xo8ZfZ3YoD5q5hvQDFc9ASP1';
+
 class Cart extends React.Component {
   render() {
     let cartItems = this.props.user.cartItems || this.props.guestCart;
-    console.log('cartItems', cartItems);
     if (cartItems) {
       cartItems.sort((a, b) => (a.cart.createdAt > b.cart.createdAt ? -1 : 1));
     }
@@ -20,6 +23,8 @@ class Cart extends React.Component {
     let sum = 0;
     if (!(typeof this.props.user === 'object')) return <div>Loading..</div>;
     // cartItems = cartItems || localStorage.cartItems || [];
+    const { handleToken } = this.props;
+    const user = this.props.user;
     return (
       <div>
         <h1>Your Shopping Cart</h1>
@@ -96,7 +101,21 @@ class Cart extends React.Component {
         })}
         <div>
           <h3>Total Price: ${sum}</h3>
-          <button>Checkout</button>
+          <StripeCheckout
+            name="BayWatch"
+            amount={sum * 100}
+            token={
+              user.id
+                ? token => handleToken(token, sum * 100, user)
+                : token => handleToken(token, sum * 100, { cartItems })
+            }
+            stripeKey={apiKey}
+            currency="USD"
+          >
+            <button className="positive ui button" type="submit">
+              Checkout
+            </button>
+          </StripeCheckout>
         </div>
       </div>
     );
@@ -115,6 +134,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateGuestCart(watch, guestCart, num)),
   removeFromGuestCart: (watch, guestCart) =>
     dispatch(removeFromGuestCart(watch, guestCart)),
+  handleToken(token, amount, user) {
+    dispatch(postPayment(token, amount, user));
+  },
 });
 
 export default connect(
