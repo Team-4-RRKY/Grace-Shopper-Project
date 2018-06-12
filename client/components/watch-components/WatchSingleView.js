@@ -10,27 +10,7 @@ import {
 import { addToCart, getGuestCart, addToGuestCart } from '../../store/user.js';
 
 class WatchSingleView extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-  test = (watch, guestCart) => {
-    // localStorage.removeItem('cartItems');
-    const watchIndex = guestCart.findIndex(e => e.id === watch.id);
-    if (watchIndex > -1) {
-      guestCart[watchIndex].cart.quantity++;
-    } else {
-      watch.cart = { quantity: 1 };
-      guestCart.push(watch);
-    }
-    guestCart.sort((a, b) => (a.id > b.id ? -1 : 1));
-    localStorage.cartItems = JSON.stringify(guestCart);
-    this.props.getGuestCart();
-    // localStorage.removeItem('cartItems');
-  };
-
   render() {
-    console.log('run');
     const watchId = +this.props.match.params.id;
     const watch = this.props.watches.find(e => e.id === watchId);
     const userId = this.props.user.id;

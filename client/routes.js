@@ -11,6 +11,7 @@ import { getWatches } from './store/watch';
 import { getGuestCart } from './store/user';
 import WatchSingleView from './components/watch-components/WatchSingleView';
 import Cart from './components/user-components/cart.jsx';
+import Checkout from './components/checkout.jsx';
 
 /**
  * COMPONENT
@@ -39,7 +40,8 @@ class Routes extends Component {
         {/* AboutUs Route */}
         <Route exact path="/aboutus" component={AboutUs} />
         {/* Cart Route */}
-        <Route exapct path="/cart" component={Cart} />
+        <Route exact path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
 
         {isLoggedIn && (
           <Switch>
