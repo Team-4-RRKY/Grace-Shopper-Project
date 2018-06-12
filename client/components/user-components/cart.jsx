@@ -6,8 +6,12 @@ import {
   removeFromCart,
   addToCart,
   updateGuestCart,
-  removeFromGuestCart,
+  removeFromGuestCart
 } from '../../store/user.js';
+
+import StripeCheckout from 'react-stripe-checkout';
+import { postPayment } from '../../store/cart';
+const apiKey = 'pk_test_Xo8ZfZ3YoD5q5hvQDFc9ASP1';
 
 class Cart extends React.Component {
   render() {
@@ -20,6 +24,7 @@ class Cart extends React.Component {
     let sum = 0;
     if (!(typeof this.props.user === 'object')) return <div>Loading..</div>;
     // cartItems = cartItems || localStorage.cartItems || [];
+    const { handleToken } = this.props;
     return (
       <div>
         <h1>Your Shopping Cart</h1>
@@ -96,7 +101,17 @@ class Cart extends React.Component {
         })}
         <div>
           <h3>Total Price: ${sum}</h3>
-          <button>Checkout</button>
+          <StripeCheckout
+            name="BayWatch"
+            amount={sum * 100}
+            token={token => handleToken(token, sum * 100)}
+            stripeKey={apiKey}
+            currency="USD"
+          >
+            <button className="positive ui button" type="submit">
+              Checkout
+            </button>
+          </StripeCheckout>
         </div>
       </div>
     );
@@ -105,7 +120,7 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user.user,
-  guestCart: state.user.guestCart,
+  guestCart: state.user.guestCart
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -115,6 +130,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateGuestCart(watch, guestCart, num)),
   removeFromGuestCart: (watch, guestCart) =>
     dispatch(removeFromGuestCart(watch, guestCart)),
+  handleToken(token, amount) {
+    dispatch(postPayment(token, amount));
+  }
 });
 
 export default connect(
