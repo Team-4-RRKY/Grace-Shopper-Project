@@ -22,7 +22,7 @@ class watchBrowse extends React.Component {
         <div className="row wrap">
           <FilterWatches />
           {watches.length !== 0 ? (
-            <GridList className="grid-list-browse" cols="3">
+            <GridList className="grid-list-browse" cols={3}>
               {watches.map(watch => (
                 <GridListTile
                   key={Math.random()}

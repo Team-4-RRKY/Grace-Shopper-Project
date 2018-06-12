@@ -11,7 +11,7 @@ class Navbar extends Component {
     open: false
   };
 
-  handleOpen = (event) => {
+  handleOpen = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
@@ -23,7 +23,9 @@ class Navbar extends Component {
     let { handleClick, isLoggedIn, cart, guestCart, user } = this.props;
     return (
       <div>
-        <h1 id="title">BayWatch</h1>
+        <h1 id="title">
+          <Link to="/home"> BayWatch</Link>
+        </h1>
         <nav>
           {isLoggedIn ? (
             <div className="nav-container">
@@ -35,11 +37,15 @@ class Navbar extends Component {
                 Watches
               </Link>
               <Button onClick={this.handleOpen}>
-              <div className="nav-item">
-                {user.firstName + ' ' + user.lastName}
-              </div>
+                <div className="nav-item">
+                  {user.firstName + ' ' + user.lastName}
+                </div>
               </Button>
-              <Menu anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose}>
+              <Menu
+                anchorEl={this.state.anchorEl}
+                open={this.state.open}
+                onClose={this.handleClose}
+              >
                 <MenuItem onClick={this.handleClose}>
                   <Link className="nav-item" to="/user">
                     {user.firstName + "'s" + ' Account'}

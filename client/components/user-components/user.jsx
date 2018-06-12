@@ -8,15 +8,19 @@ import {
   DialogContent,
   GridList,
   GridListTile,
-  GridListTileBar
+  GridListTileBar,
+  List,
+  ListItemText,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography
+  , ListItem
 } from '@material-ui/core';
 import UserForm from './userForm.jsx';
 import { editUserData } from '../../store/user';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+
 
 class User extends Component {
   state = {
@@ -48,6 +52,7 @@ class User extends Component {
 
   render() {
     const { user } = this.props;
+    console.log(user.saleItems)
     return (
       <div className="column wrap">
       <div className="row wrap">
@@ -89,6 +94,17 @@ class User extends Component {
             </Dialog>
           </Card>
         </div>
+        <div className="column wrap">
+        <h3> Purchase History </h3>
+        <List>
+          {user.saleItems.map(purchasedItem => (
+          <ListItem key={purchasedItem.id}>
+            <ListItemText primary={purchasedItem.brand} />
+          </ListItem>
+          ))}
+        </List>
+        </div>
+        <div />
       </div>
         <div>
         <h2>{'Watches ' + user.firstName + ' is Selling.'}</h2>
