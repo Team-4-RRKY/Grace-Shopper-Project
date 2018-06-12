@@ -90,7 +90,7 @@ const watchReducer = (state = intitialState, action) => {
     case FILTEREDWATCHES:
       return { ...state, filteredWatches: action.watches };
     case LISTED_WATCH:
-      return { ...state, watches: [...state.watches, action.watch] };
+      return { ...state, allWatches: [...state.allWatches, action.watch] };
     case DELETED_WATCH:
       return {
         ...state,

@@ -2,7 +2,7 @@
 
 const db = require('../server/db');
 const { User, Watch, Cart, Order } = require('../server/db/models');
-const mockUserData = require('./user_mock');
+const userData = require('./user_mock');
 const watchData = require('./watchdata.js');
 
 /**
@@ -22,27 +22,35 @@ async function seed() {
   console.log('db synced!');
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
-  const users = await Promise.all([
-    User.create({
-      firstName: 'john',
-      lastName: 'doe',
-      email: 'cody@email.com',
-      password: '123'
-    }),
-    User.create({
-      firstName: 'jane',
-      lastName: 'doe',
-      gender: 'Female',
-      image:
-        'https://robohash.org/autemvoluptasrepellendus.png?size=50x50&set=set1',
-      email: 'murphy@email.com',
-      password: '123'
-    })
-  ]);
+  // const users = await Promise.all([
+  //   User.create({
+  //     firstName: 'john',
+  //     lastName: 'doe',
+  //     email: 'cody@email.com',
+  //     password: '123'
+  //   }),
+  //   User.create({
+  //     firstName: 'jane',
+  //     lastName: 'doe',
+  //     gender: 'Female',
+  //     image:
+  //       'https://robohash.org/autemvoluptasrepellendus.png?size=50x50&set=set1',
+  //     email: 'murphy@email.com',
+  //     password: '123'
+  //   })
+  // ]);
+  const userPromises = []
+  for (let i = 0; i < userData.length; i++) {
+    let newUser = User.create(userData[i])
+    await userPromises.push(newUser)
+  }
+  await Promise.all(userPromises)
 
   const watchPromises = [];
-  for (let i = 0; i < watchData.length; i++) {
-    let newWatch = Watch.create(watchData[i]);
+  for (let j = 0; j < watchData.length; j++) {
+    let randomId = Math.floor(Math.random() * Math.floor(20))
+    if (randomId === 0) randomId = 1
+    let newWatch = Watch.create({...watchData[j], sellerId: randomId});
     watchPromises.push(newWatch);
   }
   await Promise.all(watchPromises);
@@ -93,7 +101,7 @@ async function seed() {
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${userData.length} users`);
   console.log(`seeded successfully`);
 }
 
