@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { key } = require('../../secrets.js');
-const stripe = require('stripe')(key);
+const key = process.env.key;
+const stripe = require('stripe')('sk_test_CyRumQUmuDvornXKIsHjIrQL');
 const defaultHandler = require('./errorHandler');
 const { User, Watch, Order, Cart } = require('../db/models');
 
@@ -25,20 +25,17 @@ router.post(
       });
     } else {
       await Cart.destroy({ where: { userId } });
-      cartItems.forEach(async e => {
+      const promises = cartItems.map(async e => {
         const arr = await Order.findOrCreate({
           where: { userId, watchId: e.id },
         });
-        await arr[0].update({ quantity: arr[0].quantity + e.cart.quantity });
+        arr[0].update({ quantity: arr[0].quantity + e.cart.quantity });
         const watch = await Watch.findById(e.id);
-        await watch.update({ quantity: watch.quantity - e.cart.quantity });
+        watch.update({ quantity: watch.quantity - e.cart.quantity });
       });
+      await Promise.all(promises);
       const user = await User.scope('populated').findById(userId);
       res.json({ cartItems, user });
     }
   })
 );
-
-// decrease quantity of purchased items available in watches model
-// send the new user data back (with updated cart and sale items arrays) and redirect to the confirmation page
-// potentially add the purchased items to a 'recently purchased' state

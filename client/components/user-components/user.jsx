@@ -15,8 +15,8 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Typography
-  , ListItem
+  Typography,
+  ListItem,
 } from '@material-ui/core';
 import UserForm from './userForm.jsx';
 import { editUserData } from '../../store/user';
@@ -29,7 +29,7 @@ class User extends Component {
     address: this.props.user.address,
     image: this.props.user.image,
     gender: this.props.user.gender,
-    id: this.props.user.id
+    id: this.props.user.id,
   };
   handleOpen = () => {
     this.setState({ open: true });
@@ -41,7 +41,7 @@ class User extends Component {
 
   handleChange = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -99,15 +99,16 @@ class User extends Component {
         <List>
           {user.saleItems.map(purchasedItem => (
           <ListItem key={purchasedItem.id}>
-            <ListItemText primary={purchasedItem.brand} />
+            <ListItemText primary={purchasedItem.brand}
+                    secondary={`${purchasedItem.model} (${
+                      purchasedItem.order.quantity
+                    })`} />
           </ListItem>
           ))}
         </List>
         </div>
-        <div />
-      </div>
         <div>
-        <h2>{'Watches ' + user.firstName + ' is Selling.'}</h2>
+          <h2>{'Watches ' + user.firstName + ' is Selling.'}</h2>
           <GridList cols={4}>
             {user.listings.map(listing => (
               <GridListTile key={listing.id}>
@@ -128,13 +129,13 @@ class User extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user
+  user: state.user.user,
 });
 
 const mapDispatchToProps = dispatch => ({
   submitEdit: editData => {
     dispatch(editUserData(editData));
-  }
+  },
 });
 
 export default connect(

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, TextField} from '@material-ui/core'
-import {connect} from 'react-redux'
+import { Button, TextField } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 const UserForm = props => (
   <form className="form column" name={props.name} onSubmit={props.handleSubmit}>
@@ -12,6 +12,7 @@ const UserForm = props => (
       name="firstName"
       onChange={props.handleChange}
       value={props.firstName}
+      required
     />
     <TextField
       className="input"
@@ -21,6 +22,7 @@ const UserForm = props => (
       name="lastName"
       onChange={props.handleChange}
       value={props.lastName}
+      required
     />
     <TextField
       className="input"
@@ -39,6 +41,7 @@ const UserForm = props => (
       name="email"
       onChange={props.handleChange}
       value={props.email}
+      required
     />
     <TextField
       className="input"
@@ -47,6 +50,7 @@ const UserForm = props => (
       name="password"
       onChange={props.handleChange}
       value={props.password}
+      required
     />
     <TextField
       className="input"
@@ -56,6 +60,7 @@ const UserForm = props => (
       name="image"
       onChange={props.handleChange}
       value={props.image}
+      defaultValue="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Face-smile.svg/2000px-Face-smile.svg.png"
     />
     <TextField
       className="input"
@@ -66,12 +71,18 @@ const UserForm = props => (
       onChange={props.handleChange}
       value={props.gender}
     />
-    <Button type="submit" variant="contained" color="primary"> {props.displayName} </Button>
+    <Button type="submit" variant="contained" color="primary">
+      {' '}
+      {props.displayName}{' '}
+    </Button>
   </form>
 );
 
 const mapStateToProps = state => ({
-  user: state.user.user
-})
+  user: state.user.user,
+});
 
-export default connect(mapStateToProps, null)(UserForm);
+export default connect(
+  mapStateToProps,
+  null
+)(UserForm);

@@ -8,10 +8,11 @@ import {
   updateGuestCart,
   removeFromGuestCart
 } from '../../store/user.js';
-const { apiKey } = require('../../../secrets.js');
+// const apiKey = process.env.apiKey;
 
 import StripeCheckout from 'react-stripe-checkout';
 import { postPayment } from '../../store/user.js';
+import Loader from './loader.jsx';
 
 class Cart extends React.Component {
 
@@ -26,6 +27,7 @@ class Cart extends React.Component {
     // cartItems = cartItems || localStorage.cartItems || [];
     const { handleToken } = this.props;
     const user = this.props.user;
+    if (this.props.processing) return <Loader />;
     return (
       <div>
         <h1>Your Shopping Cart</h1>
@@ -110,7 +112,7 @@ class Cart extends React.Component {
                 ? token => handleToken(token, sum * 100, user)
                 : token => handleToken(token, sum * 100, { cartItems })
             }
-            stripeKey={apiKey}
+            stripeKey="pk_test_yHUCHKdRVasxgdseV9XfjI4f"
             currency="USD"
           >
             <button className="positive ui button" type="submit">
@@ -125,7 +127,8 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user.user,
-  guestCart: state.user.guestCart
+  guestCart: state.user.guestCart,
+  processing: state.user.processing,
 });
 
 const mapDispatchToProps = dispatch => ({

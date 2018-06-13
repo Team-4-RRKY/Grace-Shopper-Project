@@ -10,7 +10,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 class Navbar extends Component {
   state = {
     anchorEl: null,
-    open: false
+    open: false,
   };
 
   handleOpen = event => {
@@ -23,6 +23,9 @@ class Navbar extends Component {
 
   render() {
     let { handleClick, isLoggedIn, cart, guestCart, user } = this.props;
+    if (!cart) {
+      cart = [];
+    }
     return (
       <div>
         <h1 id="title">
@@ -112,7 +115,7 @@ const mapState = state => {
     isLoggedIn: !!state.user.user.id,
     cart: state.user.user.cartItems,
     guestCart: state.user.guestCart,
-    user: state.user.user
+    user: state.user.user,
   };
 };
 
@@ -120,7 +123,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
-    }
+    },
   };
 };
 
@@ -134,5 +137,5 @@ export default connect(
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

@@ -7,7 +7,7 @@ import FilterWatches from './filterWatches.jsx';
 
 class watchBrowse extends React.Component {
   state = {
-    viewedWatches: []
+    viewedWatches: [],
   };
 
   render() {
@@ -55,12 +55,12 @@ class watchBrowse extends React.Component {
 
 const mapStateToProps = state => ({
   watches: state.watch.filteredWatches,
-  isFetching: state.watch.isFetching
+  isFetching: state.watch.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
   getwatches: () => dispatch(getWatches()),
-  selectWatch: watch => dispatch(selectedWatch(watch))
+  selectWatch: watch => dispatch(selectedWatch(watch)),
 });
 
 export default connect(

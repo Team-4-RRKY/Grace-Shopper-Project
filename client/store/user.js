@@ -14,16 +14,28 @@ const REMOVED_FROM_CART = 'REMOVED_FROM_CART';
 const GOT_GUEST_CART = 'GOT_GUEST_CART';
 const GOT_USER_AND_MERGED_CART = 'GOT_USER_AND_MERGED_CART';
 const PURCHASED = 'PURCHASED';
+const PROCESSING = 'PROCESSING';
 
 /**
  * INITIAL STATE
  */
-const initialState = { user: {}, guestCart: [], recentlyPurchased: [], fUser: {} };
+const initialState = {
+  fUser: {},
+  user: {},
+  guestCart: [],
+  recentlyPurchased: [],
+  processing: false,
+};
 
 /**
  * ACTION CREATORS
  */
-const gotUser = user => ({ type: GOT_USER, user });
+export const gotUser = user => {
+  return {
+    type: GOT_USER,
+    user,
+  };
+};
 const removeUser = () => ({ type: REMOVE_USER });
 const editedUser = editedData => ({
   type: EDITEDUSER,
@@ -35,6 +47,7 @@ const removedFromCart = watch => ({ type: REMOVED_FROM_CART, watch });
 const gotGuestCart = cart => ({ type: GOT_GUEST_CART, cart });
 const gotUserAndMergedCart = user => ({ type: GOT_USER_AND_MERGED_CART, user });
 const purchased = (items, user) => ({ type: PURCHASED, items, user });
+const processing = () => ({ type: PROCESSING });
 
 /**
  * THUNK CREATORS
@@ -122,6 +135,7 @@ export const removeFromCart = cartData => async dispatch => {
 };
 
 export const postPayment = (token, amount, user) => async dispatch => {
+  dispatch(processing());
   try {
     const { data } = await axios.post('/api/stripe', { token, amount, user });
     localStorage.removeItem('cartItems');
@@ -207,7 +221,10 @@ export default function(state = initialState, action) {
         recentlyPurchased: action.items,
         user: action.user,
         guestCart: [],
+        processing: false,
       };
+    case PROCESSING:
+      return { ...state, processing: true };
     default:
       return state;
   }
