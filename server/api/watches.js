@@ -25,8 +25,8 @@ router.post(
   '/',
   defaultHandler(async (req, res, next) => {
     const watchToSell = await Watch.create(req.body.watch);
-    const user = await User.scope('populated').findById(req.body.id);
-    await user.addListing(watchToSell);
+    // const user = await User.scope('populated').findById(req.body.id);
+    // await user.addListing(watchToSell);
     const newUser = await User.scope('populated').findById(req.body.id);
     res.json({ watchToSell, newUser });
   })
