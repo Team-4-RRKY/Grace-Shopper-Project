@@ -15,7 +15,7 @@ class SellWatch extends Component {
     model: '',
     brand: '',
     price: '',
-    image: '',
+    image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
     gender: '',
     style: '',
     quantity: '',
@@ -23,7 +23,6 @@ class SellWatch extends Component {
   };
 
   handleChange = event => {
-    console.log(this.state);
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -75,6 +74,7 @@ class SellWatch extends Component {
           name="image"
           onChange={this.handleChange}
           value={this.state.image}
+          defaultValue="http://www.pkicon.com/icons/31929/Clock-256.png"
         />
         <TextField
           select
