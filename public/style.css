@@ -264,3 +264,8 @@ body {
   padding-right: 50px;
   padding-left: 50px;
 }
+
+#watch-img {
+  height: 250px;
+  width: 250px;
+}

@@ -25,7 +25,7 @@ class WatchSingleView extends React.Component {
           <CardHeader title={watch.brand} />
           <CardContent>
             <Typography>{watch.model}</Typography>
-            <img src={watch.image} />
+            <img  src={watch.image} id="watch-img" />
             <Typography> {watch.price}</Typography>
           </CardContent>
 
