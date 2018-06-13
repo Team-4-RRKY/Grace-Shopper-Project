@@ -32,9 +32,6 @@ const User = db.define(
     },
     image: {
       type: Sequelize.STRING,
-      validate: {
-        isUrl: true,
-      },
     },
     gender: {
       type: Sequelize.STRING,

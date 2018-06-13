@@ -10,10 +10,9 @@ import {
 import { listWatch } from '../../store/watch';
 import { ranges, styles } from '../../components/commonUtils';
 
-
 class SellWatch extends Component {
   state = {
-    sellerId: this.props.user.id,
+    sellerId: this.props.id,
     model: '',
     brand: '',
     price: '',
