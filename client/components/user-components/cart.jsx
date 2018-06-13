@@ -8,7 +8,7 @@ import {
   updateGuestCart,
   removeFromGuestCart,
 } from '../../store/user.js';
-const { apiKey } = require('../../../secrets.js');
+// const apiKey = process.env.apiKey;
 
 import StripeCheckout from 'react-stripe-checkout';
 import { postPayment } from '../../store/user.js';
@@ -30,7 +30,7 @@ class Cart extends React.Component {
     const user = this.props.user;
     return (
       <div>
-        <h1>Your Shopping Cart</h1>
+        <h1>Your Shopping Cartz</h1>
         {cartItems.map(e => {
           let { brand, model, price } = e;
           let addCartData = { userId, watchId: e.id, num: 1 };
@@ -112,7 +112,7 @@ class Cart extends React.Component {
                 ? token => handleToken(token, sum * 100, user)
                 : token => handleToken(token, sum * 100, { cartItems })
             }
-            stripeKey={apiKey}
+            stripeKey="pk_test_yHUCHKdRVasxgdseV9XfjI4f"
             currency="USD"
           >
             <button className="positive ui button" type="submit">

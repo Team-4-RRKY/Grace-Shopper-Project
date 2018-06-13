@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { key } = require('../../secrets.js');
-const stripe = require('stripe')(key);
+// const key = process.env.key;
+const stripe = require('stripe')('sk_test_CyRumQUmuDvornXKIsHjIrQL');
 const defaultHandler = require('./errorHandler');
 const { User, Watch, Order, Cart } = require('../db/models');
 
@@ -11,12 +11,15 @@ router.post(
   defaultHandler(async (req, res, next) => {
     const userId = req.body.user.id;
     const { cartItems } = req.body.user;
+    stripe._api.auth = `Bearer sk_test_CyRumQUmuDvornXKIsHjIrQL`;
+    console.log(stripe);
     const charge = await stripe.charges.create({
       amount: req.body.amount,
       currency: 'USD',
       description: 'watch shop',
       source: req.body.token.id,
     });
+    console.log('after', charge);
     if (!req.body.user.id) {
       cartItems.forEach(async e => {
         const watch = await Watch.findById(e.id);
@@ -38,7 +41,3 @@ router.post(
     }
   })
 );
-
-// decrease quantity of purchased items available in watches model
-// send the new user data back (with updated cart and sale items arrays) and redirect to the confirmation page
-// potentially add the purchased items to a 'recently purchased' state
