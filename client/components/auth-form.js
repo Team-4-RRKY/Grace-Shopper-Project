@@ -17,27 +17,26 @@ class AuthForm extends Component {
       address: '',
       image: '',
       gender: '',
-      password: ''
+      password: '',
     };
   }
 
   handleChange = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
     // console.log(error)
-    console.log(this.props)
     const formName = this.props.name;
     formName === 'signup'
       ? this.props.auth(this.state, formName)
       : this.props.auth(
           {
             email: evt.target.email.value,
-            password: evt.target.password.value
+            password: evt.target.password.value,
           },
           formName
         );
@@ -58,7 +57,10 @@ class AuthForm extends Component {
                 {displayName}{' '}
               </Button>
             </form>
-              {error && error.response && <div className='error'> {error.response.data} </div>}
+            {error &&
+              error.response && (
+                <div className="error"> {error.response.data} </div>
+              )}
           </div>
         ) : (
           <div className="signup-form">
@@ -86,7 +88,7 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.user.error
+    error: state.user.user.error,
   };
 };
 
@@ -94,13 +96,13 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.user.error
+    error: state.user.user.error,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    auth: (localState, formName) => dispatch(auth(localState, formName))
+    auth: (localState, formName) => dispatch(auth(localState, formName)),
   };
 };
 
@@ -119,5 +121,5 @@ export const Signup = connect(
 AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
 };
