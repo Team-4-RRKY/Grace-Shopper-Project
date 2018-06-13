@@ -63,13 +63,16 @@ class Navbar extends Component {
                 </MenuItem>
               </Menu>
               <IconButton>
-              <Link className="nav-item" to="/cart">
-                <AddShoppingCartIcon />
+                <Link className="nav-item" to="/cart">
+                  <AddShoppingCartIcon />
+                </Link>
                 {` (${cart.reduce((acc, el) => {
                   return acc + el.cart.quantity;
                 }, 0)})`}
-              </Link>
               </IconButton>
+              <Link className="nav-item" to="/aboutus">
+                About Us
+              </Link>
             </div>
           ) : (
             <div className="nav-container">
@@ -84,15 +87,14 @@ class Navbar extends Component {
                 WATCHES
               </Link>
 
-                <IconButton color="primary">
-                  <Link className="nav-item" to="/cart">
-                    <AddShoppingCartIcon />
-                    {` (${guestCart.reduce((acc, el) => {
-                      return acc + el.cart.quantity;
-                    }, 0)})`}
-                  </Link>
-                </IconButton>
-
+              <IconButton color="primary">
+                <Link className="nav-item" to="/cart">
+                  <AddShoppingCartIcon />
+                  {` (${guestCart.reduce((acc, el) => {
+                    return acc + el.cart.quantity;
+                  }, 0)})`}
+                </Link>
+              </IconButton>
             </div>
           )}
         </nav>

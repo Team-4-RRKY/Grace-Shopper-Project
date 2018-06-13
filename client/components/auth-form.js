@@ -29,8 +29,6 @@ class AuthForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    // console.log(error)
-    console.log(this.props)
     const formName = this.props.name;
     formName === 'signup'
       ? this.props.auth(this.state, formName)
@@ -58,7 +56,7 @@ class AuthForm extends Component {
                 {displayName}{' '}
               </Button>
             </form>
-              {error && error.response && <div className='error'> {error.response.data} </div>}
+              {error && error.response && <div className="error"> {error.response.data} </div>}
           </div>
         ) : (
           <div className="signup-form">

@@ -21,7 +21,6 @@ import {
 import UserForm from './userForm.jsx';
 import { editUserData } from '../../store/user';
 
-
 class User extends Component {
   state = {
     open: false,
@@ -52,7 +51,6 @@ class User extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(user.saleItems)
     return (
       <div className="column wrap">
       <div className="row wrap">

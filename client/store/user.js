@@ -42,7 +42,6 @@ const purchased = (items, user) => ({ type: PURCHASED, items, user });
 
 export const getForeignUser = fUserId => async dispatch => {
   const {data} = await axios.get(`/api/users/${fUserId}`)
-  console.log('This is the thunk', data)
   dispatch(gotForeignUser(data))
 }
 
@@ -93,7 +92,6 @@ export const removeFromGuestCart = (watch, guestCart) => dispatch => {
 export const editUserData = editData => async dispatch => {
   try {
     const { data } = await axios.put(`/api/users/${editData.id}`, editData);
-    console.log(data);
     dispatch(editedUser(data));
     history.push('/user');
   } catch (error) {
@@ -164,7 +162,7 @@ export const auth = (userData, method) => dispatch =>
     .then(
       res => {
         if (localStorage.cartItems && res.data) {
-          dispatch(mergeCarts(res.data));
+          dispatch(mergeCarts(res.data))
         } else {
           dispatch(gotUser(res.data));
           history.push('/home');

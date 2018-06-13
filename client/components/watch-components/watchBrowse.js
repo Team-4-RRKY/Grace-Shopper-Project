@@ -12,7 +12,6 @@ class watchBrowse extends React.Component {
 
   render() {
     const { isFetching, watches } = this.props;
-    console.log('just viewed', this.state.viewedWatches);
     if (isFetching) return <div>Loading....</div>;
     return (
       <div className="content">

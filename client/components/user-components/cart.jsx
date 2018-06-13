@@ -14,9 +14,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { postPayment } from '../../store/user.js';
 
 class Cart extends React.Component {
-  componentDidMount() {
-    console.log('');
-  }
+
   render() {
     let cartItems = this.props.user.cartItems || this.props.guestCart;
     if (cartItems) {
