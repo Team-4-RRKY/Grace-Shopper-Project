@@ -47,6 +47,7 @@ class SellWatch extends Component {
           name="brand"
           onChange={this.handleChange}
           value={this.state.brand}
+          required
         />
         <TextField
           className="input"
@@ -55,6 +56,7 @@ class SellWatch extends Component {
           name="model"
           onChange={this.handleChange}
           value={this.state.model}
+          required
         />
         <TextField
           className="input"
@@ -66,6 +68,7 @@ class SellWatch extends Component {
           inputProps={{
             startadornment: <InputAdornment position="start">$</InputAdornment>,
           }}
+          required
         />
         <TextField
           className="input"
@@ -125,6 +128,7 @@ class SellWatch extends Component {
           name="quantity"
           onChange={this.handleChange}
           value={this.state.quantity}
+          required
         />
         <Button type="submit" variant="contained" color="primary">
           Sell Yo Watch
