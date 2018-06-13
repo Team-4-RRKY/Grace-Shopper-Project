@@ -29,7 +29,6 @@ class AuthForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    // console.log(error)
     const formName = this.props.name;
     formName === 'signup'
       ? this.props.auth(this.state, formName)

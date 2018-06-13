@@ -24,9 +24,8 @@ router.get(
 router.post(
   '/',
   defaultHandler(async (req, res, next) => {
+    req.body.watch.price = '$' + req.body.watch.price
     const watchToSell = await Watch.create(req.body.watch);
-    // const user = await User.scope('populated').findById(req.body.id);
-    // await user.addListing(watchToSell);
     const newUser = await User.scope('populated').findById(req.body.id);
     res.json({ watchToSell, newUser });
   })

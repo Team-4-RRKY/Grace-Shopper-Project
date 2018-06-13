@@ -6,7 +6,7 @@ import {
   removeFromCart,
   addToCart,
   updateGuestCart,
-  removeFromGuestCart,
+  removeFromGuestCart
 } from '../../store/user.js';
 // const apiKey = process.env.apiKey;
 
@@ -15,9 +15,7 @@ import { postPayment } from '../../store/user.js';
 import Loader from './loader.jsx';
 
 class Cart extends React.Component {
-  componentDidMount() {
-    console.log('');
-  }
+
   render() {
     let cartItems = this.props.user.cartItems || this.props.guestCart;
     if (cartItems) {
@@ -142,7 +140,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(removeFromGuestCart(watch, guestCart)),
   handleToken(token, amount, user) {
     dispatch(postPayment(token, amount, user));
-  },
+  }
 });
 
 export default connect(

@@ -51,67 +51,61 @@ class User extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(user.saleItems);
-    if (!user.id) {
-      return <div>Loading..</div>;
-    }
     return (
       <div className="column wrap">
-        <div className="row wrap">
-          <div>
-            <Card>
-              <CardMedia
-                className="user-media"
-                image={user.image}
-                title={user.firstName}
-              />
-              <CardContent className="user-card-content">
-                <Typography gutterBottom variant="headline" component="h2">
-                  {user.firstName + ' ' + user.lastName}
-                </Typography>
-                <Typography component="p">
-                  User: {user.firstName} {user.lastName}
-                </Typography>
-                <Typography component="p">Email: {user.email}</Typography>
-                <Typography component="p">Address: {user.address}</Typography>
-                <Typography component="p">Gender: {user.gender}</Typography>
-                <Typography component="p">
-                  Joined On: {user.createdAt.slice(0, 10)}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button onClick={this.handleOpen} size="small" color="primary">
-                  Edit User
-                </Button>
-              </CardActions>
-              <Dialog open={this.state.open} onClose={this.handleClose}>
-                <DialogTitle>Edit {user.firstName}'s Account</DialogTitle>
-                <DialogContent>
-                  <UserForm
-                    displayName="Submit Edit"
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                  />
-                </DialogContent>
-              </Dialog>
-            </Card>
-          </div>
-          <div className="column wrap">
-            <h3> Purchase History </h3>
-            <List>
-              {user.saleItems.map(purchasedItem => (
-                <ListItem key={purchasedItem.id}>
-                  <ListItemText
-                    primary={purchasedItem.brand}
+      <div className="row wrap">
+        <div>
+          <Card >
+            <div className="row wrap">
+            <CardMedia
+              id="user-img"
+              image={user.image}
+              title={user.firstName}
+            />
+            <CardContent className="user-card-content">
+              <Typography gutterBottom variant="headline" component="h1">
+                {user.firstName + ' ' + user.lastName}
+              </Typography>
+              <Typography variant="title">
+                User: {user.firstName} {user.lastName}
+              </Typography>
+              <Typography variant="title">Email: {user.email}</Typography>
+              <Typography variant="title">Address: {user.address}</Typography>
+              <Typography variant="title">Gender: {user.gender}</Typography>
+              <Typography variant="title">
+                Joined On: {user.createdAt.slice(0, 10)}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button color="secondary" variant="contained" onClick={this.handleOpen} size="small" color="primary">
+                Edit User
+              </Button>
+            </CardActions>
+            <Dialog open={this.state.open} onClose={this.handleClose}>
+              <DialogTitle>Edit {user.firstName}'s Account</DialogTitle>
+              <DialogContent>
+                <UserForm
+                  displayName="Submit Edit"
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              </DialogContent>
+            </Dialog>
+            </div>
+          </Card>
+        </div>
+        <div className="column wrap">
+        <h3 className="text-center"> Purchase History </h3>
+        <List>
+          {user.saleItems.map(purchasedItem => (
+          <ListItem key={purchasedItem.id}>
+            <ListItemText primary={purchasedItem.brand}
                     secondary={`${purchasedItem.model} (${
                       purchasedItem.order.quantity
-                    })`}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </div>
-          <div />
+                    })`} />
+          </ListItem>
+          ))}
+        </List>
         </div>
         <div>
           <h2>{'Watches ' + user.firstName + ' is Selling.'}</h2>

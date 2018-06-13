@@ -37,14 +37,14 @@ router.put(
   defaultHandler(async (req, res, next) => {
     const updatedUsers = await User.update(req.body, {
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
       returning: true,
-      plain: true,
+      plain: true
     });
     res.send({
       message: 'User Instance Updated',
-      updatedUser: updatedUsers[1].dataValues,
+      updatedUser: updatedUsers[1].dataValues
     });
   })
 );
@@ -54,8 +54,8 @@ router.delete(
   defaultHandler(async (req, res, next) => {
     await User.destroy(req.body, {
       where: {
-        id: req.params.id,
-      },
+        id: req.params.id
+      }
     });
 
     res.sendStatus(200);

@@ -31,7 +31,7 @@ class watchBrowse extends React.Component {
                   }}
                 >
                   <Link to={`/watches/${watch.id}`}>
-                    <img src={watch.image} />
+                    <img id="watch-img" src={watch.image} />
                     <GridListTileBar
                       title={watch.brand}
                       subtitle={watch.model}
