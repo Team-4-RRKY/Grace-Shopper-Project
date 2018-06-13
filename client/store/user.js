@@ -5,6 +5,7 @@ import history from '../history';
  * ACTION TYPES
  */
 const GOT_USER = 'GOT_USER';
+const GOT_FOREIGN_USER = 'GOT_FOREIGN_USER'
 const REMOVE_USER = 'REMOVE_USER';
 const ADDED_TO_CART = 'ADDED_TO_CART';
 const ADDED_TO_GUEST_CART = 'ADDED_TO_GUEST_CART';
@@ -17,7 +18,7 @@ const PURCHASED = 'PURCHASED';
 /**
  * INITIAL STATE
  */
-const initialState = { user: {}, guestCart: [], recentlyPurchased: [] };
+const initialState = { user: {}, guestCart: [], recentlyPurchased: [], fUser: {} };
 
 /**
  * ACTION CREATORS
@@ -28,6 +29,7 @@ const editedUser = editedData => ({
   type: EDITEDUSER,
   editedData,
 });
+const gotForeignUser = user => ({type: GOT_FOREIGN_USER, user})
 const addedToCart = watch => ({ type: ADDED_TO_CART, watch });
 const removedFromCart = watch => ({ type: REMOVED_FROM_CART, watch });
 const gotGuestCart = cart => ({ type: GOT_GUEST_CART, cart });
@@ -37,6 +39,12 @@ const purchased = (items, user) => ({ type: PURCHASED, items, user });
 /**
  * THUNK CREATORS
  */
+
+export const getForeignUser = fUserId => async dispatch => {
+  const {data} = await axios.get(`/api/users/${fUserId}`)
+  console.log('This is the thunk', data)
+  dispatch(gotForeignUser(data))
+}
 
 export const getGuestCart = () => dispatch => {
   let str = localStorage.cartItems || undefined;
@@ -185,6 +193,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_USER:
       return { ...state, user: action.user };
+    case GOT_FOREIGN_USER:
+      return {...state, fUser: action.user}
     case REMOVE_USER:
       return { ...state, user: {} };
     case EDITEDUSER:

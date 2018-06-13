@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import { Menu, Button, MenuItem } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 class Navbar extends Component {
   state = {
@@ -60,12 +62,14 @@ class Navbar extends Component {
                   <div className="nav-item"> Logout</div>
                 </MenuItem>
               </Menu>
+              <IconButton>
               <Link className="nav-item" to="/cart">
-                Cart{' '}
+                <AddShoppingCartIcon />
                 {` (${cart.reduce((acc, el) => {
                   return acc + el.cart.quantity;
                 }, 0)})`}
               </Link>
+              </IconButton>
             </div>
           ) : (
             <div className="nav-container">
@@ -79,12 +83,16 @@ class Navbar extends Component {
               <Link className="nav-item" to="/watches/browse">
                 WATCHES
               </Link>
-              <Link className="nav-item" to="/cart">
-                Cart{' '}
-                {` (${guestCart.reduce((acc, el) => {
-                  return acc + el.cart.quantity;
-                }, 0)})`}
-              </Link>
+
+                <IconButton color="primary">
+                  <Link className="nav-item" to="/cart">
+                    <AddShoppingCartIcon />
+                    {` (${guestCart.reduce((acc, el) => {
+                      return acc + el.cart.quantity;
+                    }, 0)})`}
+                  </Link>
+                </IconButton>
+
             </div>
           )}
         </nav>

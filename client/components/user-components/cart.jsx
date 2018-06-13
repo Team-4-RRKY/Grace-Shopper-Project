@@ -6,7 +6,7 @@ import {
   removeFromCart,
   addToCart,
   updateGuestCart,
-  removeFromGuestCart,
+  removeFromGuestCart
 } from '../../store/user.js';
 const { apiKey } = require('../../../secrets.js');
 
@@ -127,7 +127,7 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user.user,
-  guestCart: state.user.guestCart,
+  guestCart: state.user.guestCart
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -139,7 +139,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(removeFromGuestCart(watch, guestCart)),
   handleToken(token, amount, user) {
     dispatch(postPayment(token, amount, user));
-  },
+  }
 });
 
 export default connect(

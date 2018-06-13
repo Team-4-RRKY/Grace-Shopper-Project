@@ -16,6 +16,7 @@ router.get( '/:id', defaultHandler(async (req, res, next) => {
 }));
 
 router.post( '/', defaultHandler(async (req, res, next) => {
+    req.body.price = '$' + req.body.price
     const watchToSell = await Watch.create(req.body);
     res.json(watchToSell);
 }));

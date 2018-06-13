@@ -58,27 +58,28 @@ class User extends Component {
       <div className="row wrap">
         <div>
           <Card >
+            <div className="row wrap">
             <CardMedia
-              className="user-media"
+              id="user-img"
               image={user.image}
               title={user.firstName}
             />
             <CardContent className="user-card-content">
-              <Typography gutterBottom variant="headline" component="h2">
+              <Typography gutterBottom variant="headline" component="h1">
                 {user.firstName + ' ' + user.lastName}
               </Typography>
-              <Typography component="p">
+              <Typography variant="title">
                 User: {user.firstName} {user.lastName}
               </Typography>
-              <Typography component="p">Email: {user.email}</Typography>
-              <Typography component="p">Address: {user.address}</Typography>
-              <Typography component="p">Gender: {user.gender}</Typography>
-              <Typography component="p">
+              <Typography variant="title">Email: {user.email}</Typography>
+              <Typography variant="title">Address: {user.address}</Typography>
+              <Typography variant="title">Gender: {user.gender}</Typography>
+              <Typography variant="title">
                 Joined On: {user.createdAt.slice(0, 10)}
               </Typography>
             </CardContent>
             <CardActions>
-              <Button onClick={this.handleOpen} size="small" color="primary">
+              <Button color="secondary" variant="contained" onClick={this.handleOpen} size="small" color="primary">
                 Edit User
               </Button>
             </CardActions>
@@ -92,10 +93,11 @@ class User extends Component {
                 />
               </DialogContent>
             </Dialog>
+            </div>
           </Card>
         </div>
         <div className="column wrap">
-        <h3> Purchase History </h3>
+        <h3 className="text-center"> Purchase History </h3>
         <List>
           {user.saleItems.map(purchasedItem => (
           <ListItem key={purchasedItem.id}>

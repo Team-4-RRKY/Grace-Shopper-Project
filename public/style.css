@@ -213,6 +213,10 @@ body {
   color: white;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .nav-links{
   justify-content: center;
   display: flex;
@@ -268,4 +272,9 @@ body {
 #watch-img {
   height: 250px;
   width: 250px;
+}
+
+#user-img {
+  height: 150px;
+  width: 150px;
 }
