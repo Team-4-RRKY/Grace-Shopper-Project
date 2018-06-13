@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const key = process.env.key;
-const stripe = require('stripe')(key);
+const stripe = require('stripe')('sk_test_CyRumQUmuDvornXKIsHjIrQL');
 const defaultHandler = require('./errorHandler');
 const { User, Watch, Order, Cart } = require('../db/models');
 
@@ -11,6 +11,7 @@ router.post(
   defaultHandler(async (req, res, next) => {
     const userId = req.body.user.id;
     const { cartItems } = req.body.user;
+    // stripe._api.auth = `Bearer sk_test_CyRumQUmuDvornXKIsHjIrQL`;
     const charge = await stripe.charges.create({
       amount: req.body.amount,
       currency: 'USD',
