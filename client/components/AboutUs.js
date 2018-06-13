@@ -7,7 +7,7 @@ return (
   <Card className="card pos .card">
     <CardHeader className="card-title" title="BayWatch" />
     <CardContent>
-      <Typography component="p">
+      <Typography className="paragraph-test" component="p">
       Could someone survive inside a transporter buffer for 75 years? When has justice ever been as simple as a rule book? Talk about going nowhere fast. My oath is between Captain Kargan and myself. Your only concern is with how you obey my orders. Or do you prefer the rank of prisoner to that of lieutenant? The unexpected is our normal routine.
       </Typography>
       <Typography component="p">
