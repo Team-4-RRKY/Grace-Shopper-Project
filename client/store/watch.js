@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../history';
+import { gotUser } from './user';
 
 const GOT_WATCHES = 'GOT_WATCHES';
 const EDITED_WATCH = 'EDITED_WATCH';
@@ -15,7 +16,7 @@ const LISTED_WATCH = 'LISTED_WATCH';
 
 const gotWatches = watches => ({
   type: GOT_WATCHES,
-  watches
+  watches,
 });
 
 const deletedWatch = watch => ({
@@ -37,10 +38,12 @@ const listedWatch = watch => ({
   watch,
 });
 
-export const listWatch = watch => async dispatch => {
+export const listWatch = (watch, id) => async dispatch => {
   try {
-    const { data } = await axios.post('/api/watches', watch);
-    dispatch(listedWatch(data));
+    const { data } = await axios.post('/api/watches', { watch, id });
+    dispatch(listedWatch(data.watchToSell));
+    dispatch(gotUser(data.newUser));
+    history.push(`/watches/${data.watchToSell.id}`);
   } catch (error) {
     console.error(error);
   }
@@ -48,16 +51,16 @@ export const listWatch = watch => async dispatch => {
 
 export const selectedWatch = watch => ({
   type: SELECTED_WATCH,
-  watch
+  watch,
 });
 
 export const fetchingWatches = () => ({
-  type: FETCHING_WATCHES
+  type: FETCHING_WATCHES,
 });
 
 export const filteredWatches = watches => ({
   type: FILTEREDWATCHES,
-  watches
+  watches,
 });
 
 export const getWatches = () => async dispatch => {
@@ -75,7 +78,7 @@ const intitialState = {
   isFetching: false,
   allWatches: [],
   filteredWatches: [],
-  watch: {}
+  watch: {},
 };
 
 const watchReducer = (state = intitialState, action) => {
