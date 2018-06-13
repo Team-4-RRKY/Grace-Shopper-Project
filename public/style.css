@@ -265,3 +265,9 @@ body {
   align-content: center;
   justify-content: center;
 }
+
+#watch-img {
+  height: 250px;
+  width: 250px;
+}
+

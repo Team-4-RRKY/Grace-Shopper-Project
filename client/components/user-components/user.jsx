@@ -119,7 +119,7 @@ class User extends Component {
             {user.listings.map(listing => (
               <GridListTile key={listing.id}>
                 <Link to={`/watches/${listing.id}`}>
-                  <img src={listing.image} />
+                  <img src={listing.image} id="watch-img" />
                   <GridListTileBar
                     title={listing.brand}
                     subtitle={listing.model}

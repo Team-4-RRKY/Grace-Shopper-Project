@@ -10,8 +10,10 @@ import {
 import { listWatch } from '../../store/watch';
 import { ranges, styles } from '../../components/commonUtils';
 
+
 class SellWatch extends Component {
   state = {
+    sellerId: this.props.user.id,
     model: '',
     brand: '',
     price: '',
@@ -141,6 +143,7 @@ class SellWatch extends Component {
 const mapStateToProps = state => ({
   id: state.user.user.id,
 });
+
 const mapDispatchToProps = dispatch => ({
   postWatch: (formData, id) => dispatch(listWatch(formData, id)),
 });
