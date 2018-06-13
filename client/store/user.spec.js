@@ -29,6 +29,7 @@ describe('thunk creators', () => {
 
   xdescribe('me', () => {
     it('eventually dispatches the GET USER action', () => {
+      const localStorage = { cartItems: [] };
       const fakeUser = { email: 'Cody' };
       mockAxios.onGet('/auth/me').replyOnce(200, fakeUser);
       return store.dispatch(me()).then(() => {
