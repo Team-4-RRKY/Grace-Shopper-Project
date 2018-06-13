@@ -7,38 +7,30 @@ import { ranges, styles } from '../commonUtils';
 class FilterWatches extends React.Component {
   state = {
     brand: '',
-    /* tier: '', */
     style: '',
     gender: '',
-    price: []
+    price: '',
   };
 
   handleChange = event => {
-    this.setState(
-      {
-        [event.target.name]: event.target.value
-      },
-      () => {
-        console.log('state here', this.state);
-      }
-    );
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
 
   handlePricechange = event => {
-    this.setState(
-      {
-        price: event.target.value.split(',')
-      },
-      () => {
-        console.log('price here', this.state.price);
-      }
-    );
+    console.log(this.state.price.length);
+    this.setState({
+      price: event.target.value.split(','),
+    });
   };
 
   handlefilter = event => {
     event.preventDefault();
-    const { brand, gender, style, price } = this.state;
-
+    let { brand, gender, style, price } = this.state;
+    if (!price[0]) {
+      price = false;
+    }
     const filtered = this.props.allWatches.filter(watch => {
       return (
         (brand ? watch.brand === brand : true) &&
@@ -57,7 +49,7 @@ class FilterWatches extends React.Component {
       brand: '',
       style: '',
       gender: '',
-      price: []
+      price: [],
     });
   };
 
@@ -76,102 +68,102 @@ class FilterWatches extends React.Component {
     const watches = this.props.filtered;
     const allWatches = this.props.allWatches;
     // if (watches[0] === undefined) {
-      //   return <CircularProgress />;
-      // }
-      return (
-        <form
+    //   return <CircularProgress />;
+    // }
+    return (
+      <form
         onSubmit={this.handlefilter}
         onReset={this.handleReset}
         className="filter_form"
-        >
+      >
         {/* Gender */}
         {/* <span>
           <h3>Please Select Gender and Price Range</h3>
         </span> */}
         <div className="column wrap">
-        <label>Gender</label>
-        <select
-          name="gender"
-          onChange={this.handleChange}
-          value={this.state.gender}
+          <label>Gender*</label>
+          <select
+            name="gender"
+            onChange={this.handleChange}
+            value={this.state.gender}
           >
-          <option>''</option>
-          {this.getUniq(allWatches, 'gender').map(gender => {
-            return (
-              <option value={gender} key={gender}>
-                {gender}
-              </option>
-            );
-          })}
-        </select>
-
-        {/* price */}
-        <label>Price Range</label>
-        <select
-          name="price"
-          onChange={this.handlePricechange}
-          /* value={this.state.price} */
-          >
-          <option>''</option>
-
-          <option
-            value={this.getUniq(allWatches, 'price').filter(pp => {
-              return pp.slice(1) < 100;
+            <option value="">Choose...</option>
+            {this.getUniq(allWatches, 'gender').map(gender => {
+              return (
+                <option value={gender} key={gender}>
+                  {gender}
+                </option>
+              );
             })}
-            >
-            less than $100
-          </option>
+          </select>
 
-          <option
-            value={this.getUniq(allWatches, 'price').filter(pp => {
-              return pp.slice(1) > 100 && pp.slice(1) < 150;
-            })}
-            >
-            $100-$150
-          </option>
-
-          <option
-            value={this.getUniq(allWatches, 'price').filter(pp => {
-              return pp.slice(1) > 150;
-            })}
-            >
-            more than $150
-          </option>
-        </select>
-
-        {/* Brand */}
-        <label>Brand</label>
-        <select
-          name="brand"
-          onChange={this.handleChange}
-          value={this.state.brand}
+          {/* price */}
+          <label>Price Range</label>
+          <select
+            name="price"
+            onChange={this.handlePricechange}
+            /* value={this.state.price} */
           >
-          <option>''</option>
-          {this.getUniq(allWatches, 'brand').map(brand => {
-            return (
-              <option value={brand} key={brand}>
-                {brand}
-              </option>
-            );
-          })}
-        </select>
+            <option value="">Choose...</option>
 
-        {/* style */}
-        <label>Style</label>
-        <select
-          name="style"
-          onChange={this.handleChange}
-          value={this.state.style}
+            <option
+              value={this.getUniq(allWatches, 'price').filter(pp => {
+                return pp.slice(1) < 100;
+              })}
+            >
+              less than $100
+            </option>
+
+            <option
+              value={this.getUniq(allWatches, 'price').filter(pp => {
+                return pp.slice(1) > 100 && pp.slice(1) < 150;
+              })}
+            >
+              $100-$150
+            </option>
+
+            <option
+              value={this.getUniq(allWatches, 'price').filter(pp => {
+                return pp.slice(1) > 150;
+              })}
+            >
+              more than $150
+            </option>
+          </select>
+
+          {/* Brand */}
+          <label>Brand</label>
+          <select
+            name="brand"
+            onChange={this.handleChange}
+            value={this.state.brand}
           >
-          <option>''</option>
-          {this.getUniq(allWatches, 'style').map(style => {
-            return (
-              <option value={style} key={style}>
-                {style}
-              </option>
-            );
-          })}
-        </select>
+            <option value="">Choose...</option>
+            {this.getUniq(allWatches, 'brand').map(brand => {
+              return (
+                <option value={brand} key={brand}>
+                  {brand}
+                </option>
+              );
+            })}
+          </select>
+
+          {/* style */}
+          <label>Style</label>
+          <select
+            name="style"
+            onChange={this.handleChange}
+            value={this.state.style}
+          >
+            <option value="">Choose...</option>
+            {this.getUniq(allWatches, 'style').map(style => {
+              return (
+                <option value={style} key={style}>
+                  {style}
+                </option>
+              );
+            })}
+          </select>
         </div>
 
         {/* tier
@@ -192,28 +184,27 @@ class FilterWatches extends React.Component {
           type="submit"
           variant="contained"
           color="primary"
-          disabled={
-            this.state.price.length < 1 ||
-            (this.state.price[0] === '' && this.state.gender === '')
-          }
+          disabled={!this.state.gender}
         >
           Filter
         </Button>
-        <Button type="reset" variant="contained" color="secondary">reset</Button>
-        </form>
+        <Button type="reset" variant="contained" color="secondary">
+          reset
+        </Button>
+      </form>
     );
   }
 }
 
 const mapStateToProps = state => ({
   allWatches: state.watch.allWatches,
-  filtered: state.watch.filteredWatches
+  filtered: state.watch.filteredWatches,
 });
 
 const mapDispatchToProps = dispatch => ({
   filteredWatches: watches => {
     dispatch(filteredWatches(watches));
-  }
+  },
 });
 
 export default connect(

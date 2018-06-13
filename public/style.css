@@ -3,7 +3,7 @@ body {
 }
 
 a {
-text-decoration: none;
+  text-decoration: none;
 }
 
 label {
@@ -24,8 +24,6 @@ body {
   margin: 0;
 }
 
-
-
 #title {
   background-color: #212121;
   color: white;
@@ -37,7 +35,7 @@ body {
   text-align: center;
 }
 
-#user-info-wrap{
+#user-info-wrap {
   /* display: flex */
 }
 
@@ -58,7 +56,7 @@ body {
 
 .error {
   color: red;
-  padding: .5rem;
+  padding: 0.5rem;
   font-size: 2rem;
 }
 
@@ -133,7 +131,6 @@ body {
   position: relative;
   top: 20%;
   right: 20%;
-
 }
 .bullet {
   display: 'inline-block';
@@ -142,52 +139,51 @@ body {
 }
 
 .card-title {
-  margin-Bottom: 16;
+  margin-bottom: 16;
   font-family: 'Oxygen', sans-serif;
   font-size: 14;
 }
 
 .pos {
-  margin-Bottom: 12;
+  margin-bottom: 12;
   margin-right: 50px;
   margin-left: 50px;
 }
 
-.user-home-header{
+.user-home-header {
   font-family: 'Oxygen', sans-serif;
   font-size: 25px;
 }
 
-.watch-carousel{
+.watch-carousel {
   font-family: 'Oxygen', sans-serif;
   background-image: url('./carousel-bg-img.jpg');
   background-size: cover;
 }
 
-.carousel-item{
+.carousel-item {
   height: 425px;
 }
 
-.carousel-img{
+.carousel-img {
   margin-right: 50px;
   border-radius: 8px;
-  box-shadow: 14px 14px 25px -1px rgba(0,0,0,0.75);
+  box-shadow: 14px 14px 25px -1px rgba(0, 0, 0, 0.75);
 }
 
-.carousel-caption{
-
+.carousel-caption {
 }
 
-.carousel-title{
+.carousel-title {
   font-size: 40px;
   color: white;
 }
 
-.carousel-description{
+.carousel-description {
   color: white;
 }
 
-.carousel-item-inner{
+.carousel-item-inner {
   position: relative;
   display: flex;
   align-items: center;
@@ -200,11 +196,11 @@ body {
   margin: 1.5rem;
 }
 
-.footer-nav-item{
+.footer-nav-item {
   color: white;
 }
 
-.nav-container{
+.nav-container {
   display: flex;
 }
 
@@ -213,7 +209,7 @@ body {
   color: white;
 }
 
-.nav-links{
+.nav-links {
   justify-content: center;
   display: flex;
   width: 100%;
@@ -228,7 +224,7 @@ body {
   text-align: center;
 }
 
-.user-card-wrapper{
+.user-card-wrapper {
   display: flex;
   margin-top: 250px;
 }
@@ -245,22 +241,27 @@ body {
   max-width: 600px;
   height: auto;
   padding-top: 56.25%;
-
 }
 
-.user-card-content{
+.user-card-content {
   align-content: center;
 }
 
-.checkout-watch-div{
+.checkout-watch-div {
   padding: 15px;
 }
 
-.checkout-total-div{
+.checkout-total-div {
   padding-top: 15px;
 }
 
-.checkout-paper{
+.checkout-paper {
   padding-right: 50px;
   padding-left: 50px;
+}
+
+#loader-div {
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }

@@ -12,6 +12,7 @@ import {
 
 import StripeCheckout from 'react-stripe-checkout';
 import { postPayment } from '../../store/user.js';
+import Loader from './loader.jsx';
 
 class Cart extends React.Component {
   componentDidMount() {
@@ -28,9 +29,10 @@ class Cart extends React.Component {
     // cartItems = cartItems || localStorage.cartItems || [];
     const { handleToken } = this.props;
     const user = this.props.user;
+    if (this.props.processing) return <Loader />;
     return (
       <div>
-        <h1>Your Shopping Cartz</h1>
+        <h1>Your Shopping Cart</h1>
         {cartItems.map(e => {
           let { brand, model, price } = e;
           let addCartData = { userId, watchId: e.id, num: 1 };
@@ -128,6 +130,7 @@ class Cart extends React.Component {
 const mapStateToProps = state => ({
   user: state.user.user,
   guestCart: state.user.guestCart,
+  processing: state.user.processing,
 });
 
 const mapDispatchToProps = dispatch => ({
