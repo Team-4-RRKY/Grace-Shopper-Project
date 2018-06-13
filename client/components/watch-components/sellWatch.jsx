@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, TextField, InputAdornment, MenuItem, Input } from '@material-ui/core';
+import {
+  Button,
+  TextField,
+  InputAdornment,
+  MenuItem,
+  Input,
+} from '@material-ui/core';
 import { listWatch } from '../../store/watch';
 import { ranges, styles } from '../../components/commonUtils';
 
@@ -9,28 +15,31 @@ class SellWatch extends Component {
     model: '',
     brand: '',
     price: '',
-    image: '',
+    image: 'http://www.pkicon.com/icons/31929/Clock-256.png',
     gender: '',
     style: '',
     quantity: '',
-    description: ''
+    description: '',
   };
 
   handleChange = event => {
-    console.log(this.state);
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.postWatch(this.state);
+    this.props.postWatch(this.state, this.props.id);
   };
 
   render() {
     return (
-      <form id="sell-watch"onSubmit={this.handleSubmit} className="form column">
+      <form
+        id="sell-watch"
+        onSubmit={this.handleSubmit}
+        className="form column"
+      >
         <TextField
           className="input"
           label="Brand"
@@ -38,6 +47,7 @@ class SellWatch extends Component {
           name="brand"
           onChange={this.handleChange}
           value={this.state.brand}
+          required
         />
         <TextField
           className="input"
@@ -46,6 +56,7 @@ class SellWatch extends Component {
           name="model"
           onChange={this.handleChange}
           value={this.state.model}
+          required
         />
         <TextField
           className="input"
@@ -55,8 +66,9 @@ class SellWatch extends Component {
           onChange={this.handleChange}
           value={this.state.price}
           inputProps={{
-              startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startadornment: <InputAdornment position="start">$</InputAdornment>,
           }}
+          required
         />
         <TextField
           className="input"
@@ -65,6 +77,7 @@ class SellWatch extends Component {
           name="image"
           onChange={this.handleChange}
           value={this.state.image}
+          defaultValue="http://www.pkicon.com/icons/31929/Clock-256.png"
         />
         <TextField
           select
@@ -75,9 +88,9 @@ class SellWatch extends Component {
           onChange={this.handleChange}
           value={this.state.gender}
           InputProps={{
-            startAdornment: (
+            startadornment: (
               <InputAdornment position="start">Gender</InputAdornment>
-            )
+            ),
           }}
         >
           {' '}
@@ -96,9 +109,9 @@ class SellWatch extends Component {
           onChange={this.handleChange}
           value={this.state.style}
           InputProps={{
-            startAdornment: (
+            startadornment: (
               <InputAdornment position="start">Style</InputAdornment>
-            )
+            ),
           }}
         >
           {' '}
@@ -115,6 +128,7 @@ class SellWatch extends Component {
           name="quantity"
           onChange={this.handleChange}
           value={this.state.quantity}
+          required
         />
         <Button type="submit" variant="contained" color="primary">
           Sell Yo Watch
@@ -124,11 +138,14 @@ class SellWatch extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  id: state.user.user.id,
+});
 const mapDispatchToProps = dispatch => ({
-  postWatch: formData => dispatch(listWatch(formData))
+  postWatch: (formData, id) => dispatch(listWatch(formData, id)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SellWatch);
